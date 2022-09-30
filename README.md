@@ -1,5 +1,7 @@
 # Playwright E2E Testing Framework
 
+![The San Juan Mountains are beautiful!](/assets/images/playwright-logo.png "San Juan Mountains")
+
 Demo automation testing framework created with Playwright. Playwright supports all modern rendering engines including Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation of Google Chrome for Android and Mobile Safari.
 
 [Playwright Github](https://github.com/microsoft/playwright)
