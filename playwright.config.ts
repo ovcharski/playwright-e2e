@@ -46,7 +46,7 @@ const config: PlaywrightTestConfig = {
     trace: 'on-first-retry',
 
     /* Set headless */
-    headless: false,
+    headless: true,
   },
 
   /* Configure projects for major browsers */
