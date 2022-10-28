@@ -2,13 +2,43 @@
 
 ![The San Juan Mountains are beautiful!](/assets/images/playwright-logo.png "San Juan Mountains")
 
-Demo automation testing framework created with Playwright. A NodeJS library made for browser automation. It's free, open source and backed up by Microsoft.
+Demo automation testing framework created with Playwright. A NodeJS library made for browser automation. It's free, open source and backed up by Microsoft. 
 
 Playwright supports all modern rendering engines including Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation of Google Chrome for Android and Mobile Safari.
 
 [Playwright Github](https://github.com/microsoft/playwright)
 
-## Demo site - E-commerce
+# What does Playwright support
+
+- One API, cross platform, cross language and cross browser
+- Test on Windows, Linux and MacOS
+- Supports Chromium, Firefox & Webkit
+- Playwright API can be used in JavaScript, TypeScript, Python, Java & .NET
+
+# Why Playwright
+
+Resilent tests:
+- Auto-waiting
+- Web first assertions (automatic retries)
+- Strong debugging capabilities (tracing, screenshots, videos...)
+
+Fast execution:
+- Isolated testing (new browser profile for each test)
+- Re-use authentication (save and reuse state)
+
+Powerful tooling:
+- CodeGen
+- Inspector
+- Traceviewer
+
+Limitations:
+- Multi tab, origin and windows support
+- Iframe support
+- Pierce the shadow DOM
+- Make API request
+
+
+# Demo site - E-commerce
 
 The demo website is using WooCommerce - an open-source e-commerce plugin for WordPress. It is designed for small to large-sized online merchants using WordPress.
 
@@ -18,7 +48,7 @@ The products (37) are in 4 categories - Clothing (23), Decor (1), Jenkins Artwor
 
 The Registration form has 10 fields: username, first name, last name, email, password, gender, birth date, coutry, phone number. Some of the fields are required, some are optional. Different type of fields are used - text box, password, radio, date picker, dropdown, telepone box.
 
-## Test suite
+# Test suite
 
 The tests in the framework will cover:
 
@@ -31,7 +61,7 @@ The tests in the framework will cover:
 - API Testing?
 - Performance testing?
 
-## Checklist
+# Checklist
 
 |          | Status | 
 |   :---   | :---: | 
@@ -39,7 +69,7 @@ The tests in the framework will cover:
 | TBD | :black_square_button:
 | TBD | :black_square_button:
 
-## Usage
+# Usage
 
 Get started by installing Playwright using npm or yarn. Alternatively you can also get started and run tests using the VS Code Extension.
 
