@@ -57,9 +57,11 @@ The tests in the framework will cover:
 - Making an order
 - Page Object Model
 - GutHub Actions with HTML report
-- BDD?
-- API Testing?
-- Performance testing?
+- BDD? Playwright does not support natively BDD / Gherkin, but some work around solutions are available. Use the playwright steps to explain all Given/When/Then assertions  ([BDD implementation with Playwright test runner](https://github.com/microsoft/playwright))
+- API Testing? Playwright is not the best tool for API testing but it is possible ([API testing](https://playwright.dev/docs/test-api-testing))
+- Performance testing? Playwright is not designed for performance testing, but may be there are some variants. To be ivestigated.
+
+A repo with Postman collection for API testing of the same website is available here [ovcharski/postman-wp](https://github.com/microsoft/playwright). The repo is just for an idea for combination of Playwright UI and Postman API testing in a one whole package.
 
 # Checklist
 
