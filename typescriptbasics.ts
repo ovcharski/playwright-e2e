@@ -132,5 +132,69 @@ var age = 17
 var allowedToDrive = age > 18 ? "You can drive" : "You can not drive"
 console.log(allowedToDrive)
 
+//
+
+console.log("If Else examples:")
+
+var morning = "7 am"
+var night = "11 pm"
+var breakfast = "9 am"
+var time = "9 am"
+
+if (time === morning) {
+    console.log("Good morning, it is", morning)
+} else if (time === night) {
+    console.log("Good night, it is", night)
+} else if (time === breakfast){
+    console.log("Good morning, it is time to eat")
+}
+ else {
+    console.log("Hello, it is", time)
+}
 
 
+//
+
+console.log("Loops examples:")
+
+// for
+
+for (var i = 0; i < 100; i++) {
+    console.log(i)
+}
+
+// var planets = ["Earth", "Jupiter", "Pluto"]
+
+for (var i=0; i < planets.length; i++) {
+    console.log(planets[i])
+}
+
+// for-of
+
+for (var pl of planets) {
+    console.log(pl)
+}
+
+for (var pla of "planets") {
+    console.log(pla)
+}
+
+// for-in
+
+for (var nam in names) {
+    console.log(names [nam])
+}
+
+// for-each
+
+planets.forEach(function (planet) {
+    console.log(planet)
+})
+
+// while
+
+var i = 0
+while (i < 10) {
+    console.log(i)
+    i++;
+}
