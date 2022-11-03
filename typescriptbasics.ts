@@ -198,3 +198,70 @@ while (i < 10) {
     console.log(i)
     i++;
 }
+
+// functions
+
+console.log("Functions examples:")
+
+function sum(num1, num2) {
+    console.log(num1 + num2)
+}
+
+sum(1, 5)
+sum(22, 44)
+
+// function expression
+var multiply = function (n1, n2) {
+    console.log(n1 * n2)
+}
+
+multiply(2,8)
+
+var division = function(n1, n2) {
+    var result = n1 / n2;
+    return result
+}
+
+console.log(division(10,2))
+
+// Arrow function
+
+var sum2 = (n1, n2) => {
+    return n1 + n2
+}
+
+console.log(sum2(2,4))
+
+var sum22 = (n1, n2) => n1 + n2
+
+console.log(sum2(2,4))
+
+// var, let, const
+
+console.log("var, let, const examples:")
+
+let person = "James"
+
+if (true) {
+    let person = "Jenny"
+    console.log(person)
+}
+
+console.log(person)
+
+// template literal
+
+let namee = 'Georgi'
+let agee = 23
+
+console.log('My name is', namee, 'and I am ', agee, 'years old')
+
+console.log(`My name is ${namee} and I am ${agee} years old`)
+
+console.log(`Multi
+line
+text`)
+
+console.log(`4 + 5 is ${4 + 5}`)
+
+console.log(`${namee === 'Georgi' ? 'it is' : 'no it is not'}`) 
