@@ -3,7 +3,7 @@ test('Open homepage and check few texts', async ({ page }) => {
 
 
   // Go to https://ovcharski.com/shop/
-  await page.goto('https://ovcharski.com/shop/');
+  await page.goto('/shop/');
 
   // Check website title (visible in the page)
   await expect(page.locator('a:has-text("Automation Demo Site")')).toBeVisible;

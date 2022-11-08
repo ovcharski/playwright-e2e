@@ -73,6 +73,10 @@ A repo with Postman collection for API testing of the same website is available 
 | TBD | :black_square_button:
 | TBD | :black_square_button:
 
+# POM
+
+Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. It is useful in reducing code duplication and improves test script maintenance. In Page Object Model, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Using these elements, testers can perform operations on the website under test.
+
 # Usage
 
 Get started by installing Playwright using npm or yarn. Alternatively you can also get started and run tests using the VS Code Extension.

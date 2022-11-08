@@ -265,3 +265,16 @@ text`)
 console.log(`4 + 5 is ${4 + 5}`)
 
 console.log(`${namee === 'Georgi' ? 'it is' : 'no it is not'}`) 
+
+// Classes
+
+class Page {
+    url: any
+    
+    constructor(url) {
+        this.url = url
+    }
+}
+
+const p1 = new Page ('https://google.bg')
+console.log(p1.url)
