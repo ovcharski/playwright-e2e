@@ -4,12 +4,9 @@ test('Open homepage and check few texts', async ({ page }) => {
 
   // Go to https://ovcharski.com/shop/
   await page.goto('/shop/');
-
-  // Check website title (visible in the page)
-  await expect(page.locator('a:has-text("Automation Demo Site")')).toBeVisible;
-  await expect(page.locator('a:has-text("Automation Demo Site")')).toHaveText("Automation Demo Site");
-
-  // Check another text on the page
+  
+  // Check text on the page
+  await expect(page.locator('text=Welcome to the store')).toBeVisible;
   await expect(page.locator('text=Welcome to the store')).toHaveText("Welcome to the store");
 
   // Check Footer
