@@ -1,5 +1,7 @@
 import { Page } from "@playwright/test";
 
+// A Page Object Model page for login flow
+
 export default class LoginPage {
     constructor(public page: Page) {}
 
@@ -14,8 +16,7 @@ export default class LoginPage {
     }
 
     async clickLoginBtn() {
-        await this.page.locator('#um-submit-btn')
+        await this.page.locator('#um-submit-btn').click();
     }
 
-    // getByRole('button', { name: 'Login' })
 }

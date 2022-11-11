@@ -1,8 +1,8 @@
 import test from "@playwright/test"
 import LoginPage from "../pages/loginPage"
 
-const username = 'rtclxbrg'
-const password = 'U.^>hE~L(9J='
+// const username = 'playwrightuser'
+// const password = 'playwrightuser'
 
 test('Login test', async ({ page }) => {
 
