@@ -16,7 +16,7 @@ export default class LoginPage {
     }
 
     async clickLoginBtn() {
-        await this.page.locator('#um-submit-btn').click();
+        await this.page.locator('#um-submit-btn').click()
     }
 
 }

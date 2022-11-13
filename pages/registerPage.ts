@@ -7,6 +7,7 @@ export default class RegisterPage {
 
     async enterUsername(username: string) {
         await this.page.locator('#user_login-91')
+        .type(username);
     }
 
     async enterFirstName(firstname: string) {
@@ -29,12 +30,16 @@ export default class RegisterPage {
         .type(password);
     }
 
+    async selectGender() {
+        await this.page.locator('i').first().click();
+    }
+
     async enterConfirmPassword(password: string) {
         await this.page.locator('#confirm_user_password-91')
         .type(password);
     }
 
     async clickRegisterBtn() {
-        await this.page.click('#um-submit-btn')
+        await this.page.locator('#um-submit-btn').click()
     }
 }
