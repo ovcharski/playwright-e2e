@@ -40,7 +40,7 @@ Limitations:
 
 # Demo site - E-commerce
 
-The demo website is using WooCommerce - an open-source e-commerce plugin for WordPress. It is designed for small to large-sized online merchants using WordPress.
+The [demo website](https://ovcharski.com/shop/) is using WooCommerce - an open-source e-commerce plugin for WordPress. It is designed for small to large-sized online merchants using WordPress.
 
 The website has few pages - Home, Shop, Login, Registration, Profile.
 
@@ -60,7 +60,7 @@ The tests in the framework will cover:
 - Docker
 - Visual Regression Testing (VRT)? `toMatchSnapshot()` method 
 - BDD? Playwright does not support natively BDD / Gherkin, but some work around solutions are available. Use the playwright steps to explain all Given/When/Then assertions  ([BDD implementation with Playwright test runner](https://github.com/microsoft/playwright))
-- API Testing? Playwright is not the best tool for API testing but it is possible ([API testing](https://playwright.dev/docs/test-api-testing))
+- API Testing? Playwright is not the most comprehensive tool for API testing but it is possible ([API testing](https://playwright.dev/docs/test-api-testing))
 - Performance testing? Playwright is not designed for performance testing, but may be there are some variants. To be ivestigated.
 
 A repo with Postman collection for API testing of the same website is available at [ovcharski/postman-wp](https://github.com/microsoft/playwright). The repo is just for an idea for combination of Playwright UI and Postman API testing in a one whole package.
@@ -69,7 +69,7 @@ A repo with Postman collection for API testing of the same website is available 
 
 A checklist showing what is the status of the framework
 
-|          | Status | 
+|  Task    | Status | 
 |   :---   | :---:  | 
 | Creation of checklist | :white_check_mark: 
 | GitHub Actions | :white_check_mark: 
@@ -89,9 +89,15 @@ Page Object Model (POM) is a design pattern that creates a repository for storin
 
 The UI tests are located in /tests/ folder
 
+More tests will be added over time.
+
 # API test
 
+Site API Swagger doc is located [here](https://ovcharski.com/shop/rest-api/docs/).
+
 The API tests are located in /tests/api/
+
+More tests will be added over time.
 
 # Usage
 
