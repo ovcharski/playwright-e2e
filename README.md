@@ -67,15 +67,31 @@ A repo with Postman collection for API testing of the same website is available 
 
 # Checklist
 
+A checklist showing what is the status of the framework
+
 |          | Status | 
-|   :---   | :---: | 
+|   :---   | :---:  | 
 | Creation of checklist | :white_check_mark: 
-| TBD | :black_square_button:
-| TBD | :black_square_button:
+| GitHub Actions | :white_check_mark: 
+| Page Object Model | :white_check_mark:
+| UI tests  | :white_check_mark:
+| API tests | :white_check_mark:
+| - | :black_square_button:
+| - | :black_square_button:
+| - | :black_square_button:
+| - | :black_square_button:
 
 # POM
 
 Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. It is useful in reducing code duplication and improves test script maintenance. In Page Object Model, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Using these elements, testers can perform operations on the website under test.
+
+# UI test
+
+The UI tests are located in /tests/ folder
+
+# API test
+
+The API tests are located in /tests/api/
 
 # Usage
 
