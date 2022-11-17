@@ -76,8 +76,8 @@ A checklist showing what is the status of the framework
 | Page Object Model | :white_check_mark:
 | UI tests  | :white_check_mark:
 | API tests | :white_check_mark:
-| - | :black_square_button:
-| - | :black_square_button:
+| Mobile only test | :black_square_button:
+| FakerJS | :white_check_mark:
 | - | :black_square_button:
 | - | :black_square_button:
 
