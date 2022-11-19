@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+// To do - a page object page for the address form
+
 test('Make an order', async ({ page }) => {
 
 await page.goto('https://ovcharski.com/shop/');
@@ -65,5 +67,71 @@ await expect (page.getByRole('heading', { name: 'Order received' })).toHaveText(
 await expect (page.getByText('Thank you. Your order has been received.')).toHaveText('Thank you. Your order has been received.'); 
 
 await expect (page.getByRole('heading', { name: 'Order details' })).toHaveText('Order details');
+
+});
+
+
+
+test('Making an order via search', async ({ page }) => {
+
+await page.goto('https://ovcharski.com/shop/');
+
+await page.getByRole('searchbox', { name: 'Search for:' }).click();
+
+await page.getByRole('searchbox', { name: 'Search for:' }).fill('Jenkinstein');
+
+await page.getByRole('searchbox', { name: 'Search for:' }).press('Enter');
+await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-jenkinstein/');
+
+await page.getByRole('button', { name: 'Add to cart' }).click();
+await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-jenkinstein/');
+
+await page.locator('div[role="alert"]:has-text("View cart “Jenkins Jenkinstein” has been added to your cart.")').getByRole('link', { name: 'View cart ' }).click();
+await expect(page).toHaveURL('https://ovcharski.com/shop/cart/');
+
+await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
+await expect(page).toHaveURL('https://ovcharski.com/shop/checkout/');
+
+await page.locator('#billing_first_name').click();
+
+await page.locator('#billing_first_name').fill('Alen');
+
+await page.getByRole('textbox', { name: 'Last name *' }).click();
+
+await page.getByRole('textbox', { name: 'Last name *' }).fill('Delon');
+
+await page.getByRole('textbox', { name: 'Company name (optional)' }).click();
+
+await page.getByRole('textbox', { name: 'Company name (optional)' }).fill('Apple Inc');
+
+await page.getByRole('textbox', { name: 'Street address *' }).click();
+
+await page.getByRole('textbox', { name: 'Street address *' }).fill('NEznajna street 224');
+
+await page.getByRole('textbox', { name: 'Apartment, suite, unit, etc. (optional)' }).click();
+
+await page.getByRole('textbox', { name: 'Apartment, suite, unit, etc. (optional)' }).fill('13');
+
+await page.getByRole('textbox', { name: 'Town / City *' }).click();
+
+await page.getByRole('textbox', { name: 'Town / City *' }).fill('Lom');
+
+await page.getByRole('textbox', { name: 'Sofia' }).click();
+
+await page.getByRole('option', { name: 'Vidin' }).click();
+
+await page.getByRole('textbox', { name: 'Postcode / ZIP *' }).click();
+
+await page.getByRole('textbox', { name: 'Postcode / ZIP *' }).fill('7386');
+
+await page.getByLabel('Phone *').click();
+
+await page.getByLabel('Phone *').fill('35987654321');
+
+await page.getByLabel('Email address *').click();
+
+await page.getByLabel('Email address *').fill('lom@lom.com');
+
+await page.getByRole('button', { name: 'Place order' }).click();
 
 });
