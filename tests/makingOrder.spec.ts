@@ -28,9 +28,13 @@ await page.locator('#billing_first_name').fill('Test');
 
 // await page.getByRole('textbox', { name: 'First name *' }).fill('Test');
 
-await page.getByRole('textbox', { name: 'Last name *' }).click();
+await page.locator('#billing_last_name').click();
 
-await page.getByRole('textbox', { name: 'Last name *' }).fill('Order');
+// await page.getByRole('textbox', { name: 'Last name *' }).click();
+
+await page.locator('#billing_last_name').fill('Order');
+
+// await page.getByRole('textbox', { name: 'Last name *' }).fill('Order');
 
 await page.getByRole('textbox', { name: 'Street address *' }).click();
 
@@ -96,9 +100,9 @@ await page.locator('#billing_first_name').click();
 
 await page.locator('#billing_first_name').fill('Alen');
 
-await page.getByRole('textbox', { name: 'Last name *' }).click();
+await page.locator('#billing_last_name').click();
 
-await page.getByRole('textbox', { name: 'Last name *' }).fill('Delon');
+await page.locator('#billing_last_name').fill('Delon');
 
 await page.getByRole('textbox', { name: 'Company name (optional)' }).click();
 
