@@ -10,7 +10,7 @@ const randomEmail = faker.internet.email()
 const randomPassword = faker.internet.password()
 
 
-test('Register user random data', async ({ page }) => {
+test('Register user random data @Registration @Regression', async ({ page }) => {
 
     const register = new RegisterPage(page)
     await page.goto('https://ovcharski.com/shop/register/')

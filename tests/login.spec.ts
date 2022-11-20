@@ -4,7 +4,7 @@ import LoginPage from "../pages/loginPage"
 // const username = 'playwrightuser'
 // const password = 'playwrightuser'
 
-test('Login test', async ({ page }) => {
+test('Login test @Login @Regression', async ({ page }) => {
 
 
 

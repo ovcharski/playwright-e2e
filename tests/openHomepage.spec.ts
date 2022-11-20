@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-test('Open homepage and check few texts', async ({ page }) => {
+test('Open homepage and check few texts @Regression', async ({ page }) => {
 
 
   // Go to https://ovcharski.com/shop/

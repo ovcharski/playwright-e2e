@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 // To do - a page object page for the address form
 
-test('Make an order', async ({ page }) => {
+test('Make an order @Orders @Regression', async ({ page }) => {
 
 await page.goto('https://ovcharski.com/shop/');
 
@@ -76,7 +76,7 @@ await expect (page.getByRole('heading', { name: 'Order details' })).toHaveText('
 
 
 
-test('Making an order via search', async ({ page }) => {
+test('Making an order via search @Orders @Regression', async ({ page }) => {
 
 await page.goto('https://ovcharski.com/shop/');
 

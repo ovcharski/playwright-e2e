@@ -78,6 +78,7 @@ A checklist showing what is the status of the framework
 | API tests | :white_check_mark:
 | Mobile only test | :black_square_button:
 | FakerJS | :white_check_mark:
+| Reuse authentication state | :black_square_button:
 | - | :black_square_button:
 | - | :black_square_button:
 
@@ -110,3 +111,39 @@ Get started by installing Playwright using npm or yarn. Alternatively you can al
 Running tests
 
 > npx playwright test
+
+Here are the most common options available in the command line.
+
+Run a single test file
+
+> npx playwright test tests/todo-page.spec.ts
+
+Run a set of test files
+
+> npx playwright test tests/todo-page/ tests/landing-page/
+
+Run tests in headed browsers
+
+> npx playwright test --headed
+
+Run all the tests against a specific project
+
+> npx playwright test --project=chromium
+
+Disable parallelization
+
+> npx playwright test --workers=1
+
+Choose a reporter
+
+> npx playwright test --reporter=dot
+
+Run in debug mode with Playwright Inspector
+
+> npx playwright test --debug
+
+Ask for help
+
+> npx playwright test --help
+
+Complete set of Playwright Test options is available in the configuration file.
