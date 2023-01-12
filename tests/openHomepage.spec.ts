@@ -10,7 +10,7 @@ test('Open homepage and check few texts @Regression', async ({ page }) => {
   await expect(page.locator('text=Welcome to the store')).toHaveText("Welcome to the store");
 
   // Check Footer
-  await expect (page.locator('text=© Automation Demo Site 2022 Built with Storefront & WooCommerce.')).toContainText("© Automation Demo Site 2022");
+  await expect (page.locator('text=© Automation Demo Site 2023 Built with Storefront & WooCommerce.')).toContainText("© Automation Demo Site 2023");
 
     // Capture a screenshot
     await page.screenshot({ path: 'screenshots/screenshot.png' });
