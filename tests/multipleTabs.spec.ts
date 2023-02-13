@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test"
+import { test } from "@playwright/test"
 
 test('Multiple tabs example', async ({ page, context }) => {
 
@@ -23,6 +23,7 @@ await newTab.screenshot({ path: 'screenshots/screenshotMediaWiki.png' });
 // Close second tab
 await newTab.close();
 
+await page.close();
 
 });
 

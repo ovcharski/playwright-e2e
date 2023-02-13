@@ -13,6 +13,7 @@ await expect(page).toHaveTitle('Login – Automation Demo Site');
 await expect(page).toHaveURL('https://ovcharski.com/shop/login/');
 await expect(page.locator('p:has-text("Password is incorrect. Please try again.")')).toHaveText('Password is incorrect. Please try again.') 
 
+await page.close();
 
 })
 

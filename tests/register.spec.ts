@@ -25,4 +25,6 @@ test('Register user random data @Registration @Regression', async ({ page }) => 
 
     await expect(page).toHaveTitle('User – Automation Demo Site');
 
+    await page.close();
+
     })

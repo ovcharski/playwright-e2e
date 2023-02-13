@@ -1,4 +1,12 @@
 import { test, expect } from '@playwright/test';
+
+test.afterEach(async ({ page }, testInfo) => {
+  console.log(`Finished ${testInfo.title} with status ${testInfo.status}`);
+
+  if (testInfo.status !== testInfo.expectedStatus)
+    console.log(`Did not run as expected, ended up at ${page.url()}`);
+});
+
 test('Open homepage and check few texts @Regression', async ({ page }) => {
 
 
@@ -17,5 +25,7 @@ test('Open homepage and check few texts @Regression', async ({ page }) => {
 
     // Capture a full screen screenshot
     await page.screenshot({ path: 'screenshots/screenshot-full-page.png', fullPage: true });
+
+    await page.close();
 
 });

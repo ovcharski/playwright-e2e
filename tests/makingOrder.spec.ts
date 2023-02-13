@@ -72,6 +72,8 @@ await expect (page.getByText('Thank you. Your order has been received.')).toHave
 
 await expect (page.getByRole('heading', { name: 'Order details' })).toHaveText('Order details');
 
+await page.close();
+
 });
 
 
@@ -137,5 +139,7 @@ await page.getByLabel('Email address *').click();
 await page.getByLabel('Email address *').fill('lom@lom.com');
 
 await page.getByRole('button', { name: 'Place order' }).click();
+
+await page.close();
 
 });

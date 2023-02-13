@@ -6,8 +6,6 @@ import LoginPage from "../pages/loginPage"
 
 test('Login test @Login @Regression', async ({ page }) => {
 
-
-
 const login = new LoginPage(page);
 await page.goto('https://ovcharski.com/shop/login/')
 await login.enterUsername('playwrightuser');
@@ -27,6 +25,9 @@ await expect(page.getByRole('img', { name: 'playwrightuser'})).toBeVisible();
 
 await expect(page.getByAltText('Automation User')).toBeVisible;
 
+await page.close();
 
 })
+
+
 
