@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-// To do - a page object page for the address form
+const baseURL = 'https://ovcharski.com/shop/'
 
 test('Make an order @Orders @Regression', async ({ page }) => {
 
-await page.goto('https://ovcharski.com/shop/');
+await page.goto(baseURL);
 
 await page.getByRole('link', { name: 'Jenkins Artwork Jenkins Artwork (10)' }).click();
 await expect(page).toHaveURL('https://ovcharski.com/shop/product-category/jenkins-artwork/');
@@ -80,7 +80,7 @@ await page.close();
 
 test('Making an order via search @Orders @Regression', async ({ page }) => {
 
-await page.goto('https://ovcharski.com/shop/');
+await page.goto(baseURL);
 
 await page.getByRole('searchbox', { name: 'Search for:' }).click();
 
