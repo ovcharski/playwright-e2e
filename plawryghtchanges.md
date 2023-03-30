@@ -1,5 +1,17 @@
 # Playwright Changelog
 
+# v.1.32
+
+> Introducing UI Mode (preview) - lets you explore, run and debug tests. Comes with a built-in watch mode. Engage with a new flag --ui: npx playwright test --ui
+
+# v1.31 
+
+# v1.30
+
+# v1.29
+
+# v1.28
+
 # v1.27 - 8 Oct 2022
 
 ## New getBy* APIs, inspired by Testing Library

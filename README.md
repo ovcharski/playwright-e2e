@@ -78,7 +78,8 @@ A checklist showing what is the status of the framework
 | API tests | :white_check_mark:
 | Mobile only test | :black_square_button:
 | FakerJS | :white_check_mark:
-| Reuse authentication state | :black_square_button:
+| Reuse authentication state | 
+| Visual Comparisons  | :black_square_button:
 | - | :black_square_button:
 | - | :black_square_button:
 
