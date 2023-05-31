@@ -1,16 +1,42 @@
 # Playwright Changelog
 
-# v.1.32
+# v.1.34
+
+> UI Mode now shows steps, fixtures and attachments
+
+> New property testProject.teardown to specify a project that needs to run after this and all dependent projects have finished. Teardown is useful to cleanup any resources acquired by this project.
+
+# v.1.33 - 27 Apr 2023
+
+> Locators Update
+
+> New APIs
+
+# v.1.32 - 22 Mar 2023
 
 > Introducing UI Mode (preview) - lets you explore, run and debug tests. Comes with a built-in watch mode. Engage with a new flag --ui: npx playwright test --ui
 
-# v1.31 
+# v1.31 - 21 Feb 2023
 
-# v1.30
+> New APIs
 
-# v1.29
+# v1.30 - 25 Jan 2023
 
-# v1.28
+> Maintenance release with bugfixes and new browsers only
+
+# v1.29 - 17 Dec 2022
+
+> New APIs
+
+# v1.28 - 16 Nov 2022
+
+> Record at Cursor in VSCode
+
+> Live Locators in VSCode. Y
+
+> Live Locators in CodeGen.
+
+> New APIs
 
 # v1.27 - 8 Oct 2022
 
