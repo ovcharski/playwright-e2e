@@ -148,3 +148,25 @@ Ask for help
 > npx playwright test --help
 
 Complete set of Playwright Test options is available in the configuration file.
+
+# How to Update Playwright version
+
+Checking Playwright version
+
+> npx @playwright/test --version
+
+Check if package needs update
+
+> npm outdated @playwright/test
+
+Playwright updade can be made by running
+
+> npm i @playwright/test
+
+Update to specific version
+
+> npm install @playwright/test@1.36.2
+
+Usually after Playwright update, browsers need to be updated
+
+> npx playwright install
