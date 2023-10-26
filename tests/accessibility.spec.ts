@@ -10,6 +10,8 @@ test.describe('homepage', () => {
 
     await expect(page).toHaveURL('https://ovcharski.com/shop/');
 
+    await page.close();
+
     // expect(accessibilityScanResults.violations).toEqual([]);
   });
 });

@@ -9,7 +9,7 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "@playwright/test": "^1.36.2",
+    "@playwright/test": "^1.39.0",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
     "eslint": "^8.27.0"
