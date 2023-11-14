@@ -15,6 +15,8 @@
     "eslint": "^8.27.0"
   },
   "dependencies": {
-    "@axe-core/playwright": "^4.8.1"
+    "@axe-core/playwright": "^4.8.1",
+    "csv-parser": "^3.0.0",
+    "csvtojson": "^2.0.10"
   }
 }
