@@ -49,7 +49,7 @@ const config: PlaywrightTestConfig = {
     headless: true,
 
     /* Record video */
-    video: 'on',
+    video: 'off',
   },
 
   /* Configure projects for major browsers */
