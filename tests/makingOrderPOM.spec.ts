@@ -85,7 +85,7 @@ await checkout.firstName('Ginka');
 
 await checkout.lastName('Piperkova');
 
-await checkout.companyName('Stomana Pernik');
+// await checkout.companyName('Stomana Pernik');
 
 await checkout.streetAddress('Predi mosta otsam rekata 34');
 

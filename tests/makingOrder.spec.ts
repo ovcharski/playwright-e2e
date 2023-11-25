@@ -108,9 +108,9 @@ await page.locator('#billing_last_name').click();
 
 await page.locator('#billing_last_name').fill('Delon');
 
-await page.getByRole('textbox', { name: 'Company name (optional)' }).click();
+// await page.getByRole('textbox', { name: 'Company name (optional)' }).click();
 
-await page.getByRole('textbox', { name: 'Company name (optional)' }).fill('Apple Inc');
+// await page.getByRole('textbox', { name: 'Company name (optional)' }).fill('Apple Inc');
 
 await page.getByRole('textbox', { name: 'Street address *' }).click();
 
