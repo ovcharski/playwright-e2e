@@ -23,6 +23,8 @@ test.describe('Galaxy S20 viewport', () => {
 
 await page.goto('/shop/');  
 await expect(page.locator('text=Welcome to the store')).toBeVisible;
+await expect(page.getByRole('link', { name: ' My Account' })).toBeVisible;
+await expect(page.getByRole('link', { name: ' Cart' })).toBeVisible;
 await page.screenshot({ path: 'screenshots/screenshot-s20.png' });
 await page.screenshot({ path: 'screenshots/screenshot-s20-full-page.png', fullPage: true });
 await page.close();
@@ -38,6 +40,8 @@ test.describe('Galaxy S20 Ultra viewport', () => {
 
 await page.goto('/shop/');  
 await expect(page.locator('text=Welcome to the store')).toBeVisible;
+await expect(page.getByRole('link', { name: ' My Account' })).toBeVisible;
+await expect(page.getByRole('link', { name: ' Cart' })).toBeVisible;
 await page.screenshot({ path: 'screenshots/screenshot-s20-ultra.png' });
 await page.screenshot({ path: 'screenshots/screenshot-s20-ultra-full-page.png', fullPage: true });
 await page.close();
@@ -53,6 +57,8 @@ test.describe('Galaxy iPhone SE 2 viewport', () => {
 
 await page.goto('/shop/');  
 await expect(page.locator('text=Welcome to the store')).toBeVisible;
+await expect(page.getByRole('link', { name: ' My Account' })).toBeVisible;
+await expect(page.getByRole('link', { name: ' Cart' })).toBeVisible;
 await page.screenshot({ path: 'screenshots/screenshot-SE.png' });
 await page.screenshot({ path: 'screenshots/screenshot-SE-full-page.png', fullPage: true });
 await page.close();
@@ -68,6 +74,8 @@ test.describe('Galaxy iPad OS viewport', () => {
 
 await page.goto('/shop/');  
 await expect(page.locator('text=Welcome to the store')).toBeVisible;
+await expect(page.getByRole('link', { name: ' My Account' })).toBeVisible;
+await expect(page.getByRole('link', { name: ' Cart' })).toBeVisible;
 await page.screenshot({ path: 'screenshots/screenshot-ipad.png' });
 await page.screenshot({ path: 'screenshots/screenshot-ipad-full-page.png', fullPage: true });
 await page.close();
