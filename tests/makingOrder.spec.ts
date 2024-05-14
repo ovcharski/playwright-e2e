@@ -11,7 +11,7 @@ await page.goto(baseURL);
 await page.getByLabel('Visit product category Jenkins Artwork').click();
 await expect(page).toHaveURL('https://ovcharski.com/shop/product-category/jenkins-artwork/');
 
-await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 0,00 лв.' }).click();
+await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 лв.' }).click();
 await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-cosmonaut/');
 
 await page.getByRole('button', { name: 'Add to cart' }).click();
