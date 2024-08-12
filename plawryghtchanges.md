@@ -1,5 +1,41 @@
 # Playwright Changelog
 
+# v.1.46 - August 2024
+
+> TLS Client certificates
+
+> Run only changed tests
+
+> UI Mode / Trace viewer update
+
+# v1.45
+
+> Clock API - manipulate and control time within tests
+
+> setInputFiles - upload directories
+
+> ControlOrMeta+S - support for click and press
+
+# v1.44
+
+# v1.43
+
+# v1.42
+
+# v1.41
+
+# v1.40
+
+# v1.39
+
+# v1.38
+
+# v1.37
+
+# v1.36
+
+# v1.35
+
 # v.1.34
 
 > UI Mode now shows steps, fixtures and attachments
