@@ -1,5 +1,15 @@
 # Playwright Changelog
 
+# v1.48.0 - Oct 2024
+
+> WebSocket routing
+
+# v1.47.0 - Sept 2024
+
+> Network Tab improvements
+
+> --tsconfig CLI option
+
 # v.1.46 - August 2024
 
 > TLS Client certificates
