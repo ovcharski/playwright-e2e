@@ -17,7 +17,7 @@ await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-cosmona
 await page.getByRole('button', { name: 'Add to cart' }).click();
 await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-cosmonaut/');
 
-await page.locator('div[role="alert"]:has-text("View cart “Jenkins Cosmonaut” has been added to your cart.")').getByRole('link', { name: 'View cart ' }).click();
+await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
 await expect(page).toHaveURL('https://ovcharski.com/shop/cart/');
 
 await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
@@ -94,7 +94,7 @@ await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-jenkins
 await page.getByRole('button', { name: 'Add to cart' }).click();
 await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-jenkinstein/');
 
-await page.locator('div[role="alert"]:has-text("View cart “Jenkins Jenkinstein” has been added to your cart.")').getByRole('link', { name: 'View cart ' }).click();
+await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
 await expect(page).toHaveURL('https://ovcharski.com/shop/cart/');
 
 await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
