@@ -1,5 +1,7 @@
 # Playwright Changelog
 
+# v1.49.0 - Nov 2024
+
 # v1.48.0 - Oct 2024
 
 > WebSocket routing
