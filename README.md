@@ -63,11 +63,11 @@ The tests in the framework will cover:
 - API Testing? Playwright is not the most comprehensive tool for API testing but it is possible ([API testing](https://playwright.dev/docs/test-api-testing))
 - Performance testing? Playwright is not designed for performance testing, but may be there are some variants. To be ivestigated.
 
-A repo with Postman collection for API testing of the same website is available at [ovcharski/postman-wp](https://github.com/microsoft/playwright). The repo is just for an idea for combination of Playwright UI and Postman API testing in a one whole package.
+A repo with Postman collection for API testing of the same website is available at [ovcharski/postman-wp](https://github.com/ovcharski/postman-wp). The repo is just for an idea for combination of Playwright UI and Postman API testing in a one whole package.
 
 # Checklist
 
-A checklist showing what is the status of the framework
+A checklist showing what is the status of the test suite
 
 |  Task    | Status | 
 |   :---   | :---:  | 
@@ -78,10 +78,8 @@ A checklist showing what is the status of the framework
 | API tests | :white_check_mark:
 | Mobile ViewPorts tests | :white_check_mark:
 | FakerJS | :white_check_mark:
-| Reuse authentication state | 
+| Reuse authentication state | :black_square_button:
 | Visual Comparisons  | :black_square_button:
-| - | :black_square_button:
-| - | :black_square_button:
 
 # POM
 

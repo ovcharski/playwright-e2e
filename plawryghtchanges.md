@@ -2,6 +2,8 @@
 
 # v1.49.0 - Nov 2024
 
+> ARIA snapshots, Chrome headless changes
+
 # v1.48.0 - Oct 2024
 
 > WebSocket routing
