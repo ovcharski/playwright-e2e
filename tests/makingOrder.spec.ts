@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const baseURL = 'https://ovcharski.com/shop/'
 
+test.use({storageState: "./NoAuth.json"})
 test('Make an order @Orders @Regression', async ({ page }) => {
 
 await page.goto(baseURL);

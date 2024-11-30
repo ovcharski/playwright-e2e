@@ -78,7 +78,7 @@ A checklist showing what is the status of the test suite
 | API tests | :white_check_mark:
 | Mobile ViewPorts tests | :white_check_mark:
 | FakerJS | :white_check_mark:
-| Reuse authentication state | :black_square_button:
+| Reuse authentication state | :white_check_mark:
 | Visual Comparisons  | :black_square_button:
 
 # POM

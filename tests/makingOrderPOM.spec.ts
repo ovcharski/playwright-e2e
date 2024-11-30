@@ -3,6 +3,7 @@ import checkoutPage from '../pages/checkoutPage';
 
 const baseURL = 'https://ovcharski.com/shop/'
 
+test.use({storageState: "./NoAuth.json"})
 test('Make an order POM @Orders @Regression', async ({ page }) => {
 
 const checkout = new checkoutPage(page);

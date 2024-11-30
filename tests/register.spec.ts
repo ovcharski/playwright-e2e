@@ -9,7 +9,7 @@ const randomLastName = faker.name.lastName()
 const randomEmail = faker.internet.email()
 const randomPassword = faker.internet.password()
 
-
+test.use({storageState: "./NoAuth.json"})
 test('Register user random data @Registration @Regression', async ({ page }) => {
 
     const register = new RegisterPage(page)

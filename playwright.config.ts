@@ -11,6 +11,7 @@ import { devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
+  globalSetup: "./global-setup",
   testDir: './tests',
   /* Maximum time one test can run for. */
   timeout: 30 * 3000,
@@ -44,6 +45,7 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    storageState: "./LoginAuth.json",
 
     /* Set headless */
     headless: true,
