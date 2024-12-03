@@ -2,29 +2,32 @@ import test, { expect } from "@playwright/test"
 import { faker } from '@faker-js/faker';
 import RegisterPage from "../pages/registerPage";
 
-// Using FakerJS to generate fake data. Another option is ChanseJS
+// Function to generate fake data
+function generateFakeData() {
+    return {
+        username: faker.person.lastName(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+    }
+}
 
-const randomFirstName = faker.person.firstName()
-const randomLastName = faker.person.lastName()
-const randomEmail = faker.internet.email()
-const randomPassword = faker.internet.password()
+// Function to register user
+async function registerUser(page) {
+    const register = new RegisterPage(page);
+    const fakeData = generateFakeData();
+    await register.registerUser(fakeData.username, fakeData.firstName, fakeData.lastName, fakeData.email, fakeData.password);
+}
 
 test.use({storageState: "./NoAuth.json"})
-test('Register user random data @Registration @Regression', async ({ page }) => {
 
-    const register = new RegisterPage(page)
+test('Register user random data @Registration @Regression', async ({ page }) => {
     await page.goto('https://ovcharski.com/shop/register/')
-    await register.enterUsername(randomLastName)
-    await register.enterFirstName(randomFirstName)
-    await register.enterLastName(randomLastName)
-    await register.enterEmail(randomEmail)
-    await register.enterPassword(randomPassword)
-    await register.enterConfirmPassword(randomPassword)
-    await register.selectGender() // Male
-    await register.clickRegisterBtn()
+    await registerUser(page);
 
     await expect(page).toHaveTitle('User – Automation Demo Site');
-
     await page.close();
+})
 
-    })
+
