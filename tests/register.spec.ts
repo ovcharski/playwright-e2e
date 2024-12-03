@@ -2,10 +2,10 @@ import test, { expect } from "@playwright/test"
 import { faker } from '@faker-js/faker';
 import RegisterPage from "../pages/registerPage";
 
-// Using FakerJS to generate fake data. Another option is ChanseJS https://chancejs.com/
+// Using FakerJS to generate fake data. Another option is ChanseJS
 
-const randomFirstName = faker.name.firstName()
-const randomLastName = faker.name.lastName()
+const randomFirstName = faker.person.firstName()
+const randomLastName = faker.person.lastName()
 const randomEmail = faker.internet.email()
 const randomPassword = faker.internet.password()
 

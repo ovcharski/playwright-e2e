@@ -8,14 +8,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0",
+    "@faker-js/faker": "^9.2.0",
     "@playwright/test": "^1.49.0",
-    "@typescript-eslint/eslint-plugin": "^5.42.1",
-    "@typescript-eslint/parser": "^5.42.1",
-    "eslint": "^8.27.0"
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0"
   },
   "dependencies": {
-    "@axe-core/playwright": "^4.8.1",
+    "@axe-core/playwright": "^4.10.1",
     "csv-parser": "^3.0.0",
     "csvtojson": "^2.0.10"
   }
