@@ -31,7 +31,7 @@ test.describe('Search for products', () => {
         await page.locator(search).fill('Jenkins');
         await page.locator(search).press('Enter');
 
-        await expect(page.getByLabel('breadcrumbs')).toBeVisible
+        await expect(page.getByLabel('breadcrumbs')).toBeVisible();
         await expect(page.getByLabel('breadcrumbs')).toContainText('Search results for “Jenkins”');
         await expect(page).toHaveURL('https://ovcharski.com/shop/?s=Jenkins&post_type=product');
         })

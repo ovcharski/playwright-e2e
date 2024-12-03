@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import path from 'path';
 
-// This code is copy of openHomepageMobileViewPorts.spec.ts but with refactored code. Is more DRY (Don't Repeat Yourself), improved error handling, easier to maintain and extend
+// This code is copy of openHomepageMobileViewPorts.spec.ts but with refactored code. It's more DRY (Don't Repeat Yourself), with improved error handling, easier to maintain and extend
 
 // Common test setup to reduce repetition
 const commonTestSetup = (viewportName: string) => {
@@ -9,8 +9,6 @@ const commonTestSetup = (viewportName: string) => {
     try {
       // Navigate with more robust options
       await page.goto('/shop/', { 
-        waitUntil: 'networkidle',
-        timeout: 10000 
       });
       
       await expect(page.locator('text=Welcome to the store')).toBeVisible();

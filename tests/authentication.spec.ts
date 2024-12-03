@@ -13,8 +13,7 @@ await login.clickLoginBtn();
 await expect(page).toHaveTitle('User – Automation Demo Site');
 await expect(page).toHaveURL('https://ovcharski.com/shop/user/playwrightuser/');
 await expect(page.getByRole('heading', { name: 'Automation User'})).toHaveText('Automation User')
-await expect(page.getByAltText('Automation User')).toBeVisible;
-
+await expect(page.getByAltText('Automation User')).toBeVisible();
 await page.close();
 
 })

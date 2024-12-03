@@ -7,9 +7,8 @@ test.describe('homepage', () => {
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     console.log(accessibilityScanResults)
-
+    
     await expect(page).toHaveURL('https://ovcharski.com/shop/');
-
     await page.close();
 
     // expect(accessibilityScanResults.violations).toEqual([]);

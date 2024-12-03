@@ -1,29 +1,25 @@
 import { test } from "@playwright/test"
 
 test('Multiple tabs example', async ({ page, context }) => {
-
-// First tab
+    // First tab
     await page.goto('https://en.wikipedia.org/');
 
-// Create second tab
-const newTab = await context.newPage();
+    // Create second tab
+    const newTab = await context.newPage();
 
-// Open page in second tab
-await newTab.goto('https://www.mediawiki.org');
+    // Open page in second tab
+    await newTab.goto('https://www.mediawiki.org');
 
-// Bring first tab (Wikipedia) to front
-await page.bringToFront();
+    // Bring first tab (Wikipedia) to front
+    await page.bringToFront();
 
-// Screenshot first tab
-await page.screenshot({ path: 'screenshots/screenshotWikipedia.png' });
+    // Screenshot first tab with timestamp
+    await page.screenshot({ path: `screenshots/wikipedia-${Date.now()}.png` });
 
-// Screenshot second tab
-await newTab.screenshot({ path: 'screenshots/screenshotMediaWiki.png' });
+    // Screenshot second tab with timestamp
+    await newTab.screenshot({ path: `screenshots/mediawiki-${Date.now()}.png` });
 
-// Close second tab
-await newTab.close();
-
-await page.close();
-
+    // Close second tab
+    await newTab.close();
+    await page.close();
 });
-

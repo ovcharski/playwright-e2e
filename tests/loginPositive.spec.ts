@@ -20,12 +20,7 @@ await expect(page.getByRole('heading', { name: 'Automation User'})).toHaveText('
 // Cover photo:
 
 await expect(page.getByRole('img', { name: 'playwrightuser'})).toBeVisible();
-
-// Profile / avatar photo:
-// The alt text of the cover photo is 'playrwightuser' and the alt text of the profile photo is 'Automations User'. The alt texts are different.
-
-await expect(page.getByAltText('Automation User')).toBeVisible;
-
+await expect(page.getByAltText('Automation User')).toBeVisible();
 await page.close();
 
 })
