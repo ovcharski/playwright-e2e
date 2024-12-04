@@ -46,32 +46,32 @@ The website has few pages - Home, Shop, Login, Registration, Profile.
 
 The products (37) are in 4 categories - Clothing (23), Decor (1), Jenkins Artwork (10), Music (2). Clothing has few subcategories - Accessories (8), Hoodies (4), Jackets (1), Shirts (4), Sweater (1), Tshirts (5).
 
-The Registration form has 10 fields: username, first name, last name, email, password, gender, birth date, coutry, phone number. Some of the fields are required, some are optional. Different type of fields are used - text box, password, radio, date picker, dropdown, telepone box.
+The Registration form has 10 fields: username, first name, last name, email, password, gender, birth date, coutry, phone number. Some of the fields are required, some are optional. Different type of fields are used - text box, password, radio, date picker, dropdown, telephone box.
 
 # Test suite
 
-The tests in the framework will cover:
+The tests in the framework cover:
 
 - User login and registration
 - Search
 - Making an order
-- Page Object Model
-- GutHub Actions with HTML report
-- Docker
-- Visual Regression Testing (VRT)? `toMatchSnapshot()` method 
-- BDD? Playwright does not support natively BDD / Gherkin, but some work around solutions are available. Use the playwright steps to explain all Given/When/Then assertions  ([BDD implementation with Playwright test runner](https://github.com/microsoft/playwright))
-- API Testing? Playwright is not the most comprehensive tool for API testing but it is possible ([API testing](https://playwright.dev/docs/test-api-testing))
-- Performance testing? Playwright is not designed for performance testing, but may be there are some variants. To be ivestigated.
+- Using Page Object Model
+- GitHub Actions with HTML report
+- API Testing - Playwright is not the most comprehensive tool for API testing, but it can be used to get access to the REST API of your application. ([Official Documentation - API testing](https://playwright.dev/docs/test-api-testing))
+
+For future consideration
+
+- Using docker
+- Visual Regression Testing (VRT)
+- Performance testing - Playwright is not designed for performance testing, but there are various ways to do it (Navigation and Resource Timing API, Paint Timing API, Largest Contentful Paint API, Layout Instability, Long Task API). ([Blog post](https://ray.run/blog/measuring-website-performance-with-playwright-tests)). These types of tests are not included in this repo/framework.
+- BDD - Playwright does not support natively BDD / Gherkin, but various integrations and plugins are available (Cucumber.js, Playwright-Cucumber, Jest-Cucumber, Playwright-BDD). They are not used in this repo/framework.
 
 A repo with Postman collection for API testing of the same website is available at [ovcharski/postman-wp](https://github.com/ovcharski/postman-wp). The repo is just for an idea for combination of Playwright UI and Postman API testing in a one whole package.
 
 # Checklist
 
-A checklist showing what is the status of the test suite
-
 |  Task    | Status | 
 |   :---   | :---:  | 
-| Creation of checklist | :white_check_mark: 
 | GitHub Actions | :white_check_mark: 
 | Page Object Model | :white_check_mark:
 | UI tests  | :white_check_mark:
@@ -79,7 +79,11 @@ A checklist showing what is the status of the test suite
 | Mobile ViewPorts tests | :white_check_mark:
 | FakerJS | :white_check_mark:
 | Reuse authentication state | :white_check_mark:
+| Multiple browser tabs | :white_check_mark:
+| Data driven tests | :white_check_mark:
+| Accessibility - Axe-core | :white_check_mark:
 | Visual Comparisons  | :black_square_button:
+| BDD  | :black_square_button:
 
 # POM
 
