@@ -25,4 +25,3 @@ test('Get all posts', async ({request}) => {
     expect(body[2].link).toBe('https://ovcharski.com/shop/hello-world/')
 })
 
-

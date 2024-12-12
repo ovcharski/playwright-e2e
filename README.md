@@ -59,8 +59,12 @@ The tests in the framework cover:
 - GitHub Actions with HTML report
 - API Testing - Playwright is not the most comprehensive tool for API testing, but it can be used to get access to the REST API of your application. ([Official Documentation - API testing](https://playwright.dev/docs/test-api-testing))
 
-For future consideration
+# For future improvements and considerations
 
+- Using Environment Variables - to create .env file and use library like dotenv to load the sensitive data.
+- Organizing test data in JSONs like login and user data.
+- Utility Functions - avoid code duplications
+- Implement robust error handling
 - Using docker
 - Visual Regression Testing (VRT)
 - Performance testing - Playwright is not designed for performance testing, but there are various ways to do it (Navigation and Resource Timing API, Paint Timing API, Largest Contentful Paint API, Layout Instability, Long Task API). ([Blog post](https://ray.run/blog/measuring-website-performance-with-playwright-tests)). These types of tests are not included in this repo/framework.
@@ -70,24 +74,29 @@ A repo with Postman collection for API testing of the same website is available 
 
 # Checklist
 
-|  Task    | Status | 
-|   :---   | :---:  | 
-| GitHub Actions | :white_check_mark: 
-| Page Object Model | :white_check_mark:
-| UI tests  | :white_check_mark:
-| API tests | :white_check_mark:
-| Mobile ViewPorts tests | :white_check_mark:
-| FakerJS | :white_check_mark:
-| Reuse authentication state | :white_check_mark:
-| Multiple browser tabs | :white_check_mark:
-| Data driven tests | :white_check_mark:
-| Accessibility - Axe-core | :white_check_mark:
-| Visual Comparisons  | :black_square_button:
-| BDD  | :black_square_button:
+| Task                          | Status              | 
+|-------------------------------|---------------------| 
+| GitHub Actions                | :white_check_mark:  |
+| Page Object Model             | :white_check_mark:  |
+| UI tests                      | :white_check_mark:  |
+| API tests                     | :white_check_mark:  |
+| Mobile ViewPorts tests        | :white_check_mark:  |
+| FakerJS                       | :white_check_mark:  |
+| Reuse authentication state    | :white_check_mark:  |
+| Multiple browser tabs         | :white_check_mark:  |
+| Data driven tests             | :white_check_mark:  |
+| Accessibility - Axe-core      | :white_check_mark:  |
+| Visual Comparisons            | :black_square_button: |
+| BDD                           | :black_square_button: |
 
-# POM
+# Page Object Model (POM)
 
-Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. It is useful in reducing code duplication and improves test script maintenance. In Page Object Model, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Using these elements, testers can perform operations on the website under test.
+Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. It is useful in reducing code duplication and improving test script maintenance. In POM, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Using these elements, testers can perform operations on the website under test.
+
+## Benefits of POM
+- **Maintainability**: Changes in the UI require updates only in the page classes.
+- **Reusability**: Common operations can be reused across different tests.
+- **Readability**: Tests are more readable and easier to understand.
 
 # UI test
 
