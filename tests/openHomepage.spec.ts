@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import HomePage from '../pages/homePage';
 
 test.afterEach(async ({ page }, testInfo) => {
   console.log(`Finished ${testInfo.title} with status ${testInfo.status}`);
@@ -8,28 +9,21 @@ test.afterEach(async ({ page }, testInfo) => {
 });
 
 test('Open homepage and test few texts @Regression', async ({ page }) => {
+  const homePage = new HomePage(page);
 
-
-  // Go to https://ovcharski.com/shop/
+  // Go to homepage
   await page.goto('/shop/');
-  
-  // Check text on the page
-  await expect(page.locator('text=Welcome to the store')).toBeVisible();
-  await expect(page.locator('text=Welcome to the store')).toHaveText("Welcome to the store");
 
-  // Check Footer
-  await expect (page.locator('text=© Automation Demo Site 2025 Built with WooCommerce.')).toContainText("© Automation Demo Site 2025");
+  // Verify text on the homepage
+  await homePage.verifyWelcomeText("Welcome to the store");
 
-  // Capture screenshots with unique names
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-  await page.screenshot({ 
-    path: `screenshots/homepage-${timestamp}.png` 
-  });
-  await page.screenshot({ 
-    path: `screenshots/homepage-full-${timestamp}.png`, 
-    fullPage: true 
-  });
+  // Verify footer content
+  await homePage.verifyFooterText("© Automation Demo Site 2025");
 
+  // Capture screenshots
+  await homePage.captureScreenshot('homepage');
+  await homePage.captureFullPageScreenshot('homepage');
+
+  // Close the page after the test
   await page.close();
-
 });

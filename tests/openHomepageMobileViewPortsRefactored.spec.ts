@@ -1,31 +1,27 @@
 import { test, expect } from '@playwright/test';
-import path from 'path';
-
-// This code is copy of openHomepageMobileViewPorts.spec.ts but with refactored code. It's more DRY (Don't Repeat Yourself), with improved error handling, easier to maintain and extend
+import HomePage from '../pages/homePage';
 
 // Common test setup to reduce repetition
 const commonTestSetup = (viewportName: string) => {
   return async ({ page }) => {
     try {
-      // Navigate with more robust options
-      await page.goto('/shop/', { 
-      });
-      
-      await expect(page.locator('text=Welcome to the store')).toBeVisible();
-      await expect(page.getByRole('link', { name: ' My Account' })).toBeVisible();
-      await expect(page.getByRole('link', { name: ' Cart' })).toBeVisible();
-      
-      // Timestamp for unique screenshot names
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-      
-      // Screenshots with consistent naming
-      await page.screenshot({ 
-        path: `screenshots/screenshot-${viewportName}-${timestamp}.png` 
-      });
-      await page.screenshot({ 
-        path: `screenshots/screenshot-${viewportName}-full-page-${timestamp}.png`, 
-        fullPage: true 
-      });
+      const homePage = new HomePage(page);
+
+      // Navigate with more robust options.
+      // The empty object represents options passed to the goto() method.
+      // This object could include several configuration options, such as: timeout, waitUntil, referer, headers
+      await page.goto('/shop/', {});
+
+      // Verify the welcome text using HomePage methods
+      await homePage.verifyWelcomeText("Welcome to the store");
+
+      // Verify the footer text using HomePage methods
+      await homePage.verifyFooterText("© Automation Demo Site 2025 Built with WooCommerce.");
+
+      // Capture screenshots with consistent naming
+      await homePage.captureScreenshot(viewportName);
+      await homePage.captureFullPageScreenshot(viewportName);
+
     } catch (error) {
       console.error(`Test failed for ${viewportName} viewport:`, error);
       throw error;
@@ -47,7 +43,7 @@ const viewports = [
 viewports.forEach(viewport => {
   test.describe(`${viewport.name.toUpperCase()} viewport`, () => {
     test.use({ viewport: { width: viewport.width, height: viewport.height } });
-    
+
     test('Open Homepage', commonTestSetup(viewport.name));
   });
 });
