@@ -1,5 +1,5 @@
 import test, { expect } from "@playwright/test";
-import LoginPage from "../pages/LoginPage";
+import LoginPage from "../pages/LoginPageTempName";
 
 // Declare user credentials and URL for better maintainability
 const USERNAME = 'playwrightuser';

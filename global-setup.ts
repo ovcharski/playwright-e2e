@@ -1,5 +1,5 @@
 import { Browser, chromium, expect, Page } from "@playwright/test";
-import LoginPage from "./pages/loginPage";
+import LoginPage from "./pages/LoginPageTempName";
 
 async function globalSetup() {
     let browser: Browser | null = null;
