@@ -18,7 +18,7 @@ test('Open homepage and test few texts @Regression', async ({ page }) => {
   await expect(page.locator('text=Welcome to the store')).toHaveText("Welcome to the store");
 
   // Check Footer
-  await expect (page.locator('text=© Automation Demo Site 2024 Built with WooCommerce.')).toContainText("© Automation Demo Site 2024");
+  await expect (page.locator('text=© Automation Demo Site 2025 Built with WooCommerce.')).toContainText("© Automation Demo Site 2025");
 
   // Capture screenshots with unique names
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
