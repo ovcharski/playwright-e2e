@@ -1,22 +1,27 @@
 import { Page } from "@playwright/test";
 
-// A Page Object Model page for login flow
-
 export default class LoginPage {
     constructor(public page: Page) {}
 
-    async enterUsername(username: string) {
-        await this.page.locator('#username-92')
-        .type(username);
+    // Combine login steps into a single method
+    async login(username: string, password: string) {
+        await this.enterUsername(username);
+        await this.enterPassword(password);
+        await this.clickLoginBtn();
     }
 
-    async enterPassword(passowrd: string) {
-        await this.page.locator('#user_password-92')
-        .type(passowrd);
+    private async enterUsername(username: string) {
+        const usernameInput = this.page.locator('#username-92');
+        await usernameInput.type(username, { delay: 100 }); // Optional: Add a typing delay if needed
     }
 
-    async clickLoginBtn() {
-        await this.page.locator('#um-submit-btn').click()
+    private async enterPassword(password: string) {
+        const passwordInput = this.page.locator('#user_password-92');
+        await passwordInput.type(password, { delay: 100 }); // Optional: Add a typing delay if needed
     }
 
+    private async clickLoginBtn() {
+        const loginBtn = this.page.locator('#um-submit-btn');
+        await loginBtn.click();
+    }
 }
