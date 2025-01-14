@@ -9,7 +9,7 @@ test('Get WP-JSON', async ({request}) => {
 })
 
 
-test('Get all posts', async ({request}) => {
+test('Get all postss', async ({request}) => {
     const response = await request.get('https://ovcharski.com/shop/wp-json/wp/v2/posts?_fields=id,link,slug')
     expect(response.status()).toBe(200)
     const body = JSON.parse(await response.text())
