@@ -42,13 +42,23 @@ test('Get post comments', async ({request}) => {
     const response = await request.get(`${BASE_URL}/wp/v2/comments?post=1`)
     expect(response.status()).toBe(200)
     const body = JSON.parse(await response.text())
-    expect(body.name).toBe('Automation Demo Site')
-    expect(body.description).toBe('Website for demo purposes.')
+    expect(Array.isArray(body)).toBeTruthy()
 })
 
+test('Get media items', async ({request}) => {
+    const response = await request.get(`${BASE_URL}/wp/v2/media?_fields=id,source_url,alt_text`)
+    expect(response.status()).toBe(200)
+    const body = JSON.parse(await response.text())
+    expect(Array.isArray(body)).toBeTruthy()
+    if (body.length > 0) {
+        expect(body[0]).toHaveProperty('id')
+        expect(body[0]).toHaveProperty('source_url')
+        expect(body[0]).toHaveProperty('alt_text')
+    }
+})
 
-test('Get all posts', async ({request}) => {
-    const response = await request.get('https://ovcharski.com/shop/wp-json/wp/v2/posts?_fields=id,link,slug')
+test('Search posts', async ({request}) => {
+    const response = await request.get(`${BASE_URL}/wp/v2/posts?search=hello&_fields=id,link,slug`)
     expect(response.status()).toBe(200)
     const body = JSON.parse(await response.text())
     expect(Array.isArray(body)).toBeTruthy()
