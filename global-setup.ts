@@ -10,10 +10,7 @@ async function globalSetup() {
         const login = new LoginPage(page);
 
         await page.goto('https://ovcharski.com/shop/login/');
-        await login.enterUsername('playwrightuser');
-        await login.enterPassword('playwrightuser');
-        await login.clickLoginBtn();
-
+        await login.login('playwrightuser', 'playwrightuser'); 
         await expect(page).toHaveTitle('User – Automation Demo Site');
         await expect(page).toHaveURL('https://ovcharski.com/shop/user/playwrightuser/');
 
