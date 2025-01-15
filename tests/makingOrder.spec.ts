@@ -1,92 +1,104 @@
 import { test, expect } from '@playwright/test';
 
-const baseURL = 'https://ovcharski.com/shop/'
+const baseURL = 'https://ovcharski.com/shop/';
 
-test.use({storageState: "./NoAuth.json"})
+// Test data
+const orderData = {
+    firstOrder: {
+        firstName: 'Test',
+        lastName: 'Order',
+        street: 'Neznajna 13',
+        city: 'Pomorie',
+        region: 'Burgas',
+        postcode: '1000',
+        phone: '358776776',
+        email: 'mail@mail.com'
+    },
+    secondOrder: {
+        firstName: 'Alen',
+        lastName: 'Delon',
+        street: 'Rakovska street 224',
+        apartment: '13',
+        city: 'Lom',
+        region: 'Vidin',
+        postcode: '7386',
+        phone: '35987654321',
+        email: 'lom@lom.com'
+    }
+};
+
+test.use({ storageState: "./NoAuth.json" });
+
+// Helper function to fill checkout form
+async function fillCheckoutForm(page, data) {
+    await page.locator('#billing_first_name').fill(data.firstName);
+    await page.locator('#billing_last_name').fill(data.lastName);
+    await page.getByRole('textbox', { name: 'Street address *' }).fill(data.street);
+    if (data.apartment) {
+        await page.getByRole('textbox', { name: 'Apartment, suite, unit, etc. (optional)' }).fill(data.apartment);
+    }
+    await page.getByRole('textbox', { name: 'Town / City *' }).fill(data.city);
+    await page.getByRole('textbox', { name: 'Sofia' }).click();
+    await page.getByRole('option', { name: data.region }).click();
+    await page.getByRole('textbox', { name: 'Postcode / ZIP *' }).fill(data.postcode);
+    await page.getByLabel('Phone *').fill(data.phone);
+    await page.getByLabel('Email address *').fill(data.email);
+}
+
+// Helper function to verify order success
+async function verifyOrderSuccess(page) {
+    await expect(page.getByRole('heading', { name: 'Order received' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Order received' })).toHaveText('Order received');
+    await expect(page.getByText('Thank you. Your order has been received.')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Order details' })).toBeVisible();
+}
+
 test('Make an order @Orders @Regression', async ({ page }) => {
+    // Navigate to product and add to cart
+    await page.goto(baseURL);
+    await page.getByLabel('Visit product category Jenkins Artwork').click();
+    await expect(page).toHaveURL(`${baseURL}product-category/jenkins-artwork/`);
 
-await page.goto(baseURL);
-await page.getByLabel('Visit product category Jenkins Artwork').click();
-await expect(page).toHaveURL('https://ovcharski.com/shop/product-category/jenkins-artwork/');
+    await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 лв.' }).click();
+    await expect(page).toHaveURL(`${baseURL}product/jenkins-cosmonaut/`);
 
-await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 лв.' }).click();
-await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-cosmonaut/');
+    await page.getByRole('button', { name: 'Add to cart' }).click();
 
-await page.getByRole('button', { name: 'Add to cart' }).click();
-await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-cosmonaut/');
+    // Navigate to checkout
+    await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
+    await expect(page).toHaveURL(`${baseURL}cart/`);
 
-await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
-await expect(page).toHaveURL('https://ovcharski.com/shop/cart/');
+    await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
+    await expect(page).toHaveURL(`${baseURL}checkout/`);
 
-await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
-await expect(page).toHaveURL('https://ovcharski.com/shop/checkout/');
+    // Fill checkout form and place order
+    await fillCheckoutForm(page, orderData.firstOrder);
+    await page.getByRole('button', { name: 'Place order' }).click();
 
-await page.locator('#billing_first_name').click();
-await page.locator('#billing_first_name').fill('Test');
-
-await page.locator('#billing_last_name').click();
-await page.locator('#billing_last_name').fill('Order');
-
-
-await page.getByRole('textbox', { name: 'Street address *' }).click();
-await page.getByRole('textbox', { name: 'Street address *' }).fill('Neznajna 13');
-await page.getByRole('textbox', { name: 'Town / City *' }).click();
-await page.getByRole('textbox', { name: 'Town / City *' }).fill('Pomorie');
-await page.getByRole('textbox', { name: 'Sofia' }).click();
-await page.getByRole('option', { name: 'Burgas' }).click();
-await page.getByRole('textbox', { name: 'Postcode / ZIP *' }).click();
-await page.getByRole('textbox', { name: 'Postcode / ZIP *' }).fill('1000');
-await page.getByLabel('Phone *').click();
-await page.getByLabel('Phone *').fill('358776776');
-await page.getByLabel('Email address *').click();
-await page.getByLabel('Email address *').fill('mail@mail.com');
-await page.getByRole('button', { name: 'Place order' }).click();
-
-await expect (page.getByRole('heading', { name: 'Order received' })).toBeVisible();
-await expect (page.getByRole('heading', { name: 'Order received' })).toHaveText('Order received');
-await expect (page.getByText('Thank you. Your order has been received.')).toHaveText('Thank you. Your order has been received.'); 
-await expect (page.getByRole('heading', { name: 'Order details' })).toHaveText('Order details');
-await page.close();
-
+    // Verify order success
+    await verifyOrderSuccess(page);
 });
 
-
-
 test('Making an order via search @Orders @Regression', async ({ page }) => {
+    // Search for product and add to cart
+    await page.goto(baseURL);
+    await page.getByRole('searchbox', { name: 'Search for:' }).fill('Jenkinstein');
+    await page.getByRole('searchbox', { name: 'Search for:' }).press('Enter');
 
-await page.goto(baseURL);
-await page.getByRole('searchbox', { name: 'Search for:' }).click();
-await page.getByRole('searchbox', { name: 'Search for:' }).fill('Jenkinstein');
-await page.getByRole('searchbox', { name: 'Search for:' }).press('Enter');
+    await expect(page).toHaveURL(`${baseURL}product/jenkins-jenkinstein/`);
+    await page.getByRole('button', { name: 'Add to cart' }).click();
 
-await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-jenkinstein/');
-await page.getByRole('button', { name: 'Add to cart' }).click();
-await expect(page).toHaveURL('https://ovcharski.com/shop/product/jenkins-jenkinstein/');
-await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
-await expect(page).toHaveURL('https://ovcharski.com/shop/cart/');
-await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
-await expect(page).toHaveURL('https://ovcharski.com/shop/checkout/');
+    // Navigate to checkout
+    await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
+    await expect(page).toHaveURL(`${baseURL}cart/`);
 
-await page.locator('#billing_first_name').click();
-await page.locator('#billing_first_name').fill('Alen');
-await page.locator('#billing_last_name').click();
-await page.locator('#billing_last_name').fill('Delon');
+    await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
+    await expect(page).toHaveURL(`${baseURL}checkout/`);
 
-await page.getByRole('textbox', { name: 'Street address *' }).click();
-await page.getByRole('textbox', { name: 'Street address *' }).fill('Rakovska street 224');
-await page.getByRole('textbox', { name: 'Apartment, suite, unit, etc. (optional)' }).click();
-await page.getByRole('textbox', { name: 'Apartment, suite, unit, etc. (optional)' }).fill('13');
-await page.getByRole('textbox', { name: 'Town / City *' }).click();
-await page.getByRole('textbox', { name: 'Town / City *' }).fill('Lom');
-await page.getByRole('textbox', { name: 'Sofia' }).click();
-await page.getByRole('option', { name: 'Vidin' }).click();
-await page.getByRole('textbox', { name: 'Postcode / ZIP *' }).click();
-await page.getByRole('textbox', { name: 'Postcode / ZIP *' }).fill('7386');
-await page.getByLabel('Phone *').click();
-await page.getByLabel('Phone *').fill('35987654321');
-await page.getByLabel('Email address *').click();
-await page.getByLabel('Email address *').fill('lom@lom.com');
-await page.getByRole('button', { name: 'Place order' }).click();
-await page.close();
+    // Fill checkout form and place order
+    await fillCheckoutForm(page, orderData.secondOrder);
+    await page.getByRole('button', { name: 'Place order' }).click();
 
+    // Verify order success
+    await verifyOrderSuccess(page);
 });
