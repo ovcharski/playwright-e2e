@@ -2,6 +2,8 @@ import { test, expect, type Page } from '@playwright/test';
 import fs from 'fs';
 import csv from 'csv-parser';
 
+// This test is still under development and will not work as expected
+
 interface TestData {
     searchQuery: string;
     sku: string;
