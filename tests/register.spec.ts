@@ -1,4 +1,4 @@
-import test, { expect } from "@playwright/test"
+import test, { expect } from "@playwright/test";
 import { faker } from '@faker-js/faker';
 import RegisterPage from "../pages/registerPage";
 
@@ -13,21 +13,20 @@ function generateFakeData() {
     }
 }
 
-// Function to register user
-async function registerUser(page) {
-    const register = new RegisterPage(page);
+test.use({ storageState: "./NoAuth.json" });
+
+test('Register user with random data @Registration @Regression', async ({ page }) => {
     const fakeData = generateFakeData();
+    
+    const register = new RegisterPage(page);
+    
+    // Go to the registration page
+    await page.goto('https://ovcharski.com/shop/register/');
+
+    // Register the user
     await register.registerUser(fakeData.username, fakeData.firstName, fakeData.lastName, fakeData.email, fakeData.password);
-}
 
-test.use({storageState: "./NoAuth.json"})
-
-test('Register user random data @Registration @Regression', async ({ page }) => {
-    await page.goto('https://ovcharski.com/shop/register/')
-    await registerUser(page);
-
+    // Wait for successful registration
     await expect(page).toHaveTitle('User – Automation Demo Site');
     await page.close();
-})
-
-
+});
