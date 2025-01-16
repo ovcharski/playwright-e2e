@@ -1,28 +1,30 @@
 import { Page } from "@playwright/test";
+import BasePage from "./basePage";
 
-// A Page Object Model page for checkout flow
-export default class CheckoutPage {
-    constructor(public page: Page) {}
-
-    private async typeIntoLocator(locator: string, value: string) {
-        await this.page.locator(locator).type(value);
+export default class CheckoutPage extends BasePage {
+    constructor(page: Page) {
+        super(page);
     }
 
-    // Fill out fields
-    async fillCheckoutForm(firstname: string, lastname: string, company: string, streetaddress: string, apaddress: string, towncity: string, postcode: string, phone: string, email: string) {
-        await this.typeIntoLocator('#billing_first_name', firstname);
-        await this.typeIntoLocator('#billing_last_name', lastname);
-        await this.typeIntoLocator('#billing_company', company);
-        await this.typeIntoLocator('#billing_address_1', streetaddress);
-        await this.typeIntoLocator('#billing_address_2', apaddress);
-        await this.typeIntoLocator('#billing_city', towncity);
-        await this.typeIntoLocator('#billing_postcode', postcode);
-        await this.page.locator('#billing_phone').type(phone);
-        await this.page.locator('#billing_email').type(email);
+    async fillCheckoutForm(firstname: string, lastname: string, company: string, 
+                          streetaddress: string, apaddress: string, towncity: string, 
+                          postcode: string, phone: string, email: string) {
+        const fields = {
+            '#billing_first_name': firstname,
+            '#billing_last_name': lastname,
+            '#billing_company': company,
+            '#billing_address_1': streetaddress,
+            '#billing_address_2': apaddress,
+            '#billing_city': towncity,
+            '#billing_postcode': postcode,
+            '#billing_phone': phone,
+            '#billing_email': email
+        };
+
+        await this.fillForm(fields);
     }
 
-    // Click place order button
     async placeOrder() {
-        await this.page.locator('#place_order').click();
+        await this.clickElement('#place_order');
     }
 }

@@ -1,27 +1,24 @@
 import { Page } from "@playwright/test";
+import BasePage from "./basePage";
 
-export default class LoginPage {
-    constructor(public page: Page) {}
+export default class LoginPage extends BasePage {
+    constructor(page: Page) {
+        super(page);
+    }
 
-    // Combine login steps into a single method
+    private readonly selectors = {
+        username: '#username-92',
+        password: '#user_password-92',
+        loginButton: '#um-submit-btn'
+    };
+
     async login(username: string, password: string) {
-        await this.enterUsername(username);
-        await this.enterPassword(password);
-        await this.clickLoginBtn();
-    }
-
-    private async enterUsername(username: string) {
-        const usernameInput = this.page.locator('#username-92');
-        await usernameInput.type(username, { delay: 100 }); // Optional: Add a typing delay if needed
-    }
-
-    private async enterPassword(password: string) {
-        const passwordInput = this.page.locator('#user_password-92');
-        await passwordInput.type(password, { delay: 100 }); // Optional: Add a typing delay if needed
-    }
-
-    private async clickLoginBtn() {
-        const loginBtn = this.page.locator('#um-submit-btn');
-        await loginBtn.click();
+        const fields = {
+            [this.selectors.username]: username,
+            [this.selectors.password]: password
+        };
+        
+        await this.fillForm(fields);
+        await this.clickElement(this.selectors.loginButton);
     }
 }

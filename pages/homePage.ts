@@ -1,48 +1,33 @@
-// pages/homePage.ts
-import { Page, Locator, expect } from '@playwright/test';
+import { Page } from '@playwright/test';
+import BasePage from './basePage';
 
-export default class HomePage {
-  private page: Page;
+export default class HomePage extends BasePage {
+    constructor(page: Page) {
+        super(page);
+    }
 
-  constructor(page: Page) {
-    this.page = page; // Initialize the page
-  }
+    private readonly selectors = {
+        welcomeText: 'text=Welcome to the store',
+        footerText: '.site-info' // Updated to use class selector instead of text
+    };
 
-  // Method to get the locator for the welcome text
-  private get welcomeTextLocator(): Locator {
-    return this.page.locator('text=Welcome to the store');
-  }
+    async verifyWelcomeText(expectedText: string) {
+        await this.verifyElementVisible(this.selectors.welcomeText);
+        await this.verifyText(this.selectors.welcomeText, expectedText, true);
+    }
 
-  // Method to get the locator for the footer text
-  private get footerTextLocator(): Locator {
-    return this.page.locator('text=© Automation Demo Site 2025 Built with WooCommerce.');
-  }
+    async verifyFooterText(expectedText: string) {
+        await this.verifyTextWithOptions(this.selectors.footerText, expectedText, {
+            normalizeWhitespace: true,
+            timeout: 5000
+        });
+    }
 
-  // Method to verify the welcome text
-  async verifyWelcomeText(expectedText: string) {
-    await expect(this.welcomeTextLocator).toBeVisible();
-    await expect(this.welcomeTextLocator).toHaveText(expectedText);
-  }
+    async captureHomePageScreenshot(screenshotName: string) {
+        await this.captureScreenshot(screenshotName);
+    }
 
-  // Method to verify the footer text
-  async verifyFooterText(expectedText: string) {
-    await expect(this.footerTextLocator).toContainText(expectedText);
-  }
-
-  // Method to take a screenshot with a custom name
-  async captureScreenshot(screenshotName: string) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    await this.page.screenshot({
-      path: `screenshots/${screenshotName}-${timestamp}.png`,
-    });
-  }
-
-  // Method to capture a full-page screenshot
-  async captureFullPageScreenshot(screenshotName: string) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    await this.page.screenshot({
-      path: `screenshots/${screenshotName}-full-${timestamp}.png`,
-      fullPage: true,
-    });
-  }
+    async captureFullPageScreenshot(screenshotName: string) {
+        await this.captureScreenshot(screenshotName, true);
+    }
 }
