@@ -2,7 +2,6 @@ import test, { expect } from "@playwright/test";
 import { faker } from '@faker-js/faker';
 import RegisterPage from "../pages/registerPage";
 
-// Function to generate fake data
 function generateFakeData() {
     return {
         username: faker.person.lastName(),
@@ -15,18 +14,49 @@ function generateFakeData() {
 
 test.use({ storageState: "./NoAuth.json" });
 
-test('Register user with random data @Registration @Regression', async ({ page }) => {
+// Test using the combined registerUser method
+test('Register user with combined method @Registration @Regression', async ({ page }) => {
     const fakeData = generateFakeData();
-    
     const register = new RegisterPage(page);
     
-    // Go to the registration page
     await page.goto('https://ovcharski.com/shop/register/');
+    
+    await register.registerUser(
+        fakeData.username,
+        fakeData.firstName,
+        fakeData.lastName,
+        fakeData.email,
+        fakeData.password,
+        'male' // optional parameter, defaults to 'male'
+    );
+    
+    await expect(page).toHaveTitle('User – Automation Demo Site');
+    await page.close();
+});
 
-    // Register the user
-    await register.registerUser(fakeData.username, fakeData.firstName, fakeData.lastName, fakeData.email, fakeData.password);
-
-    // Wait for successful registration
+// Test using separate steps
+test('Register user with separate steps @Registration @Regression', async ({ page }) => {
+    const fakeData = generateFakeData();
+    const register = new RegisterPage(page);
+    
+    await page.goto('https://ovcharski.com/shop/register/');
+    
+    // Fill out the form
+    await register.fillRegistrationForm(
+        fakeData.username,
+        fakeData.firstName,
+        fakeData.lastName,
+        fakeData.email,
+        fakeData.password
+    );
+    
+    // Select gender explicitly
+    await register.selectGender('male');
+    // await page.getByText('Male', { exact: true }).click();
+    
+    // Click register button
+    await register.clickRegisterBtn();
+    
     await expect(page).toHaveTitle('User – Automation Demo Site');
     await page.close();
 });

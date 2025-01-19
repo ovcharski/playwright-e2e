@@ -1,64 +1,57 @@
 import { Page } from "@playwright/test";
+import BasePage from "./basePage";
 
-export default class RegisterPage {
-
-    constructor(public page: Page) {
+export default class RegisterPage extends BasePage {
+    constructor(page: Page) {
+        super(page);
     }
 
-    private async typeIntoLocator(locator: string, value: string) {
-        await this.page.locator(locator).type(value);
-    }
+    private readonly selectors = {
+        username: '#user_login-91',
+        firstName: '#first_name-91',
+        lastName: '#last_name-91',
+        email: '#user_email-91',
+        password: '#user_password-91',
+        confirmPassword: '#confirm_user_password-91',
+        // genderMale: 'label:has-text("Male") i.um-icon-android-radio-button-off',
+        // genderFemale: 'label:has-text("Female") i.um-icon-android-radio-button-off',
+        registerButton: '#um-submit-btn'
+    };
 
-    async enterUsername(username: string) {
-        await this.typeIntoLocator('#user_login-91', username);
-    }
-
-    async enterFirstName(firstname: string) {
-        await this.typeIntoLocator('#first_name-91', firstname);
-    }
-
-    async enterLastName(lastname: string) {
-        await this.typeIntoLocator('#last_name-91', lastname);
-    }
-
-    async enterEmail(email: string) {
-        await this.typeIntoLocator('#user_email-91', email);
-    }
-
-    async enterPassword(password: string) {
-        await this.typeIntoLocator('#user_password-91', password);
-    }
-
-    async enterConfirmPassword(password: string) {
-        await this.typeIntoLocator('#confirm_user_password-91', password);
-    }
-
-    async selectGender() {
-        await this.page.locator('i').first().click();
-    }
-
-    async clickRegisterBtn() {
-        await this.page.locator('#um-submit-btn').click()
-    }
-
-    async registerUser(username: string, firstname: string, lastname: string, email: string, password: string) {
+    // Method to fill form fields
+    async fillRegistrationForm(username: string, firstname: string, lastname: string, email: string, password: string) {
         const fields = {
-            '#user_login-91': username,
-            '#first_name-91': firstname,
-            '#last_name-91': lastname,
-            '#user_email-91': email,
-            '#user_password-91': password,
-            '#confirm_user_password-91': password,
+            [this.selectors.username]: username,
+            [this.selectors.firstName]: firstname,
+            [this.selectors.lastName]: lastname,
+            [this.selectors.email]: email,
+            [this.selectors.password]: password,
+            [this.selectors.confirmPassword]: password
         };
 
-        await this.fillOutForm(fields);
-        await this.selectGender();
-        await this.clickRegisterBtn();
+        await this.fillForm(fields);
     }
 
-    private async fillOutForm(fields: { [key: string]: string }) {
-        for (const [locator, value] of Object.entries(fields)) {
-            await this.typeIntoLocator(locator, value);
-        }
+    // Public method to select gender
+    async selectGender(gender: 'male' | 'female' = 'male') {
+        const genderLocator = gender.toLowerCase() === 'male' 
+            ? this.page.locator('label').filter({ hasText: /^Male$/ }).locator('i') 
+            : this.page.locator('label').filter({ hasText: /^Female$/ }).locator('i');
+
+        // Wait for the gender element to be visible
+        await genderLocator.waitFor({ state: 'visible' });
+        await genderLocator.click();
+    }
+
+    // Public method to click register button
+    async clickRegisterBtn() {
+        await this.clickElement(this.selectors.registerButton);
+    }
+
+    // Method that combines all steps
+    async registerUser(username: string, firstname: string, lastname: string, email: string, password: string, gender: 'male' | 'female' = 'male') {
+        await this.fillRegistrationForm(username, firstname, lastname, email, password);
+        await this.selectGender(gender);
+        await this.clickRegisterBtn();
     }
 }
