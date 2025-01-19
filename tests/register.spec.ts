@@ -52,6 +52,7 @@ test('Register user with separate steps @Registration @Regression', async ({ pag
     
     // Select gender explicitly
     await register.selectGender('male');
+    // await page.getByText('Male', { exact: true }).click();
     
     // Click register button
     await register.clickRegisterBtn();

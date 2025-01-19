@@ -13,8 +13,8 @@ export default class RegisterPage extends BasePage {
         email: '#user_email-91',
         password: '#user_password-91',
         confirmPassword: '#confirm_user_password-91',
-        genderMale: 'label:has-text("Male") i.um-icon-android-radio-button-off',
-        genderFemale: 'label:has-text("Female") i.um-icon-android-radio-button-off',
+        // genderMale: 'label:has-text("Male") i.um-icon-android-radio-button-off',
+        // genderFemale: 'label:has-text("Female") i.um-icon-android-radio-button-off',
         registerButton: '#um-submit-btn'
     };
 
@@ -34,10 +34,13 @@ export default class RegisterPage extends BasePage {
 
     // Public method to select gender
     async selectGender(gender: 'male' | 'female' = 'male') {
-        const selector = gender.toLowerCase() === 'male' 
-            ? this.selectors.genderMale 
-            : this.selectors.genderFemale;
-        await this.clickElement(selector);
+        const genderLocator = gender.toLowerCase() === 'male' 
+            ? this.page.locator('label').filter({ hasText: /^Male$/ }).locator('i') 
+            : this.page.locator('label').filter({ hasText: /^Female$/ }).locator('i');
+
+        // Wait for the gender element to be visible
+        await genderLocator.waitFor({ state: 'visible' });
+        await genderLocator.click();
     }
 
     // Public method to click register button

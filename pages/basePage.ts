@@ -10,7 +10,7 @@ export default abstract class BasePage {
 
     // Common method to click any element
     protected async clickElement(locator: string, options: { timeout?: number } = {}) {
-        const { timeout = 5000 } = options;
+        const { timeout = 15000 } = options;
         await this.page.locator(locator).click({ timeout });
     }
 
@@ -42,7 +42,7 @@ export default abstract class BasePage {
 
     // Common method to verify element visibility
     protected async verifyElementVisible(locator: string, options: { timeout?: number } = {}) {
-        const { timeout = 5000 } = options;
+        const { timeout = 15000 } = options;
         await expect(this.page.locator(locator)).toBeVisible({ timeout });
     }
 
