@@ -13,7 +13,7 @@
     "orientationAngle": 0,
     "orientationType": "landscape-primary"
   },
-  "timestamp": "2025-01-19T20:36:33.669Z",
+  "timestamp": "2025-01-20T11:51:06.643Z",
   "url": "https://ovcharski.com/shop/",
   "toolOptions": {
     "reporter": "v1"
@@ -6433,25 +6433,25 @@
                   ]
                 },
                 {
-                  "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tClothing <mark class=\"count\">(23)</mark>\t\t</h2>",
+                  "html": "<h2 class=\"woocommerce-loop-category__title\"> Clothing <mark class=\"count\">(23)</mark></h2>",
                   "target": [
                     ".first > a > .woocommerce-loop-category__title"
                   ]
                 },
                 {
-                  "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tDecor <mark class=\"count\">(1)</mark>\t\t</h2>",
+                  "html": "<h2 class=\"woocommerce-loop-category__title\"> Decor <mark class=\"count\">(1)</mark></h2>",
                   "target": [
                     "a[aria-label=\"Visit product category Decor\"] > .woocommerce-loop-category__title"
                   ]
                 },
                 {
-                  "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tJenkins Artwork <mark class=\"count\">(10)</mark>\t\t</h2>",
+                  "html": "<h2 class=\"woocommerce-loop-category__title\"> Jenkins Artwork <mark class=\"count\">(10)</mark></h2>",
                   "target": [
                     ".product-category.product:nth-child(3) > a > .woocommerce-loop-category__title"
                   ]
                 },
                 {
-                  "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tMusic <mark class=\"count\">(2)</mark>\t\t</h2>",
+                  "html": "<h2 class=\"woocommerce-loop-category__title\"> Music <mark class=\"count\">(2)</mark></h2>",
                   "target": [
                     "a[aria-label=\"Visit product category Music\"] > .woocommerce-loop-category__title"
                   ]
@@ -6846,7 +6846,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tClothing <mark class=\"count\">(23)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Clothing <mark class=\"count\">(23)</mark></h2>",
           "target": [
             ".first > a > .woocommerce-loop-category__title"
           ]
@@ -6896,7 +6896,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tDecor <mark class=\"count\">(1)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Decor <mark class=\"count\">(1)</mark></h2>",
           "target": [
             "a[aria-label=\"Visit product category Decor\"] > .woocommerce-loop-category__title"
           ]
@@ -6946,7 +6946,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tJenkins Artwork <mark class=\"count\">(10)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Jenkins Artwork <mark class=\"count\">(10)</mark></h2>",
           "target": [
             ".product-category.product:nth-child(3) > a > .woocommerce-loop-category__title"
           ]
@@ -6996,7 +6996,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tMusic <mark class=\"count\">(2)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Music <mark class=\"count\">(2)</mark></h2>",
           "target": [
             "a[aria-label=\"Visit product category Music\"] > .woocommerce-loop-category__title"
           ]
@@ -10071,7 +10071,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"site-info\">\n\t\t\t© Automation Demo Site 2025\n\t\t\t\t\t\t\t<br>\n\t\t\t\t<a href=\"https://woocommerce.com\" target=\"_blank\" title=\"WooCommerce - The Best eCommerce Platform for WordPress\" rel=\"noreferrer nofollow\">Built with WooCommerce</a>.\t\t\t\t\t</div>",
+          "html": "<div class=\"site-info\"> © Automation Demo Site 2025 <br> <a href=\"https://woocommerce.com\" target=\"_blank\" title=\"WooCommerce - The Best eCommerce Platform for WordPress\" rel=\"noreferrer nofollow\">Built with WooCommerce</a>.</div>",
           "target": [
             ".site-info"
           ]
@@ -10272,7 +10272,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tClothing <mark class=\"count\">(23)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Clothing <mark class=\"count\">(23)</mark></h2>",
           "target": [
             ".first > a > .woocommerce-loop-category__title"
           ]
@@ -10290,7 +10290,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tDecor <mark class=\"count\">(1)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Decor <mark class=\"count\">(1)</mark></h2>",
           "target": [
             "a[aria-label=\"Visit product category Decor\"] > .woocommerce-loop-category__title"
           ]
@@ -10308,7 +10308,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tJenkins Artwork <mark class=\"count\">(10)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Jenkins Artwork <mark class=\"count\">(10)</mark></h2>",
           "target": [
             ".product-category.product:nth-child(3) > a > .woocommerce-loop-category__title"
           ]
@@ -10326,7 +10326,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tMusic <mark class=\"count\">(2)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Music <mark class=\"count\">(2)</mark></h2>",
           "target": [
             "a[aria-label=\"Visit product category Music\"] > .woocommerce-loop-category__title"
           ]
@@ -10547,7 +10547,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tClothing <mark class=\"count\">(23)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Clothing <mark class=\"count\">(23)</mark></h2>",
           "target": [
             ".first > a > .woocommerce-loop-category__title"
           ]
@@ -10565,7 +10565,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tDecor <mark class=\"count\">(1)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Decor <mark class=\"count\">(1)</mark></h2>",
           "target": [
             "a[aria-label=\"Visit product category Decor\"] > .woocommerce-loop-category__title"
           ]
@@ -10583,7 +10583,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tJenkins Artwork <mark class=\"count\">(10)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Jenkins Artwork <mark class=\"count\">(10)</mark></h2>",
           "target": [
             ".product-category.product:nth-child(3) > a > .woocommerce-loop-category__title"
           ]
@@ -10601,7 +10601,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tMusic <mark class=\"count\">(2)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Music <mark class=\"count\">(2)</mark></h2>",
           "target": [
             "a[aria-label=\"Visit product category Music\"] > .woocommerce-loop-category__title"
           ]
@@ -12992,7 +12992,7 @@
             }
           ],
           "impact": null,
-          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\">\n\t\t\t\t\t\t\t\t<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span>\n\t\t\t</a>",
+          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span> </a>",
           "target": [
             ".cart-contents"
           ]
@@ -15330,7 +15330,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<li class=\"\">",
+          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span> </a></li>",
           "target": [
             "#site-header-cart > li:nth-child(1)"
           ]
@@ -15348,7 +15348,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<li>\n\t\t\t\t<div class=\"widget woocommerce widget_shopping_cart\"><div class=\"widget_shopping_cart_content\"></div></div>\t\t\t</li>",
+          "html": "<li><div class=\"widget woocommerce widget_shopping_cart\"><div class=\"widget_shopping_cart_content\"></div></div></li>",
           "target": [
             "#site-header-cart > li:nth-child(2)"
           ]
@@ -17896,7 +17896,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<li class=\"\">",
+          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span> </a></li>",
           "target": [
             "#site-header-cart > li:nth-child(1)"
           ]
@@ -17916,7 +17916,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\">\n\t\t\t\t\t\t\t\t<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span>\n\t\t\t</a>",
+          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span> </a>",
           "target": [
             ".cart-contents"
           ]
@@ -17996,7 +17996,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<li>\n\t\t\t\t<div class=\"widget woocommerce widget_shopping_cart\"><div class=\"widget_shopping_cart_content\"></div></div>\t\t\t</li>",
+          "html": "<li><div class=\"widget woocommerce widget_shopping_cart\"><div class=\"widget_shopping_cart_content\"></div></div></li>",
           "target": [
             "#site-header-cart > li:nth-child(2)"
           ]
@@ -18316,7 +18316,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<p class=\"has-text-align-center has-white-color has-text-color\">Demo e-commerce website. Using  WooCommerce – an open-source e-commerce plugin for WordPress. It is designed for small to large-sized online merchants using WordPress. </p>",
+          "html": "<p class=\"has-text-align-center has-white-color has-text-color\">Demo e-commerce website. Using  WooCommerce – an open-source e-commerce plugin for WordPress. It is designed for small to large-sized online merchants using WordPress.</p>",
           "target": [
             ".has-white-color.has-text-color:nth-child(4)"
           ]
@@ -18516,7 +18516,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tClothing <mark class=\"count\">(23)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Clothing <mark class=\"count\">(23)</mark></h2>",
           "target": [
             ".first > a > .woocommerce-loop-category__title"
           ]
@@ -18616,7 +18616,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tDecor <mark class=\"count\">(1)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Decor <mark class=\"count\">(1)</mark></h2>",
           "target": [
             "a[aria-label=\"Visit product category Decor\"] > .woocommerce-loop-category__title"
           ]
@@ -18716,7 +18716,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tJenkins Artwork <mark class=\"count\">(10)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Jenkins Artwork <mark class=\"count\">(10)</mark></h2>",
           "target": [
             ".product-category.product:nth-child(3) > a > .woocommerce-loop-category__title"
           ]
@@ -18816,7 +18816,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<h2 class=\"woocommerce-loop-category__title\">\n\t\t\tMusic <mark class=\"count\">(2)</mark>\t\t</h2>",
+          "html": "<h2 class=\"woocommerce-loop-category__title\"> Music <mark class=\"count\">(2)</mark></h2>",
           "target": [
             "a[aria-label=\"Visit product category Music\"] > .woocommerce-loop-category__title"
           ]
@@ -18876,7 +18876,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div data-block-name=\"woocommerce/product-new\" data-columns=\"4\" data-rows=\"2\" class=\"wc-block-grid wp-block-product-new wc-block-product-new has-4-columns has-multiple-rows\">",
+          "html": "<div data-block-name=\"woocommerce/product-new\" data-columns=\"4\" data-rows=\"2\" class=\"wc-block-grid wp-block-product-new wp-block-woocommerce-product-new wc-block-product-new has-4-columns has-multiple-rows\">",
           "target": [
             ".wp-block-product-new"
           ]
@@ -19156,7 +19156,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wp-block-product-new > .wc-block-grid__products > .wc-block-grid__product:nth-child(2) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -20576,7 +20576,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div data-block-name=\"woocommerce/product-top-rated\" data-rows=\"1\" class=\"wc-block-grid wp-block-product-top-rated wc-block-product-top-rated has-3-columns\">",
+          "html": "<div data-block-name=\"woocommerce/product-top-rated\" data-rows=\"1\" class=\"wc-block-grid wp-block-product-top-rated wp-block-woocommerce-product-top-rated wc-block-product-top-rated has-3-columns\">",
           "target": [
             ".wp-block-product-top-rated"
           ]
@@ -20856,7 +20856,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wp-block-product-top-rated > .wc-block-grid__products > .wc-block-grid__product:nth-child(2) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -21276,7 +21276,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div data-block-name=\"woocommerce/product-on-sale\" data-columns=\"4\" data-rows=\"1\" class=\"wc-block-grid wp-block-product-on-sale wc-block-product-on-sale has-4-columns\">",
+          "html": "<div data-block-name=\"woocommerce/product-on-sale\" data-columns=\"4\" data-rows=\"1\" class=\"wc-block-grid wp-block-product-on-sale wp-block-woocommerce-product-on-sale wc-block-product-on-sale has-4-columns\">",
           "target": [
             ".wp-block-product-on-sale"
           ]
@@ -21356,7 +21356,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wc-block-grid__product:nth-child(1) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -21596,7 +21596,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wp-block-product-on-sale > .wc-block-grid__products > .wc-block-grid__product:nth-child(2) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -21836,7 +21836,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wc-block-grid__product:nth-child(3) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -22076,7 +22076,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wc-block-grid__product:nth-child(4) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -22296,7 +22296,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div data-block-name=\"woocommerce/product-best-sellers\" data-columns=\"6\" data-rows=\"2\" class=\"wc-block-grid wp-block-product-best-sellers wc-block-product-best-sellers has-6-columns has-multiple-rows\">",
+          "html": "<div data-block-name=\"woocommerce/product-best-sellers\" data-columns=\"6\" data-rows=\"2\" class=\"wc-block-grid wp-block-product-best-sellers wp-block-woocommerce-product-best-sellers wc-block-product-best-sellers has-6-columns has-multiple-rows\">",
           "target": [
             ".wp-block-product-best-sellers"
           ]
@@ -23176,7 +23176,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wc-block-grid__product:nth-child(5) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -24016,7 +24016,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -24656,7 +24656,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\">\n\t\t\t<span aria-hidden=\"true\">Sale</span>\n\t\t\t<span class=\"screen-reader-text\">Product on sale</span>\n\t\t</div>",
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
           "target": [
             ".wc-block-grid__product:nth-child(12) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
           ]
@@ -24896,7 +24896,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"site-info\">\n\t\t\t© Automation Demo Site 2025\n\t\t\t\t\t\t\t<br>\n\t\t\t\t<a href=\"https://woocommerce.com\" target=\"_blank\" title=\"WooCommerce - The Best eCommerce Platform for WordPress\" rel=\"noreferrer nofollow\">Built with WooCommerce</a>.\t\t\t\t\t</div>",
+          "html": "<div class=\"site-info\"> © Automation Demo Site 2025 <br> <a href=\"https://woocommerce.com\" target=\"_blank\" title=\"WooCommerce - The Best eCommerce Platform for WordPress\" rel=\"noreferrer nofollow\">Built with WooCommerce</a>.</div>",
           "target": [
             ".site-info"
           ]
@@ -25096,7 +25096,7 @@
           "all": [],
           "none": [],
           "impact": "serious",
-          "html": "<p class=\"has-text-align-center has-white-color has-text-color\">Demo e-commerce website. Using  WooCommerce – an open-source e-commerce plugin for WordPress. It is designed for small to large-sized online merchants using WordPress. </p>",
+          "html": "<p class=\"has-text-align-center has-white-color has-text-color\">Demo e-commerce website. Using  WooCommerce – an open-source e-commerce plugin for WordPress. It is designed for small to large-sized online merchants using WordPress.</p>",
           "target": [
             ".has-white-color.has-text-color:nth-child(4)"
           ],
