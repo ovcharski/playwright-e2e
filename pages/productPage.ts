@@ -10,8 +10,18 @@ export default class ProductPage extends BasePage {
         await this.navigate(categoryUrl);
     }
 
+    async navigateToProduct(productUrl: string) {
+        await this.navigate(productUrl);
+    }
+
     async clickProductLink(productName: string) {
         await this.page.getByRole('link', { name: productName }).first().click();
+    }
+
+    async verifyPrice(productId: string, expectedPrice: string) {
+        const priceSelector = `#product-${productId}`;
+        await this.verifyElementVisible(priceSelector);
+        await this.verifyText(priceSelector, expectedPrice);
     }
 
     async verifyOldPrice(productId: string, price: string) {
