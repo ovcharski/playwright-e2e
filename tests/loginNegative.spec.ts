@@ -1,8 +1,8 @@
 import test, { expect } from "@playwright/test";
-import LoginPage from "../pages/loginPage";
+import LoginPage from "../pages/LoginPage";
 
 test.use({ storageState: "./NoAuth.json" });
-test('Login test with wrong username and password @Login @Regression', async ({ page }) => {
+test('Login with wrong username and password test @Login @Regression', async ({ page }) => {
     const login = new LoginPage(page);
 
     await page.goto('https://ovcharski.com/shop/login/');

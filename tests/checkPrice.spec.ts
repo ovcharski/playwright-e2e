@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import ProductPage from "../pages/productPage";
+import ProductPage from "../pages/ProductPage";
 
 const products = [
     { url: 'jenkins-actor', id: '124', price: '20,00 лв.' },
