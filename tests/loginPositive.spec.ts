@@ -1,12 +1,12 @@
-import test, { expect } from "@playwright/test";
-import LoginPage from "../pages/LoginPage";
+import test, { expect } from '@playwright/test';
+import LoginPage from '../pages/LoginPage';
 
-test.use({ storageState: "./NoAuth.json" });
-test('Login succesfull test @Login @Regression', async ({ page }) => {
+test.use({ storageState: './NoAuth.json' });
+test('Login succesfull', async ({ page }) => {
     const login = new LoginPage(page);
 
     await page.goto('https://ovcharski.com/shop/login/');
-    await login.login('playwrightuser', 'playwrightuser'); // Use the login method
+    await login.login('playwrightuser', 'playwrightuser'); // Login method
 
     // Validate the login process
     await expect(page).toHaveTitle('User – Automation Demo Site');

@@ -7,7 +7,6 @@ const commonTestSetup = (viewportName: string) => {
     try {
       const homePage = new HomePage(page);
 
-      // Navigate with more robust options.
       // The empty object represents options passed to the goto() method.
       // This object could include several configuration options, such as: timeout, waitUntil, referer, headers
       await page.goto('/shop/', {});
@@ -44,6 +43,6 @@ viewports.forEach(viewport => {
   test.describe(`${viewport.name.toUpperCase()} viewport`, () => {
     test.use({ viewport: { width: viewport.width, height: viewport.height } });
 
-    test('Open Homepage', commonTestSetup(viewport.name));
+    test('Open Homepage Mobile', commonTestSetup(viewport.name));
   });
 });

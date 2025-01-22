@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
 test('Verify navigation between multiple tabs', async ({ page, context }) => {
     // First tab
@@ -21,7 +21,7 @@ test('Verify navigation between multiple tabs', async ({ page, context }) => {
     // Take screenshots
     await Promise.all([
         page.screenshot({ path: `screenshots/wikipedia-${timestamp}.png` }),
-        newTab.screenshot({ path: `screenshots/mediawiki-${timestamp}.png` })
+        newTab.screenshot({ path: `screenshots/mediawiki-${timestamp}.png` }),
     ]);
 
     // Close second tab

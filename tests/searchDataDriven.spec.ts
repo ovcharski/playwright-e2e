@@ -2,8 +2,16 @@ import { test, expect, type Page } from '@playwright/test';
 
 const testData = [
     { searchQuery: 'Album', sku: 'woo-album', url: 'https://ovcharski.com/shop/product/album/' },
-    { searchQuery: 'Beanie with Logo', sku: 'Woo-beanie-logo', url: 'https://ovcharski.com/shop/product/beanie-with-logo/' },
-    { searchQuery: 'Shirt Green', sku: 'woo-fasion-shirt-green', url: 'https://ovcharski.com/shop/product/shirt-green/' },
+    {
+        searchQuery: 'Beanie with Logo',
+        sku: 'Woo-beanie-logo',
+        url: 'https://ovcharski.com/shop/product/beanie-with-logo/',
+    },
+    {
+        searchQuery: 'Shirt Green',
+        sku: 'woo-fasion-shirt-green',
+        url: 'https://ovcharski.com/shop/product/shirt-green/',
+    },
     { searchQuery: 'Shoes', sku: 'woo-fasion-shoes', url: 'https://ovcharski.com/shop/product/shoes/' },
     { searchQuery: 'Socks', sku: 'woo-fasion-socks', url: 'https://ovcharski.com/shop/product/socks/' },
     { searchQuery: 'V-Neck', sku: 'woo-vneck-tee', url: 'https://ovcharski.com/shop/product/v-neck-t-shirt/' },
@@ -19,7 +27,7 @@ test.beforeEach(async ({ page }) => {
 
 test.afterEach(async ({ page }) => {
     await page.close();
-})
+});
 
 test.describe('Search for products with SKUs', () => {
     testData.forEach((data) => {

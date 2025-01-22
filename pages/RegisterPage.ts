@@ -1,5 +1,5 @@
-import { Page } from "@playwright/test";
-import BasePage from "./BasePage";
+import { expect, Page } from '@playwright/test';
+import BasePage from './BasePage';
 
 export default class RegisterPage extends BasePage {
     constructor(page: Page) {
@@ -15,7 +15,15 @@ export default class RegisterPage extends BasePage {
         confirmPassword: '#confirm_user_password-91',
         // genderMale: 'label:has-text("Male") i.um-icon-android-radio-button-off',
         // genderFemale: 'label:has-text("Female") i.um-icon-android-radio-button-off',
-        registerButton: '#um-submit-btn'
+        registerButton: '#um-submit-btn',
+    };
+
+    private readonly errorSelectors = {
+        // formError: '.um-field-error',
+        usernameError: '#um-error-for-user_login-91',
+        emailError: '#um-error-for-user_email-91',
+        passwordError: '#um-error-for-user_password-91',
+        confirmPasswordError: '#um-error-for-confirm_user_password-91',
     };
 
     // Method to fill form fields
@@ -26,7 +34,7 @@ export default class RegisterPage extends BasePage {
             [this.selectors.lastName]: lastname,
             [this.selectors.email]: email,
             [this.selectors.password]: password,
-            [this.selectors.confirmPassword]: password
+            [this.selectors.confirmPassword]: password,
         };
 
         await this.fillForm(fields);
@@ -34,9 +42,16 @@ export default class RegisterPage extends BasePage {
 
     // Public method to select gender
     async selectGender(gender: 'male' | 'female' = 'male') {
-        const genderLocator = gender.toLowerCase() === 'male' 
-            ? this.page.locator('label').filter({ hasText: /^Male$/ }).locator('i') 
-            : this.page.locator('label').filter({ hasText: /^Female$/ }).locator('i');
+        const genderLocator =
+            gender.toLowerCase() === 'male'
+                ? this.page
+                      .locator('label')
+                      .filter({ hasText: /^Male$/ })
+                      .locator('i')
+                : this.page
+                      .locator('label')
+                      .filter({ hasText: /^Female$/ })
+                      .locator('i');
 
         // Wait for the gender element to be visible
         await genderLocator.waitFor({ state: 'visible' });
@@ -49,9 +64,28 @@ export default class RegisterPage extends BasePage {
     }
 
     // Method that combines all steps
-    async registerUser(username: string, firstname: string, lastname: string, email: string, password: string, gender: 'male' | 'female' = 'male') {
+    async registerUser(
+        username: string,
+        firstname: string,
+        lastname: string,
+        email: string,
+        password: string,
+        gender: 'male' | 'female' = 'male',
+    ) {
         await this.fillRegistrationForm(username, firstname, lastname, email, password);
         await this.selectGender(gender);
         await this.clickRegisterBtn();
+    }
+
+    // Method to verify error message
+    async verifyErrorMessage(field: keyof typeof this.errorSelectors, expectedMessage: string) {
+        await this.verifyElementVisible(this.errorSelectors[field]);
+        await this.verifyText(this.errorSelectors[field], expectedMessage);
+    }
+
+    // Method to verify form submission blocked
+    async verifyFormSubmissionBlocked() {
+        // Check if we're still on the registration page
+        await expect(this.page).toHaveURL(/.*\/register\//);
     }
 }

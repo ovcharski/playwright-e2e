@@ -15,7 +15,7 @@ function generateCheckoutData() {
         apaddress: faker.location.secondaryAddress(),
         towncity: faker.location.city(),
         postcode: faker.location.zipCode(),
-        phone: PHONE_NUMBER,  // Using hardcoded phone number to pass shop validation. With Faker is flaky
+        phone: PHONE_NUMBER, // Using hardcoded phone number to pass shop validation. With Faker is flaky
         email: faker.internet.email(),
     };
 }
@@ -32,16 +32,16 @@ async function completeCheckout(page: any, checkoutPage: CheckoutPage) {
         data.towncity,
         data.postcode,
         data.phone,
-        data.email
+        data.email,
     );
     await checkoutPage.placeOrder();
 }
 
-test.use({ storageState: "./NoAuth.json" });
+test.use({ storageState: './NoAuth.json' });
 
-test('Make an order POM @Orders @Regression', async ({ page }) => {
+test('Making an order', async ({ page }) => {
     const checkout = new CheckoutPage(page);
-    
+
     // Navigate to product page and add item to cart
     await page.goto(baseURL);
     await page.getByLabel('Visit product category Jenkins Artwork').click();
@@ -49,40 +49,40 @@ test('Make an order POM @Orders @Regression', async ({ page }) => {
     await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 лв.' }).click();
     await expect(page).toHaveURL(`${baseURL}product/jenkins-cosmonaut/`);
     await page.getByRole('button', { name: 'Add to cart' }).click();
-    
+
     // Go to checkout
     await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
     await expect(page).toHaveURL(`${baseURL}cart/`);
     await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
     await expect(page).toHaveURL(`${baseURL}checkout/`);
-    
+
     // Complete checkout
     await completeCheckout(page, checkout);
-    
+
     // Assertions
     await expect(page.getByRole('heading', { name: 'Order received' })).toBeVisible();
     await expect(page.getByText('Thank you. Your order has been received.')).toBeVisible();
 });
 
-test('Making an order via search POM @Orders @Regression', async ({ page }) => {
+test('Making an order via search', async ({ page }) => {
     const checkout = new CheckoutPage(page);
-    
+
     // Search and add product to cart
     await page.goto(baseURL);
     await page.getByRole('searchbox', { name: 'Search for:' }).fill('Jenkinstein');
     await page.getByRole('searchbox', { name: 'Search for:' }).press('Enter');
     await expect(page).toHaveURL(`${baseURL}product/jenkins-jenkinstein/`);
     await page.getByRole('button', { name: 'Add to cart' }).click();
-    
+
     // Go to checkout
     await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
     await expect(page).toHaveURL(`${baseURL}cart/`);
     await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
     await expect(page).toHaveURL(`${baseURL}checkout/`);
-    
+
     // Complete checkout
     await completeCheckout(page, checkout);
-    
+
     // Assertions
     await expect(page.getByRole('heading', { name: 'Order received' })).toBeVisible();
 });

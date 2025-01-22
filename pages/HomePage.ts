@@ -8,7 +8,7 @@ export default class HomePage extends BasePage {
 
     private readonly selectors = {
         welcomeText: 'text=Welcome to the store',
-        footerText: '.site-info' // Updated to use class selector instead of text
+        footerText: '.site-info', // Updated to use class selector instead of text
     };
 
     async verifyWelcomeText(expectedText: string) {
@@ -19,7 +19,7 @@ export default class HomePage extends BasePage {
     async verifyFooterText(expectedText: string) {
         await this.verifyTextWithOptions(this.selectors.footerText, expectedText, {
             normalizeWhitespace: true,
-            timeout: 5000
+            timeout: 5000,
         });
     }
 

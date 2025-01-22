@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import ProductPage from "../pages/ProductPage";
+import ProductPage from '../pages/ProductPage';
 
 const products = [
     { url: 'jenkins-actor', id: '124', price: '20,00 лв.' },
@@ -11,19 +11,19 @@ const products = [
     { url: 'jenkins-general', id: '111', price: '22,00 лв.' },
     { url: 'jenkins-jenkinstein', id: '109', price: '20,00 лв.' },
     { url: 'jenkins-magician', id: '104', price: '9,99 лв.' },
-    { url: 'jenkins-superhero', id: '102', price: '30,00 лв.' }
+    { url: 'jenkins-superhero', id: '102', price: '30,00 лв.' },
 ];
 
 test('Navigate to 2 products and check their prices', async ({ page }) => {
     const productPage = new ProductPage(page);
-    
+
     // Jenkins Beekeeper Jenkins
     await productPage.navigateToCategory('/shop/product-category/jenkins-artwork/');
     await productPage.clickProductLink('Jenkins Beekeeper Jenkins');
     await expect(page).toHaveURL(/jenkins-beekeeper/);
     await productPage.verifyOldPrice('122', '20,00 лв');
     await productPage.verifyNewPrice('122', '15,99 лв');
-    
+
     // Jenkins Magician
     await productPage.navigateToCategory('/shop/product-category/jenkins-artwork/');
     await productPage.clickProductLink('Jenkins Magician');
@@ -31,7 +31,7 @@ test('Navigate to 2 products and check their prices', async ({ page }) => {
     // await productPage.verifySaleBadge();
     await productPage.verifyOldPrice('104', '20,00 лв');
     await productPage.verifyNewPrice('104', '9,99 лв');
-    
+
     await page.close();
 });
 

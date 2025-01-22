@@ -24,15 +24,21 @@ export default abstract class BasePage {
         }
     }
 
-    protected async verifyTextWithOptions(locator: string, expectedText: string, options: { 
-        exact?: boolean,
-        normalizeWhitespace?: boolean,
-        timeout?: number 
-    } = {}) {
+    protected async verifyTextWithOptions(
+        locator: string,
+        expectedText: string,
+        options: {
+            exact?: boolean;
+            normalizeWhitespace?: boolean;
+            timeout?: number;
+        } = {},
+    ) {
         const { exact = false, normalizeWhitespace = true, timeout = 5000 } = options;
-        
+
         if (normalizeWhitespace) {
-            await expect(this.page.locator(locator)).toHaveText(new RegExp(expectedText.replace(/\s+/g, '\\s+')), { timeout });
+            await expect(this.page.locator(locator)).toHaveText(new RegExp(expectedText.replace(/\s+/g, '\\s+')), {
+                timeout,
+            });
         } else if (exact) {
             await expect(this.page.locator(locator)).toHaveText(expectedText, { timeout });
         } else {
@@ -51,7 +57,7 @@ export default abstract class BasePage {
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
         await this.page.screenshot({
             path: `screenshots/${screenshotName}-${timestamp}.png`,
-            fullPage
+            fullPage,
         });
     }
 
