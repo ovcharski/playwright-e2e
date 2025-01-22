@@ -2,7 +2,11 @@
 
 ![Playwright logo](/assets/images/playwright-logo.png "Playwright logo")
 
-Demo automation testing framework created with Playwright. A NodeJS library made for browser automation. It's free, open source and backed up by Microsoft. 
+![Tests](https://github.com/[ovcharski]/[playwright-e2e]/workflows/[workflow-name]/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Playwright](https://img.shields.io/badge/playwright-latest-green)
+
+Demo automation testing framework created with Playwright, a NodeJS library made for browser automation. It's free, open source and backed up by Microsoft. 
 
 Playwright supports all modern rendering engines including Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation of Google Chrome for Android and Mobile Safari.
 
@@ -59,16 +63,29 @@ The tests in the framework cover:
 - GitHub Actions with HTML report
 - API Testing - Playwright is not the most comprehensive tool for API testing, but it can be used to get access to the REST API of your application. ([Official Documentation - API testing](https://playwright.dev/docs/test-api-testing))
 
+# Project Structure
+├── pages/                # Page Object Models
+├── tests/                # Test files
+│   ├── api/              # API tests
+└── global-setup.ts       # Saved state of logged-in user
+├── screenshots/          # Recorded screenshots from tests
+└── playwright.config.ts  # Playwright configuration
+
+# Configuration
+The framework can be configured through `playwright.config.ts`. Key configurations include:
+- Browsers: Chromium, Firefox, WebKit
+- Viewport sizes
+- Test timeouts
+- Parallel execution settings
+
 # For future improvements and considerations
 
 - Using Environment Variables - to create .env file and use library like dotenv to load the sensitive data.
 - Organizing test data in JSONs like login and user data.
-- Utility Functions - avoid code duplications
 - Implement robust error handling
-- Using docker
 - Visual Regression Testing (VRT)
 - Performance testing - Playwright is not designed for performance testing, but there are various ways to do it (Navigation and Resource Timing API, Paint Timing API, Largest Contentful Paint API, Layout Instability, Long Task API). ([Blog post](https://ray.run/blog/measuring-website-performance-with-playwright-tests)). These types of tests are not included in this repo/framework.
-- BDD - Playwright does not support natively BDD / Gherkin, but various integrations and plugins are available (Cucumber.js, Playwright-Cucumber, Jest-Cucumber, Playwright-BDD). They are not used in this repo/framework.
+- BDD - Playwright does not support natively BDD / Gherkin, but various integrations and plugins are available (Cucumber.js, Playwright-Cucumber, Jest-Cucumber, Playwright-BDD). 
 
 A repo with Postman collection for API testing of the same website is available at [ovcharski/postman-wp](https://github.com/ovcharski/postman-wp). The repo is just for an idea for combination of Playwright UI and Postman API testing in a one whole package.
 
@@ -102,15 +119,29 @@ Page Object Model (POM) is a design pattern that creates a repository for storin
 
 The UI tests are located in /tests/ folder
 
-More tests will be added over time.
-
 # API test
 
 Site API Swagger doc is located [here](https://ovcharski.com/shop/rest-api/docs/).
 
 The API tests are located in /tests/api/
 
-More tests will be added over time.
+# Locators
+
+Playwright comes with multiple built-in locators. To make tests resilient, Playwright recommend prioritizing user-facing attributes and explicit contracts. These are the recommended built in locators.
+
+**page.getByRole()** to locate by explicit and implicit accessibility attributes.
+
+**page.getByText()** to locate by text content.
+
+**page.getByLabel()** to locate a form control by associated label's text.
+
+**page.getByPlaceholder()** to locate an input by placeholder.
+
+**page.getByAltText()** to locate an element, usually image, by its text alternative.
+
+**page.getByTitle()** to locate an element by its title attribute.
+
+**page.getByTestId()** to locate an element based on its data-testid attribute (other attributes can be configured).
 
 # Usage
 
@@ -159,24 +190,6 @@ Ask for help
 > npx playwright test --help
 
 Complete set of Playwright Test options is available in the configuration file.
-
-# Locators
-
-Playwright comes with multiple built-in locators. To make tests resilient, Playwright recommend prioritizing user-facing attributes and explicit contracts. These are the recommended built in locators.
-
-**page.getByRole()** to locate by explicit and implicit accessibility attributes.
-
-**page.getByText()** to locate by text content.
-
-**page.getByLabel()** to locate a form control by associated label's text.
-
-**page.getByPlaceholder()** to locate an input by placeholder.
-
-**page.getByAltText()** to locate an element, usually image, by its text alternative.
-
-**page.getByTitle()** to locate an element by its title attribute.
-
-**page.getByTestId()** to locate an element based on its data-testid attribute (other attributes can be configured).
 
 # How to Update Playwright version
 
