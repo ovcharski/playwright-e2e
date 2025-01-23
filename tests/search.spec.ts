@@ -16,7 +16,6 @@ const testData = [
     { searchQuery: 'Socks', sku: 'woo-fasion-socks', url: 'https://ovcharski.com/shop/product/socks/' },
     { searchQuery: 'V-Neck', sku: 'woo-vneck-tee', url: 'https://ovcharski.com/shop/product/v-neck-t-shirt/' },
     { searchQuery: 'Pennant', sku: 'wp-pennant', url: 'https://ovcharski.com/shop/product/wordpress-pennant/' },
-    // Add more test data here
 ];
 
 const search = '#woocommerce-product-search-field-0';

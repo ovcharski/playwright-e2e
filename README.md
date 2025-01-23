@@ -63,12 +63,12 @@ The tests in the framework cover:
 - API Testing - Playwright is not the most comprehensive tool for API testing, but it can be used to get access to the REST API of your application. ([Official Documentation - API testing](https://playwright.dev/docs/test-api-testing))
 
 # Project Structure
-├── pages/                # Page Object Models \
-├── tests/                # Test files \
-│   ├── api/              # API tests \
-└── global-setup.ts       # Saved state of logged-in user \
-├── screenshots/          # Recorded screenshots from tests \
-└── playwright.config.ts  # Playwright configuration \
+├── pages/                - Page Object Models \
+├── tests/                - Test files \
+│   ├── api/              - API tests \
+└── global-setup.ts       - Saved state of logged-in user \
+├── screenshots/          - Recorded screenshots from tests \
+└── playwright.config.ts  - Playwright configuration
 
 # Configuration
 The framework can be configured through `playwright.config.ts`. Key configurations include:
