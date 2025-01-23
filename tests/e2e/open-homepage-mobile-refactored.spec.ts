@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import HomePage from '../pages/HomePage';
+import HomePage from '../../pages/HomePage';
 
 // Common test setup to reduce repetition
 const commonTestSetup = (viewportName: string) => {

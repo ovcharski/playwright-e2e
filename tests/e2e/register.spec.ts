@@ -1,6 +1,6 @@
 import test, { expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
-import RegisterPage from '../pages/RegisterPage';
+import RegisterPage from '../../pages/RegisterPage';
 
 function generateFakeData() {
     return {

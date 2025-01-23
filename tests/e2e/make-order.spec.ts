@@ -1,5 +1,5 @@
 import test, { expect } from '@playwright/test';
-import CheckoutPage from '../pages/CheckoutPage';
+import CheckoutPage from '../../pages/CheckoutPage';
 import { faker } from '@faker-js/faker';
 
 const baseURL = 'https://ovcharski.com/shop/';

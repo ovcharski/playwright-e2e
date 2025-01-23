@@ -1,6 +1,6 @@
 // tests/homepage.spec.ts
 import { test, expect } from '@playwright/test';
-import HomePage from '../pages/HomePage';
+import HomePage from '../../pages/HomePage';
 
 test.describe('Galaxy S10 viewport', () => {
     test.use({ viewport: { width: 360, height: 760 } });
