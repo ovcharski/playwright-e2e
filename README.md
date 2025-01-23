@@ -124,7 +124,7 @@ A repo with Postman collection for API testing of the same website is available 
 
 # Page Object Model (POM)
 
-Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. In POM, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Page objects are organized under the `pages/` directory, making the test code more readable, maintainable, and less prone to duplication.
+Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. In POM, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Page objects are organized under the `/pages/` directory, making the test code more readable, maintainable, and less prone to duplication.
 
 ## Benefits of POM
 - **Maintainability**: Changes in the UI require updates only in the page classes.
@@ -133,13 +133,13 @@ Page Object Model (POM) is a design pattern that creates a repository for storin
 
 # E2E test
 
-The e2e tests are located in `tests/e2e/` folder. They cover scenarios such as user authentication, navigation, and interactions with different pages.
+The e2e tests are located in `/tests/e2e/` folder. They cover scenarios such as user authentication, navigation, and interactions with different pages.
 
 # API test
 
 Site API Swagger doc is located [here](https://ovcharski.com/shop/rest-api/docs/).
 
-The API tests are located in /tests/api/
+The API tests are located in `/tests/api/`
 
 # Locators
 
@@ -162,69 +162,85 @@ Playwright comes with multiple built-in locators. To make tests resilient, Playw
 # Usage
 
 Get started by installing Playwright using npm or yarn. Alternatively you can also get started and run tests using the VS Code Extension.
-
-> npm init playwright@latest
-
-> yarn create playwright
+```bash
+npm init playwright@latest
+```
+```bash
+yarn create playwright
+```
 
 Running tests
-
-> npx playwright test
+```bash
+npx playwright test
+```
 
 Here are the most common options available in the command line.
 
 Run a single test file
-
-> npx playwright test tests/todo-page.spec.ts
+```bash
+npx playwright test tests/todo-page.spec.ts
+```
 
 Run a set of test files
-
-> npx playwright test tests/todo-page/ tests/landing-page/
+```bash
+npx playwright test tests/todo-page/ tests/landing-page/
+```
 
 Run tests in headed browsers
-
-> npx playwright test --headed
+```bash
+npx playwright test --headed
+```
 
 Run all the tests against a specific project
-
-> npx playwright test --project=chromium
-
+```bash
+npx playwright test --project=chromium
+```
+```bash
 Disable parallelization
-
-> npx playwright test --workers=1
+```bash
+npx playwright test --workers=1
+```
 
 Choose a reporter
-
-> npx playwright test --reporter=dot
+```bash
+npx playwright test --reporter=dot
+```
 
 Run in debug mode with Playwright Inspector
-
-> npx playwright test --debug
+```bash
+npx playwright test --debug
+```
 
 Ask for help
-
-> npx playwright test --help
+```bash
+npx playwright test --help
+```
 
 Complete set of Playwright Test options is available in the configuration file.
 
 # How to Update Playwright version
 
 Checking Playwright version
-
-> npx @playwright/test --version
+```bash
+npx @playwright/test --version
+```
 
 Check if package needs update
-
-> npm outdated @playwright/test
+```bash
+npm outdated @playwright/test
+```
 
 Playwright updade can be made by running
-
-> npm i @playwright/test
+```bash
+npm i @playwright/test
+```
 
 Update to specific version
-
-> npm install @playwright/test@1.36.2
+```bash
+npm install @playwright/test@1.36.2
+```
 
 Usually after Playwright update, browsers need to be updated
-
-> npx playwright install
+```bash
+npx playwright install
+```
