@@ -40,6 +40,12 @@ Limitations:
 - Pierce the shadow DOM
 - Make API request
 
+# Technologies Used
+
+- **Playwright**: A versatile library tailored for browser automation with a focus on reliability.
+- **TypeScript**: A statically typed superset of JavaScript.
+- **npm**: The package manager for JavaScript.
+
 
 # Demo site - E-commerce
 
@@ -63,12 +69,24 @@ The tests in the framework cover:
 - API Testing - Playwright is not the most comprehensive tool for API testing, but it can be used to get access to the REST API of your application. ([Official Documentation - API testing](https://playwright.dev/docs/test-api-testing))
 
 # Project Structure
-├── pages/                - Page Object Models \
-├── tests/                - Test files \
-│   ├── api/              - API tests \
-└── global-setup.ts       - Saved state of logged-in user \
-├── screenshots/          - Recorded screenshots from tests \
-└── playwright.config.ts  - Playwright configuration
+
+```bash
+playwright-e2e/
+├── pages/
+│   ├── BasePage.ts
+│   ├── CheckoutPage.ts
+│   ├── HomePage.ts
+│   ├── LoginPage.ts
+│   ├── ProductPage.ts
+│   ├── RegisterPage.ts
+├── tests/
+│   ├── api/
+│   ├── e2e/
+│   ├── ui/
+├── global-setup.js
+├── playwright.config.js
+└── ...
+```
 
 # Configuration
 The framework can be configured through `playwright.config.ts`. Key configurations include:
@@ -94,7 +112,7 @@ A repo with Postman collection for API testing of the same website is available 
 |-------------------------------|---------------------| 
 | GitHub Actions                | :white_check_mark:  |
 | Page Object Model             | :white_check_mark:  |
-| UI tests                      | :white_check_mark:  |
+| E2E tests                      | :white_check_mark:  |
 | API tests                     | :white_check_mark:  |
 | Mobile ViewPorts tests        | :white_check_mark:  |
 | FakerJS                       | :white_check_mark:  |
@@ -103,20 +121,19 @@ A repo with Postman collection for API testing of the same website is available 
 | Data driven tests             | :white_check_mark:  |
 | Accessibility - Axe-core      | :white_check_mark:  |
 | Visual Comparisons            | :black_square_button: |
-| BDD                           | :black_square_button: |
 
 # Page Object Model (POM)
 
-Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. It is useful in reducing code duplication and improving test script maintenance. In POM, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Using these elements, testers can perform operations on the website under test.
+Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. In POM, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Page objects are organized under the `pages/` directory, making the test code more readable, maintainable, and less prone to duplication.
 
 ## Benefits of POM
 - **Maintainability**: Changes in the UI require updates only in the page classes.
 - **Reusability**: Common operations can be reused across different tests.
 - **Readability**: Tests are more readable and easier to understand.
 
-# UI test
+# E2E test
 
-The UI tests are located in /tests/ folder
+The e2e tests are located in `tests/e2e/` folder. They cover scenarios such as user authentication, navigation, and interactions with different pages.
 
 # API test
 
