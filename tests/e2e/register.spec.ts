@@ -61,12 +61,14 @@ test('Register user with separate steps', async ({ page }) => {
 });
 
 test.describe('Invalid Registration Scenarios', () => {
+    let register: RegisterPage;
+
     test.beforeEach(async ({ page }) => {
         await page.goto('https://ovcharski.com/shop/register/');
+        register = new RegisterPage(page);
     });
 
-    test('Should not register with invalid email format', async ({ page }) => {
-        const register = new RegisterPage(page);
+    test('Should not register with invalid email format', async () => {
         const invalidData = {
             username: faker.person.lastName(),
             firstName: faker.person.firstName(),
@@ -87,8 +89,7 @@ test.describe('Invalid Registration Scenarios', () => {
         await register.verifyFormSubmissionBlocked();
     });
 
-    test('Should not register with short password', async ({ page }) => {
-        const register = new RegisterPage(page);
+    test('Should not register with short password', async () => {
         const invalidData = {
             username: faker.person.lastName(),
             firstName: faker.person.firstName(),
@@ -109,8 +110,7 @@ test.describe('Invalid Registration Scenarios', () => {
         await register.verifyFormSubmissionBlocked();
     });
 
-    test('should not register with existing username', async ({ page }) => {
-        const register = new RegisterPage(page);
+    test('should not register with existing username', async () => {
         const invalidData = {
             username: 'playwrightuser', // Known existing username
             firstName: faker.person.firstName(),
@@ -131,9 +131,7 @@ test.describe('Invalid Registration Scenarios', () => {
         await register.verifyFormSubmissionBlocked();
     });
 
-    test('should not register with empty required fields', async ({ page }) => {
-        const register = new RegisterPage(page);
-
+    test('should not register with empty required fields', async () => {
         // Only fill in some fields, leaving others empty
         await register.fillRegistrationForm(
             '', // empty username

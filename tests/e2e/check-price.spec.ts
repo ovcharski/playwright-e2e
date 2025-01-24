@@ -14,12 +14,14 @@ const products = [
     { url: 'jenkins-superhero', id: '102', price: '30,00 лв.' },
 ];
 
+// Flaky test
+
 test('Navigate to 2 products and check their prices', async ({ page }) => {
     const productPage = new ProductPage(page);
 
     // Jenkins Beekeeper Jenkins
     await productPage.navigateToCategory('/shop/product-category/jenkins-artwork/');
-    await productPage.clickProductLink('Jenkins Beekeeper Jenkins');
+    await productPage.clickProductLink('Jenkins Beekeeper Jenkins' );
     await expect(page).toHaveURL(/jenkins-beekeeper/);
     await productPage.verifyOldPrice('122', '20,00 лв');
     await productPage.verifyNewPrice('122', '15,99 лв');

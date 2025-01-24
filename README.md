@@ -169,12 +169,13 @@ npm init playwright@latest
 yarn create playwright
 ```
 
-Running tests
+## Running tests
+
 ```bash
 npx playwright test
 ```
 
-Here are the most common options available in the command line.
+## The most common options available in the command line
 
 Run a single test file
 ```bash
@@ -195,7 +196,7 @@ Run all the tests against a specific project
 ```bash
 npx playwright test --project=chromium
 ```
-```bash
+
 Disable parallelization
 ```bash
 npx playwright test --workers=1
