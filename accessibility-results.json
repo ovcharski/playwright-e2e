@@ -13,7 +13,7 @@
     "orientationAngle": 0,
     "orientationType": "landscape-primary"
   },
-  "timestamp": "2025-01-24T20:53:12.874Z",
+  "timestamp": "2025-01-26T19:01:38.773Z",
   "url": "https://ovcharski.com/shop/",
   "toolOptions": {
     "reporter": "v1"
@@ -6746,7 +6746,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
             ".cart-contents > .woocommerce-Price-amount.amount"
           ]
@@ -12992,7 +12992,7 @@
             }
           ],
           "impact": null,
-          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span> </a>",
+          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">1 item</span> </a>",
           "target": [
             ".cart-contents"
           ]
@@ -15330,7 +15330,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span> </a></li>",
+          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">1 item</span> </a></li>",
           "target": [
             "#site-header-cart > li:nth-child(1)"
           ]
@@ -17896,7 +17896,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span> </a></li>",
+          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">1 item</span> </a></li>",
           "target": [
             "#site-header-cart > li:nth-child(1)"
           ]
@@ -17916,7 +17916,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">0 items</span> </a>",
+          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">1 item</span> </a>",
           "target": [
             ".cart-contents"
           ]
@@ -17936,7 +17936,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
             ".cart-contents > .woocommerce-Price-amount.amount"
           ]
@@ -17976,7 +17976,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"count\">0 items</span>",
+          "html": "<span class=\"count\">1 item</span>",
           "target": [
             ".cart-contents > .count"
           ]
@@ -25032,7 +25032,7 @@
           "all": [],
           "none": [],
           "impact": "serious",
-          "html": "<span class=\"count\">0 items</span>",
+          "html": "<span class=\"count\">1 item</span>",
           "target": [
             ".cart-contents > .count"
           ],
