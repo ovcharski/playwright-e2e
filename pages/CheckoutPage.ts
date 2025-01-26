@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import BasePage from './BasePage';
 
 export default class CheckoutPage extends BasePage {
@@ -34,5 +34,22 @@ export default class CheckoutPage extends BasePage {
 
     async placeOrder() {
         await this.clickElement('#place_order');
+    }
+
+    async fillCardDetails(cardNumber: string, expiryDate: string, cvc: string) {
+        const cardFrame = this.page.locator('iframe[name*="__privateStripeFrame"]').first().contentFrame();
+        await cardFrame?.getByPlaceholder('1234 1234 1234 1234').fill(cardNumber);
+        await cardFrame?.getByPlaceholder('MM / YY').fill(expiryDate);
+        await cardFrame?.getByPlaceholder('CVC').fill(cvc);
+    }
+
+    async expectOrderReceived() {
+        await expect(this.page.getByRole('heading', { name: 'Order received' })).toBeVisible();
+        await expect(this.page.getByText('Thank you. Your order has been received.')).toBeVisible();
+    }
+
+    async expectCardError(message: string) {
+        const cardFrame = this.page.locator('iframe[name*="__privateStripeFrame"]').first().contentFrame();
+        await expect(cardFrame?.getByText(message)).toBeVisible();
     }
 }
