@@ -37,7 +37,12 @@ export default class CheckoutPage extends BasePage {
     }
 
     async fillCardDetails(cardNumber: string, expiryDate: string, cvc: string) {
-        const cardFrame = this.page.locator('iframe[name*="__privateStripeFrame"]').first().contentFrame();
+        // Wait for the iframe to be visible
+        const iframeLocator = this.page.locator('iframe[name*="__privateStripeFrame"]').first();
+        await iframeLocator.waitFor({ state: 'visible', timeout: 50000 });
+
+        // Switch to the iframe and fill card details
+        const cardFrame = await iframeLocator.contentFrame();
         await cardFrame?.getByPlaceholder('1234 1234 1234 1234').fill(cardNumber);
         await cardFrame?.getByPlaceholder('MM / YY').fill(expiryDate);
         await cardFrame?.getByPlaceholder('CVC').fill(cvc);
@@ -49,7 +54,12 @@ export default class CheckoutPage extends BasePage {
     }
 
     async expectCardError(message: string) {
-        const cardFrame = this.page.locator('iframe[name*="__privateStripeFrame"]').first().contentFrame();
+        // Wait for the iframe to be visible
+        const iframeLocator = this.page.locator('iframe[name*="__privateStripeFrame"]').first();
+        await iframeLocator.waitFor({ state: 'visible', timeout: 50000 });
+
+        // Switch to the iframe and verify the error message
+        const cardFrame = await iframeLocator.contentFrame();
         await expect(cardFrame?.getByText(message)).toBeVisible();
     }
 }
