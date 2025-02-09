@@ -9,6 +9,8 @@ Demo automation testing framework created with Playwright, a NodeJS library made
 
 Playwright supports all modern rendering engines including Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation of Google Chrome for Android and Mobile Safari.
 
+This testing framework is currently being remade with [Playwright with Python](https://github.com/ovcharski/playwright-e2e-python) and [WebdriverIO with Cucumber and Javascript](https://github.com/ovcharski/webdriverio-cucumber-e2e) variants.
+
 [Playwright Github](https://github.com/microsoft/playwright)
 
 # What does Playwright support
@@ -16,14 +18,15 @@ Playwright supports all modern rendering engines including Chromium, WebKit, and
 - One API, cross platform, cross language and cross browser
 - Test on Windows, Linux and MacOS
 - Supports Chromium, Firefox & Webkit
+- Mobile device emulation (e.g., iPhone, Pixel)
 - Playwright API can be used in JavaScript, TypeScript, Python, Java & .NET
 
 # Why Playwright
 
 Resilent tests:
-- Auto-waiting
-- Web first assertions (automatic retries)
-- Strong debugging capabilities (tracing, screenshots, videos...)
+- **Auto-waiting**: Elements are automatically waited for before interactions.
+- **Web-first assertions**: Assertions retry until conditions are met.
+- **Tracing**: Debug tests with screenshots, network logs, and execution traces.
 
 Fast execution:
 - Isolated testing (new browser profile for each test)
@@ -56,6 +59,8 @@ The website has few pages - Home, Shop, Login, Registration, Profile.
 The products (37) are in 4 categories - Clothing (23), Decor (1), Jenkins Artwork (10), Music (2). Clothing has few subcategories - Accessories (8), Hoodies (4), Jackets (1), Shirts (4), Sweater (1), Tshirts (5).
 
 The Registration form has 10 fields: username, first name, last name, email, password, gender, birth date, coutry, phone number. Some of the fields are required, some are optional. Different type of fields are used - text box, password, radio, date picker, dropdown, telephone box.
+
+The payment provider is Stripe.
 
 # Test suite
 
@@ -98,8 +103,6 @@ The framework can be configured through `playwright.config.ts`. Key configuratio
 # For future improvements and considerations
 
 - Using Environment Variables - to create .env file and use library like dotenv to load the sensitive data.
-- Organizing test data in JSONs like login and user data.
-- Implement robust error handling
 - Visual Regression Testing (VRT)
 - Performance testing - Playwright is not designed for performance testing, but there are various ways to do it (Navigation and Resource Timing API, Paint Timing API, Largest Contentful Paint API, Layout Instability, Long Task API). ([Blog post](https://ray.run/blog/measuring-website-performance-with-playwright-tests)). These types of tests are not included in this repo/framework.
 - BDD - Playwright does not support natively BDD / Gherkin, but various integrations and plugins are available (Cucumber.js, Playwright-Cucumber, Jest-Cucumber, Playwright-BDD). 
