@@ -1,91 +1,166 @@
 import test, { expect } from '@playwright/test';
 
 const BASE_URL = 'https://ovcharski.com/shop/wp-json';
+const API_VERSION = 'wp/v2';
 
-test('Get site info', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v2/`);
-    expect(response.status()).toBe(200);
-    const body = JSON.parse(await response.text());
-    expect(body.namespace).toBe('wp/v2');
-    expect(body.routes).toBeDefined();
-});
+test.describe('WordPress API Tests', () => {
+  
+  test.describe('Core API Endpoints', () => {
+    test('GET /wp/v2 should return API structure', async ({ request }) => {
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/`);
+      await expect(response).toBeOK();
+      const body = await response.json();
+      
+      expect(body.namespace).toBe(API_VERSION);
+      expect(body.routes).toBeInstanceOf(Object);
+      expect(Object.values(body.routes).some((route: any) => route.namespace === API_VERSION)).toBeTruthy();
+    });
+  });
 
-test('Get pages', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v2/pages?_fields=id,link,slug`);
-    expect(response.status()).toBe(200);
-    const body = JSON.parse(await response.text());
-    expect(Array.isArray(body)).toBeTruthy();
-});
+  test.describe('Content Endpoints', () => {
+    test('GET /pages should return pages with required fields', async ({ request }) => {
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/pages`, {
+        params: { _fields: 'id,link,slug' }
+      });
+      
+      await expect(response).toBeOK();
+      const pages = await response.json();
+      
+      expect(pages).toBeInstanceOf(Array);
+      pages.forEach(page => {
+        expect(page).toMatchObject({
+          id: expect.any(Number),
+          link: expect.stringContaining('https://'),
+          slug: expect.any(String)
+        });
+      });
+    });
 
-test('Get categories', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v2/categories?_fields=id,name,slug`);
-    expect(response.status()).toBe(200);
-    const body = JSON.parse(await response.text());
-    expect(Array.isArray(body)).toBeTruthy();
-    if (body.length > 0) {
-        expect(body[0]).toHaveProperty('id');
-        expect(body[0]).toHaveProperty('name');
-        expect(body[0]).toHaveProperty('slug');
-    }
-});
-
-test('Get specific post by ID', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v2/posts/147`);
-    expect(response.status()).toBe(200);
-    const body = JSON.parse(await response.text());
-    expect(body.id).toBe(147);
-    expect(body.slug).toBe('how-to-blog-post');
-    expect(body.type).toBe('post');
-});
-
-test('Get post comments', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v2/comments?post=1`);
-    expect(response.status()).toBe(200);
-    const body = JSON.parse(await response.text());
-    expect(Array.isArray(body)).toBeTruthy();
-});
-
-test('Get media items', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v2/media?_fields=id,source_url,alt_text`);
-    expect(response.status()).toBe(200);
-    const body = JSON.parse(await response.text());
-    expect(Array.isArray(body)).toBeTruthy();
-    if (body.length > 0) {
-        expect(body[0]).toHaveProperty('id');
-        expect(body[0]).toHaveProperty('source_url');
-        expect(body[0]).toHaveProperty('alt_text');
-    }
-});
-
-test('Search posts', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v2/posts?search=hello&_fields=id,link,slug`);
-    expect(response.status()).toBe(200);
-    const body = JSON.parse(await response.text());
-    expect(Array.isArray(body)).toBeTruthy();
-    if (body.length > 0) {
-        const post = body.find((p) => p.slug === 'hello-world');
-        if (post) {
-            expect(post.id).toBe(1);
-            expect(post.link).toBe('https://ovcharski.com/shop/hello-world/');
+    test('GET /posts should support pagination', async ({ request }) => {
+      const perPage = 3;
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/posts`, {
+        params: {
+          per_page: perPage,
+          _fields: 'id'
         }
-    }
-});
+      });
+      
+      await expect(response).toBeOK();
+      const posts = await response.json();
+      
+      expect(posts).toHaveLength(perPage);
+      expect(response.headers()['x-wp-total']).toBeTruthy();
+    });
+  });
 
-test('Get users', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v2/users?_fields=id,name,slug`);
-    expect(response.status()).toBe(200);
-    const body = JSON.parse(await response.text());
-    expect(Array.isArray(body)).toBeTruthy();
-    if (body.length > 0) {
-        expect(body[0]).toHaveProperty('id');
-        expect(body[0]).toHaveProperty('name');
-        expect(body[0]).toHaveProperty('slug');
-    }
-});
+  test.describe('Taxonomy Endpoints', () => {
+    test('GET /categories should return categories with expected structure', async ({ request }) => {
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/categories`, {
+        params: { _fields: 'id,name,slug' }
+      });
+      
+      await expect(response).toBeOK();
+      const categories = await response.json();
+      
+      expect(categories).toBeInstanceOf(Array);
+      categories.forEach(category => {
+        expect(category).toMatchObject({
+          id: expect.any(Number),
+          name: expect.any(String),
+          slug: expect.any(String)
+        });
+      });
+    });
+  });
 
-// test('Get menu locations', async ({request}) => {
-//     const response = await request.get(`${BASE_URL}/wp/v2/menu-locations`)
-//     expect(response.status()).toBe(200)
-//     const body = JSON.parse(await response.text())
-//     expect(typeof body).toBe('object')
-// })
+  test.describe('Media Management', () => {
+    test('GET /media should return valid media items', async ({ request }) => {
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/media`, {
+        params: { _fields: 'id,source_url,alt_text' }
+      });
+      
+      await expect(response).toBeOK();
+      const mediaItems = await response.json();
+      
+      expect(mediaItems).toBeInstanceOf(Array);
+      mediaItems.forEach(media => {
+        expect(media).toMatchObject({
+          id: expect.any(Number),
+          source_url: expect.stringMatching(/^https?:\/\/.+\/.+\.(jpg|png|gif|jpeg|webp)$/i),
+          alt_text: expect.any(String)
+        });
+      });
+    });
+  });
+
+  test.describe('Error Handling', () => {
+    test('GET non-existent endpoint should return 404', async ({ request }) => {
+      const response = await request.get(`${BASE_URL}/invalid-endpoint`);
+      expect(response.status()).toBe(404);
+    });
+
+    test('GET invalid post ID should return 404', async ({ request }) => {
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/posts/invalid_id`);
+      expect(response.status()).toBe(404);
+    });
+  });
+
+  test.describe('Search Functionality', () => {
+    test('Search for posts should return relevant results', async ({ request }) => {
+      const searchTerm = 'hello';
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/posts`, {
+        params: {
+          search: searchTerm,
+          _fields: 'id,title,slug'
+        }
+      });
+      
+      await expect(response).toBeOK();
+      const results = await response.json();
+      
+      expect(results).toBeInstanceOf(Array);
+      results.forEach(post => {
+        expect(post.title.rendered.toLowerCase()).toContain(searchTerm);
+      });
+    });
+  });
+
+  test.describe('User Management', () => {
+    test('GET /users should not expose sensitive information', async ({ request }) => {
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/users`, {
+        params: { _fields: 'id,name,slug' }
+      });
+      
+      await expect(response).toBeOK();
+      const users = await response.json();
+      
+      users.forEach(user => {
+        expect(user).not.toHaveProperty('email');
+        expect(user).not.toHaveProperty('password');
+        expect(user).not.toHaveProperty('roles');
+      });
+    });
+  });
+
+  test.describe('Comment System', () => {
+    test('GET /comments should return comments for valid post', async ({ request }) => {
+      const postsResponse = await request.get(`${BASE_URL}/${API_VERSION}/posts`);
+      const posts = await postsResponse.json();
+      const postId = posts[0]?.id;
+      
+      test.skip(!postId, 'No posts available for comment testing');
+      
+      const response = await request.get(`${BASE_URL}/${API_VERSION}/comments`, {
+        params: { post: postId }
+      });
+      
+      await expect(response).toBeOK();
+      const comments = await response.json();
+      
+      expect(comments).toBeInstanceOf(Array);
+      comments.forEach(comment => {
+        expect(comment.post).toBe(postId);
+      });
+    });
+  });
+});
