@@ -1,5 +1,17 @@
 # Playwright Changelog
 
+# v1.51 - March 2025
+
+> StorageState for indexedDB
+> Copy prompt
+> Filter visible elements
+> Git information in HTML report
+
+# v1.50 - Jan 2025
+
+> Test runner
+> UI updates
+
 # v1.49.0 - Nov 2024
 
 > ARIA snapshots, Chrome headless changes
