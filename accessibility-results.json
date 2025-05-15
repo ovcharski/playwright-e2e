@@ -7,13 +7,13 @@
     "name": "axe"
   },
   "testEnvironment": {
-    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6998.35 Safari/537.36",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.7103.25 Safari/537.36",
     "windowWidth": 1280,
     "windowHeight": 720,
     "orientationAngle": 0,
     "orientationType": "landscape-primary"
   },
-  "timestamp": "2025-03-19T21:33:50.121Z",
+  "timestamp": "2025-05-15T08:33:27.334Z",
   "url": "https://ovcharski.com/shop/",
   "toolOptions": {
     "reporter": "v1"
@@ -1525,9 +1525,35 @@
             }
           ],
           "impact": null,
+          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "target": [
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
+          ]
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-allowed-attr",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "ARIA attributes are used correctly for the defined role"
+            }
+          ],
+          "none": [
+            {
+              "id": "aria-unsupported-attr",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "ARIA attribute is supported"
+            }
+          ],
+          "impact": null,
           "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
           ]
         },
         {
@@ -1553,7 +1579,7 @@
           "impact": null,
           "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
           ]
         },
         {
@@ -1606,32 +1632,6 @@
           "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
             "a[href=\"?add-to-cart=22\"]"
-          ]
-        },
-        {
-          "any": [],
-          "all": [
-            {
-              "id": "aria-allowed-attr",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "critical",
-              "message": "ARIA attributes are used correctly for the defined role"
-            }
-          ],
-          "none": [
-            {
-              "id": "aria-unsupported-attr",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "critical",
-              "message": "ARIA attribute is supported"
-            }
-          ],
-          "impact": null,
-          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -2358,9 +2358,27 @@
           ],
           "none": [],
           "impact": null,
+          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "target": [
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
+          ]
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-conditional-attr",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "ARIA attribute is allowed"
+            }
+          ],
+          "none": [],
+          "impact": null,
           "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
           ]
         },
         {
@@ -2378,7 +2396,7 @@
           "impact": null,
           "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
           ]
         },
         {
@@ -2415,24 +2433,6 @@
           "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
             "a[href=\"?add-to-cart=22\"]"
-          ]
-        },
-        {
-          "any": [],
-          "all": [
-            {
-              "id": "aria-conditional-attr",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "ARIA attribute is allowed"
-            }
-          ],
-          "none": [],
-          "impact": null,
-          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -2626,7 +2626,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+          "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
           "target": [
             "body"
           ]
@@ -3382,102 +3382,6 @@
           "impact": null,
           "html": "<span aria-hidden=\"true\">Sale</span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-onsale > span[aria-hidden=\"true\"]"
-          ]
-        },
-        {
-          "any": [],
-          "all": [
-            {
-              "id": "focusable-modal-open",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements while a modal is open"
-            },
-            {
-              "id": "focusable-disabled",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements contained within element"
-            },
-            {
-              "id": "focusable-not-tabbable",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements contained within element"
-            }
-          ],
-          "none": [],
-          "impact": null,
-          "html": "<del aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></del>",
-          "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > del"
-          ]
-        },
-        {
-          "any": [],
-          "all": [
-            {
-              "id": "focusable-modal-open",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements while a modal is open"
-            },
-            {
-              "id": "focusable-disabled",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements contained within element"
-            },
-            {
-              "id": "focusable-not-tabbable",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements contained within element"
-            }
-          ],
-          "none": [],
-          "impact": null,
-          "html": "<ins aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\">18,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></ins>",
-          "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > ins"
-          ]
-        },
-        {
-          "any": [],
-          "all": [
-            {
-              "id": "focusable-modal-open",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements while a modal is open"
-            },
-            {
-              "id": "focusable-disabled",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements contained within element"
-            },
-            {
-              "id": "focusable-not-tabbable",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "No focusable elements contained within element"
-            }
-          ],
-          "none": [],
-          "impact": null,
-          "html": "<span aria-hidden=\"true\">Sale</span>",
-          "target": [
             ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link > .wc-block-grid__product-onsale > span[aria-hidden=\"true\"]"
           ]
         },
@@ -3604,7 +3508,7 @@
           ],
           "none": [],
           "impact": null,
-          "html": "<del aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></del>",
+          "html": "<del aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></del>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-price.price > del"
           ]
@@ -3636,9 +3540,105 @@
           ],
           "none": [],
           "impact": null,
-          "html": "<ins aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></ins>",
+          "html": "<ins aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\">18,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></ins>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-price.price > ins"
+          ]
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "focusable-modal-open",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements while a modal is open"
+            },
+            {
+              "id": "focusable-disabled",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements contained within element"
+            },
+            {
+              "id": "focusable-not-tabbable",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements contained within element"
+            }
+          ],
+          "none": [],
+          "impact": null,
+          "html": "<span aria-hidden=\"true\">Sale</span>",
+          "target": [
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-onsale > span[aria-hidden=\"true\"]"
+          ]
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "focusable-modal-open",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements while a modal is open"
+            },
+            {
+              "id": "focusable-disabled",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements contained within element"
+            },
+            {
+              "id": "focusable-not-tabbable",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements contained within element"
+            }
+          ],
+          "none": [],
+          "impact": null,
+          "html": "<del aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></del>",
+          "target": [
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > del"
+          ]
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "focusable-modal-open",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements while a modal is open"
+            },
+            {
+              "id": "focusable-disabled",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements contained within element"
+            },
+            {
+              "id": "focusable-not-tabbable",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "No focusable elements contained within element"
+            }
+          ],
+          "none": [],
+          "impact": null,
+          "html": "<ins aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></ins>",
+          "target": [
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > ins"
           ]
         }
       ]
@@ -4174,9 +4174,27 @@
             }
           ],
           "impact": null,
+          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "target": [
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
+          ]
+        },
+        {
+          "any": [],
+          "all": [],
+          "none": [
+            {
+              "id": "aria-prohibited-attr",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "ARIA attribute is allowed"
+            }
+          ],
+          "impact": null,
           "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
           ]
         },
         {
@@ -4194,7 +4212,7 @@
           "impact": null,
           "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
           ]
         },
         {
@@ -4231,24 +4249,6 @@
           "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
             "a[href=\"?add-to-cart=22\"]"
-          ]
-        },
-        {
-          "any": [],
-          "all": [],
-          "none": [
-            {
-              "id": "aria-prohibited-attr",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "ARIA attribute is allowed"
-            }
-          ],
-          "impact": null,
-          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -5558,9 +5558,41 @@
           ],
           "none": [],
           "impact": null,
+          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "target": [
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
+          ]
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "ARIA attribute values are valid"
+            },
+            {
+              "id": "aria-errormessage",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "aria-errormessage exists and references elements visible to screen readers that use a supported aria-errormessage technique"
+            },
+            {
+              "id": "aria-level",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "aria-level values are valid"
+            }
+          ],
+          "none": [],
+          "impact": null,
           "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
           ]
         },
         {
@@ -5592,7 +5624,7 @@
           "impact": null,
           "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
           ]
         },
         {
@@ -5657,38 +5689,6 @@
           "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
             "a[href=\"?add-to-cart=22\"]"
-          ]
-        },
-        {
-          "any": [],
-          "all": [
-            {
-              "id": "aria-valid-attr-value",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "critical",
-              "message": "ARIA attribute values are valid"
-            },
-            {
-              "id": "aria-errormessage",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "critical",
-              "message": "aria-errormessage exists and references elements visible to screen readers that use a supported aria-errormessage technique"
-            },
-            {
-              "id": "aria-level",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "critical",
-              "message": "aria-level values are valid"
-            }
-          ],
-          "none": [],
-          "impact": null,
-          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -6288,9 +6288,27 @@
           "all": [],
           "none": [],
           "impact": null,
+          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "target": [
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "aria-valid-attr",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "ARIA attribute name is valid"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
           "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
           ]
         },
         {
@@ -6308,7 +6326,7 @@
           "impact": null,
           "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
           ]
         },
         {
@@ -6345,24 +6363,6 @@
           "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
             "a[href=\"?add-to-cart=22\"]"
-          ]
-        },
-        {
-          "any": [
-            {
-              "id": "aria-valid-attr",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "critical",
-              "message": "ARIA attribute name is valid"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": null,
-          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -6842,7 +6842,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">36,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
             ".cart-contents > .woocommerce-Price-amount.amount"
           ]
@@ -7819,7 +7819,7 @@
           "impact": null,
           "html": "<span class=\"woocommerce-Price-amount amount\">22,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
+            ".wp-block-product-new > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
           ]
         },
         {
@@ -7844,7 +7844,7 @@
           "impact": null,
           "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
+            ".wp-block-product-new > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
           ]
         },
         {
@@ -9417,7 +9417,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Jenkins Captain</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Jenkins Actor</div>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -9442,7 +9442,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(6) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
           ]
@@ -9492,34 +9492,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
-          ]
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#43454b",
-                "bgColor": "#ffffff",
-                "contrastRatio": 9.58,
-                "fontSize": "5.3pt (7px)",
-                "fontWeight": "normal",
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element has sufficient color contrast of 9.58"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": null,
-          "html": "<span aria-hidden=\"true\">Sale</span>",
-          "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-onsale > span[aria-hidden=\"true\"]"
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -9542,7 +9517,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Beanie with Logo</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Jenkins Captain</div>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -9567,9 +9542,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">18,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > ins > .woocommerce-Price-amount.amount"
+            ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
           ]
         },
         {
@@ -9594,7 +9569,7 @@
           "impact": null,
           "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > ins > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
+            ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
           ]
         },
         {
@@ -9617,9 +9592,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
           ]
         },
         {
@@ -9667,7 +9642,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Beanie</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Beanie with Logo</div>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -9742,9 +9717,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=38\" aria-label=\"Add to cart: “Beanie”\" data-quantity=\"1\" data-product_id=\"38\" data-product_sku=\"woo-beanie\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            "a[href=\"?add-to-cart=38\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
           ]
         },
         {
@@ -9792,7 +9767,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Shirt – Green</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Beanie</div>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -9817,7 +9792,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">18,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-price.price > ins > .woocommerce-Price-amount.amount"
           ]
@@ -9867,9 +9842,34 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=38\" aria-label=\"Add to cart: “Beanie”\" data-quantity=\"1\" data-product_id=\"38\" data-product_sku=\"woo-beanie\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            "a[href=\"?add-to-cart=22\"]"
+            "a[href=\"?add-to-cart=38\"]"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#43454b",
+                "bgColor": "#ffffff",
+                "contrastRatio": 9.58,
+                "fontSize": "5.3pt (7px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 9.58"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span aria-hidden=\"true\">Sale</span>",
+          "target": [
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-onsale > span[aria-hidden=\"true\"]"
           ]
         },
         {
@@ -9892,7 +9892,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Jenkins Actor</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Shirt – Green</div>",
           "target": [
             ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -9919,7 +9919,7 @@
           "impact": null,
           "html": "<span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > ins > .woocommerce-Price-amount.amount"
           ]
         },
         {
@@ -9944,7 +9944,7 @@
           "impact": null,
           "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
           "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > ins > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
           ]
         },
         {
@@ -9967,9 +9967,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
+            "a[href=\"?add-to-cart=22\"]"
           ]
         },
         {
@@ -11601,9 +11601,35 @@
             }
           ],
           "impact": null,
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Actor\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "target": [
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Actor\"]"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "has-alt",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Element has an alt attribute"
+            }
+          ],
+          "all": [],
+          "none": [
+            {
+              "id": "alt-space-value",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Element has a valid alt attribute value"
+            }
+          ],
+          "impact": null,
           "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Captain\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-300x300.png 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1024x1024.png 1024w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-768x768.png 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1536x1536.png 1536w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-2048x2048.png 2048w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-416x416.png 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Captain\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Captain\"]"
           ]
         },
         {
@@ -11629,7 +11655,7 @@
           "impact": null,
           "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Beanie with Logo\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-300x300.jpg 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-150x150.jpg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-768x768.jpg 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-416x416.jpg 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-100x100.jpg 100w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1.jpg 800w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Beanie with Logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Beanie with Logo\"]"
           ]
         },
         {
@@ -11682,32 +11708,6 @@
           "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-324x324.jpeg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Shirt - Green\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-324x324.jpeg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-150x150.jpeg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-100x100.jpeg 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
             "img[alt=\"Shirt - Green\"]"
-          ]
-        },
-        {
-          "any": [
-            {
-              "id": "has-alt",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "critical",
-              "message": "Element has an alt attribute"
-            }
-          ],
-          "all": [],
-          "none": [
-            {
-              "id": "alt-space-value",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "critical",
-              "message": "Element has a valid alt attribute value"
-            }
-          ],
-          "impact": null,
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Actor\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Actor\"]"
           ]
         },
         {
@@ -12024,7 +12024,7 @@
           "impact": null,
           "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Beanie with Logo\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-300x300.jpg 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-150x150.jpg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-768x768.jpg 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-416x416.jpg 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-100x100.jpg 100w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1.jpg 800w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Beanie with Logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Beanie with Logo\"]"
           ]
         },
         {
@@ -13131,7 +13131,7 @@
             }
           ],
           "impact": null,
-          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">36,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">3 items</span> </a>",
+          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">1 item</span> </a>",
           "target": [
             ".cart-contents"
           ]
@@ -14495,7 +14495,7 @@
             }
           ],
           "impact": null,
-          "html": "<a href=\"https://ovcharski.com/shop/product/jenkins-captain/\" class=\"wc-block-grid__product-link\">",
+          "html": "<a href=\"https://ovcharski.com/shop/product/jenkins-actor/\" class=\"wc-block-grid__product-link\">",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link"
           ]
@@ -14528,9 +14528,9 @@
             }
           ],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -14554,7 +14554,7 @@
             }
           ],
           "impact": null,
-          "html": "<a href=\"https://ovcharski.com/shop/product/beanie-with-logo/\" class=\"wc-block-grid__product-link\">",
+          "html": "<a href=\"https://ovcharski.com/shop/product/jenkins-captain/\" class=\"wc-block-grid__product-link\">",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link"
           ]
@@ -14587,9 +14587,68 @@
             }
           ],
           "impact": null,
+          "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "target": [
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "has-visible-text",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has text that is visible to screen readers"
+            }
+          ],
+          "all": [],
+          "none": [
+            {
+              "id": "focusable-no-name",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element is not in tab order or has accessible text"
+            }
+          ],
+          "impact": null,
+          "html": "<a href=\"https://ovcharski.com/shop/product/beanie-with-logo/\" class=\"wc-block-grid__product-link\">",
+          "target": [
+            ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "has-visible-text",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has text that is visible to screen readers"
+            },
+            {
+              "id": "aria-label",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "aria-label attribute exists and is not empty"
+            }
+          ],
+          "all": [],
+          "none": [
+            {
+              "id": "focusable-no-name",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element is not in tab order or has accessible text"
+            }
+          ],
+          "impact": null,
           "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
           ]
         },
         {
@@ -14615,7 +14674,7 @@
           "impact": null,
           "html": "<a href=\"https://ovcharski.com/shop/product/beanie/\" class=\"wc-block-grid__product-link\">",
           "target": [
-            ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link"
+            ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-link"
           ]
         },
         {
@@ -14674,7 +14733,7 @@
           "impact": null,
           "html": "<a href=\"https://ovcharski.com/shop/product/shirt-green/\" class=\"wc-block-grid__product-link\">",
           "target": [
-            ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-link"
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link"
           ]
         },
         {
@@ -14708,65 +14767,6 @@
           "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
             "a[href=\"?add-to-cart=22\"]"
-          ]
-        },
-        {
-          "any": [
-            {
-              "id": "has-visible-text",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element has text that is visible to screen readers"
-            }
-          ],
-          "all": [],
-          "none": [
-            {
-              "id": "focusable-no-name",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element is not in tab order or has accessible text"
-            }
-          ],
-          "impact": null,
-          "html": "<a href=\"https://ovcharski.com/shop/product/jenkins-actor/\" class=\"wc-block-grid__product-link\">",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link"
-          ]
-        },
-        {
-          "any": [
-            {
-              "id": "has-visible-text",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element has text that is visible to screen readers"
-            },
-            {
-              "id": "aria-label",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "aria-label attribute exists and is not empty"
-            }
-          ],
-          "all": [],
-          "none": [
-            {
-              "id": "focusable-no-name",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element is not in tab order or has accessible text"
-            }
-          ],
-          "impact": null,
-          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -15469,7 +15469,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">36,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">3 items</span> </a></li>",
+          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">1 item</span> </a></li>",
           "target": [
             "#site-header-cart > li:nth-child(1)"
           ]
@@ -16615,9 +16615,27 @@
           "all": [],
           "none": [],
           "impact": null,
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Actor\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "target": [
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Actor\"]"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "no-focusable-content",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element does not have focusable descendants"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
           "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Captain\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-300x300.png 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1024x1024.png 1024w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-768x768.png 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1536x1536.png 1536w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-2048x2048.png 2048w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-416x416.png 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Captain\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Captain\"]"
           ]
         },
         {
@@ -16635,7 +16653,7 @@
           "impact": null,
           "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Beanie with Logo\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-300x300.jpg 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-150x150.jpg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-768x768.jpg 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-416x416.jpg 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-100x100.jpg 100w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1.jpg 800w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Beanie with Logo\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Beanie with Logo\"]"
           ]
         },
         {
@@ -16672,24 +16690,6 @@
           "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-324x324.jpeg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Shirt - Green\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-324x324.jpeg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-150x150.jpeg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-100x100.jpeg 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
             "img[alt=\"Shirt - Green\"]"
-          ]
-        },
-        {
-          "any": [
-            {
-              "id": "no-focusable-content",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element does not have focusable descendants"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": null,
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Actor\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
-          "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Actor\"]"
           ]
         },
         {
@@ -18035,7 +18035,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">36,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">3 items</span> </a></li>",
+          "html": "<li class=\"\"> <a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">1 item</span> </a></li>",
           "target": [
             "#site-header-cart > li:nth-child(1)"
           ]
@@ -18055,7 +18055,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">36,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">3 items</span> </a>",
+          "html": "<a class=\"cart-contents\" href=\"https://ovcharski.com/shop/cart/\" title=\"View your shopping cart\"> <span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span> <span class=\"count\">1 item</span> </a>",
           "target": [
             ".cart-contents"
           ]
@@ -18075,7 +18075,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">36,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">12,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
             ".cart-contents > .woocommerce-Price-amount.amount"
           ]
@@ -18115,7 +18115,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"count\">3 items</span>",
+          "html": "<span class=\"count\">1 item</span>",
           "target": [
             ".cart-contents > .count"
           ]
@@ -18475,7 +18475,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-1 wp-block-buttons-is-layout-flex\"><div class=\"wp-block-button\"><a class=\"wp-block-button__link\" href=\"https://ovcharski.com/shop/shop/\">Go shopping</a></div></div>",
+          "html": "<div class=\"wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex\"><div class=\"wp-block-button\"><a class=\"wp-block-button__link\" href=\"https://ovcharski.com/shop/shop/\">Go shopping</a></div></div>",
           "target": [
             ".wp-block-buttons"
           ]
@@ -20417,7 +20417,7 @@
           "impact": null,
           "html": "<span class=\"woocommerce-Price-amount amount\">22,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
+            ".wp-block-product-new > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
           ]
         },
         {
@@ -20437,7 +20437,7 @@
           "impact": null,
           "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
+            ".wp-block-product-new > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
           ]
         },
         {
@@ -23535,7 +23535,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"https://ovcharski.com/shop/product/jenkins-captain/\" class=\"wc-block-grid__product-link\">",
+          "html": "<a href=\"https://ovcharski.com/shop/product/jenkins-actor/\" class=\"wc-block-grid__product-link\">",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link"
           ]
@@ -23575,9 +23575,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Captain\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-300x300.png 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1024x1024.png 1024w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-768x768.png 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1536x1536.png 1536w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-2048x2048.png 2048w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-416x416.png 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Actor\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Captain\"]"
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Actor\"]"
           ]
         },
         {
@@ -23595,7 +23595,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Jenkins Captain</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Jenkins Actor</div>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -23615,7 +23615,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-price price\"><span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></div>",
+          "html": "<div class=\"wc-block-grid__product-price price\"><span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></div>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(6) > .wc-block-grid__product-price.price"
           ]
@@ -23635,7 +23635,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(6) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
           ]
@@ -23695,9 +23695,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
           ]
         },
         {
@@ -23735,49 +23735,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"https://ovcharski.com/shop/product/beanie-with-logo/\" class=\"wc-block-grid__product-link\">",
+          "html": "<a href=\"https://ovcharski.com/shop/product/jenkins-captain/\" class=\"wc-block-grid__product-link\">",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link"
-          ]
-        },
-        {
-          "any": [
-            {
-              "id": "region",
-              "data": {
-                "isIframe": false
-              },
-              "relatedNodes": [],
-              "impact": "moderate",
-              "message": "All page content is contained by landmarks"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": null,
-          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
-          "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
-          ]
-        },
-        {
-          "any": [
-            {
-              "id": "region",
-              "data": {
-                "isIframe": false
-              },
-              "relatedNodes": [],
-              "impact": "moderate",
-              "message": "All page content is contained by landmarks"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": null,
-          "html": "<span class=\"screen-reader-text\">Product on sale</span>",
-          "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-onsale > .screen-reader-text"
           ]
         },
         {
@@ -23815,9 +23775,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Beanie with Logo\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-300x300.jpg 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-150x150.jpg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-768x768.jpg 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-416x416.jpg 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-100x100.jpg 100w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1.jpg 800w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Captain\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-300x300.png 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1024x1024.png 1024w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-768x768.png 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1536x1536.png 1536w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-2048x2048.png 2048w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-416x416.png 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Beanie with Logo\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Captain\"]"
           ]
         },
         {
@@ -23835,7 +23795,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Beanie with Logo</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Jenkins Captain</div>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -23855,7 +23815,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-price price\">",
+          "html": "<div class=\"wc-block-grid__product-price price\"><span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></div>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price"
           ]
@@ -23875,9 +23835,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"screen-reader-text\">Original price was: 20,00&nbsp;лв..</span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .screen-reader-text:nth-child(2)"
+            ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
           ]
         },
         {
@@ -23895,9 +23855,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"screen-reader-text\">Current price is: 18,00&nbsp;лв..</span>",
+          "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .screen-reader-text:nth-child(4)"
+            ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
           ]
         },
         {
@@ -23935,9 +23895,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=120\" aria-label=\"Add to cart: “Jenkins Captain”\" data-quantity=\"1\" data-product_id=\"120\" data-product_sku=\"\" data-price=\"25\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=120\"][aria-label=\"Add to cart: “Jenkins Captain”\"][data-product_id=\"120\"]"
           ]
         },
         {
@@ -23975,7 +23935,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"https://ovcharski.com/shop/product/beanie/\" class=\"wc-block-grid__product-link\">",
+          "html": "<a href=\"https://ovcharski.com/shop/product/beanie-with-logo/\" class=\"wc-block-grid__product-link\">",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link"
           ]
@@ -24055,9 +24015,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-324x324.jpg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Beanie\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-324x324.jpg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-300x300.jpg 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-150x150.jpg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-768x768.jpg 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-416x416.jpg 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-100x100.jpg 100w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2.jpg 801w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Beanie with Logo\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-324x324.jpg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-300x300.jpg 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-150x150.jpg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-768x768.jpg 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-416x416.jpg 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1-100x100.jpg 100w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-with-logo-1.jpg 800w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            "img[alt=\"Beanie\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Beanie with Logo\"]"
           ]
         },
         {
@@ -24075,7 +24035,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Beanie</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Beanie with Logo</div>",
           "target": [
             ".wp-block-product-best-sellers > .wc-block-grid__products > .wc-block-grid__product:nth-child(8) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -24175,9 +24135,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=38\" aria-label=\"Add to cart: “Beanie”\" data-quantity=\"1\" data-product_id=\"38\" data-product_sku=\"woo-beanie\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=75\" aria-label=\"Add to cart: “Beanie with Logo”\" data-quantity=\"1\" data-product_id=\"75\" data-product_sku=\"Woo-beanie-logo\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            "a[href=\"?add-to-cart=38\"]"
+            ".wc-block-grid__product:nth-child(8) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=75\"][data-product_id=\"75\"][data-product_sku=\"Woo-beanie-logo\"]"
           ]
         },
         {
@@ -24215,7 +24175,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"https://ovcharski.com/shop/product/shirt-green/\" class=\"wc-block-grid__product-link\">",
+          "html": "<a href=\"https://ovcharski.com/shop/product/beanie/\" class=\"wc-block-grid__product-link\">",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-link"
           ]
@@ -24295,9 +24255,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-324x324.jpeg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Shirt - Green\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-324x324.jpeg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-150x150.jpeg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-100x100.jpeg 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-324x324.jpg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Beanie\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-324x324.jpg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-300x300.jpg 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-150x150.jpg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-768x768.jpg 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-416x416.jpg 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2-100x100.jpg 100w, https://ovcharski.com/shop/wp-content/uploads/2022/10/beanie-2.jpg 801w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            "img[alt=\"Shirt - Green\"]"
+            "img[alt=\"Beanie\"]"
           ]
         },
         {
@@ -24315,7 +24275,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Shirt – Green</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Beanie</div>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -24355,7 +24315,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"screen-reader-text\">Original price was: 25,00&nbsp;лв..</span>",
+          "html": "<span class=\"screen-reader-text\">Original price was: 20,00&nbsp;лв..</span>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-price.price > .screen-reader-text:nth-child(2)"
           ]
@@ -24375,7 +24335,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"screen-reader-text\">Current price is: 20,00&nbsp;лв..</span>",
+          "html": "<span class=\"screen-reader-text\">Current price is: 18,00&nbsp;лв..</span>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-price.price > .screen-reader-text:nth-child(4)"
           ]
@@ -24415,9 +24375,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=38\" aria-label=\"Add to cart: “Beanie”\" data-quantity=\"1\" data-product_id=\"38\" data-product_sku=\"woo-beanie\" data-price=\"18\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            "a[href=\"?add-to-cart=22\"]"
+            "a[href=\"?add-to-cart=38\"]"
           ]
         },
         {
@@ -24455,9 +24415,49 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"https://ovcharski.com/shop/product/jenkins-actor/\" class=\"wc-block-grid__product-link\">",
+          "html": "<a href=\"https://ovcharski.com/shop/product/shirt-green/\" class=\"wc-block-grid__product-link\">",
           "target": [
             ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "region",
+              "data": {
+                "isIframe": false
+              },
+              "relatedNodes": [],
+              "impact": "moderate",
+              "message": "All page content is contained by landmarks"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<div class=\"wc-block-grid__product-onsale\"> <span aria-hidden=\"true\">Sale</span> <span class=\"screen-reader-text\">Product on sale</span></div>",
+          "target": [
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-onsale"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "region",
+              "data": {
+                "isIframe": false
+              },
+              "relatedNodes": [],
+              "impact": "moderate",
+              "message": "All page content is contained by landmarks"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span class=\"screen-reader-text\">Product on sale</span>",
+          "target": [
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-onsale > .screen-reader-text"
           ]
         },
         {
@@ -24495,9 +24495,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Actor\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-324x324.jpeg\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Shirt - Green\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-324x324.jpeg 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-150x150.jpeg 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/167113801-fd8243b7-8465-4f82-86c1-2c54797fe296-100x100.jpeg 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Actor\"]"
+            "img[alt=\"Shirt - Green\"]"
           ]
         },
         {
@@ -24515,7 +24515,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-title\">Jenkins Actor</div>",
+          "html": "<div class=\"wc-block-grid__product-title\">Shirt – Green</div>",
           "target": [
             ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-title"
           ]
@@ -24535,7 +24535,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<div class=\"wc-block-grid__product-price price\"><span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span></div>",
+          "html": "<div class=\"wc-block-grid__product-price price\">",
           "target": [
             ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price"
           ]
@@ -24555,9 +24555,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"screen-reader-text\">Original price was: 25,00&nbsp;лв..</span>",
           "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount"
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > .screen-reader-text:nth-child(2)"
           ]
         },
         {
@@ -24575,9 +24575,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
+          "html": "<span class=\"screen-reader-text\">Current price is: 20,00&nbsp;лв..</span>",
           "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > .screen-reader-text:nth-child(4)"
           ]
         },
         {
@@ -24615,9 +24615,9 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<a href=\"?add-to-cart=124\" aria-label=\"Add to cart: “Jenkins Actor”\" data-quantity=\"1\" data-product_id=\"124\" data-product_sku=\"\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
+          "html": "<a href=\"?add-to-cart=22\" aria-label=\"Add to cart: “Shirt - Green”\" data-quantity=\"1\" data-product_id=\"22\" data-product_sku=\"woo-fasion-shirt-green\" data-price=\"20\" rel=\"nofollow\" class=\"wp-block-button__link  add_to_cart_button ajax_add_to_cart\">Add to cart</a>",
           "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-add-to-cart.wp-block-button > a[href=\"?add-to-cart=124\"][aria-label=\"Add to cart: “Jenkins Actor”\"][data-product_id=\"124\"]"
+            "a[href=\"?add-to-cart=22\"]"
           ]
         },
         {
@@ -25211,7 +25211,7 @@
           "all": [],
           "none": [],
           "impact": "serious",
-          "html": "<span class=\"count\">3 items</span>",
+          "html": "<span class=\"count\">1 item</span>",
           "target": [
             ".cart-contents > .count"
           ],
@@ -25317,7 +25317,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25351,7 +25351,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25385,7 +25385,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25419,7 +25419,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25453,7 +25453,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25487,7 +25487,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25521,7 +25521,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25555,7 +25555,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25589,7 +25589,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25623,7 +25623,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25657,7 +25657,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25691,7 +25691,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25725,7 +25725,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25759,7 +25759,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25793,75 +25793,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
-                  "target": [
-                    "body"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
-          "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > del > .woocommerce-Price-amount.amount"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#a1a2a5",
-                "bgColor": "#ffffff",
-                "contrastRatio": 2.55,
-                "fontSize": "6.0pt (8px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
-                  "target": [
-                    "body"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
-          "target": [
-            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-price.price > del > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#a1a2a5",
-                "bgColor": "#ffffff",
-                "contrastRatio": 2.55,
-                "fontSize": "6.0pt (8px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25895,7 +25827,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25929,7 +25861,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25942,7 +25874,7 @@
           "all": [],
           "none": [],
           "impact": "serious",
-          "html": "<span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "html": "<span class=\"woocommerce-Price-amount amount\">20,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-price.price > del > .woocommerce-Price-amount.amount"
           ],
@@ -25963,7 +25895,7 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<body class=\"home page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive theme-storefront woocommerce-js storefront-align-wide right-sidebar woocommerce-active\">",
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
                   "target": [
                     "body"
                   ]
@@ -25979,6 +25911,74 @@
           "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
           "target": [
             ".wc-block-grid__product:nth-child(9) > .wc-block-grid__product-price.price > del > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#a1a2a5",
+                "bgColor": "#ffffff",
+                "contrastRatio": 2.55,
+                "fontSize": "6.0pt (8px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
+                  "target": [
+                    "body"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"woocommerce-Price-amount amount\">25,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\">лв.</span></span>",
+          "target": [
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > del > .woocommerce-Price-amount.amount"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#a1a2a5",
+                "bgColor": "#ffffff",
+                "contrastRatio": 2.55,
+                "fontSize": "6.0pt (8px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<body class=\"home wp-singular page-template page-template-template-fullwidth page-template-template-fullwidth-php page page-id-84 logged-in wp-custom-logo wp-embed-responsive wp-theme-storefront theme-storefront woocommerce-js group-blog storefront-align-wide right-sidebar woocommerce-active\">",
+                  "target": [
+                    "body"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"woocommerce-Price-currencySymbol\">лв.</span>",
+          "target": [
+            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-price.price > del > .woocommerce-Price-amount.amount > .woocommerce-Price-currencySymbol"
           ],
           "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.55 (foreground color: #a1a2a5, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
         }
@@ -26255,9 +26255,9 @@
             }
           ],
           "impact": "minor",
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Captain\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-300x300.png 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1024x1024.png 1024w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-768x768.png 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1536x1536.png 1536w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-2048x2048.png 2048w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-416x416.png 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Actor\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Captain\"]"
+            ".wc-block-grid__product:nth-child(6) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Actor\"]"
           ],
           "failureSummary": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
         },
@@ -26274,9 +26274,9 @@
             }
           ],
           "impact": "minor",
-          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Actor\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/actor-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
+          "html": "<img loading=\"lazy\" decoding=\"async\" width=\"324\" height=\"324\" src=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail\" alt=\"Jenkins Captain\" srcset=\"https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-324x324.png 324w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-300x300.png 300w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1024x1024.png 1024w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-150x150.png 150w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-768x768.png 768w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-1536x1536.png 1536w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-2048x2048.png 2048w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-416x416.png 416w, https://ovcharski.com/shop/wp-content/uploads/2022/10/captain-100x100.png 100w\" sizes=\"auto, (max-width: 324px) 100vw, 324px\">",
           "target": [
-            ".wc-block-grid__product:nth-child(10) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Actor\"]"
+            ".wc-block-grid__product:nth-child(7) > .wc-block-grid__product-link > .wc-block-grid__product-image > .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail[alt=\"Jenkins Captain\"]"
           ],
           "failureSummary": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
         },

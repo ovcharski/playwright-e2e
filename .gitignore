@@ -5,3 +5,4 @@ node_modules/
 /screenshots/
 /test-results/
 /LoginAuth.json
+/accessibility-results.json
