@@ -1,4 +1,14 @@
 import test, { expect } from '@playwright/test';
+import {
+  ApiStructure,
+  Page,
+  Post,
+  Category,
+  MediaItem,
+  SearchResult,
+  CommentItem,
+  User,
+} from '../types/wp-api';
 
 const BASE_URL = 'https://ovcharski.com/shop/wp-json';
 const API_VERSION = 'wp/v2';
@@ -9,11 +19,15 @@ test.describe('WordPress API Tests', () => {
     test('GET /wp/v2 should return API structure', async ({ request }) => {
       const response = await request.get(`${BASE_URL}/${API_VERSION}/`);
       await expect(response).toBeOK();
-      const body = await response.json();
+
+      const body = (await response.json()) as ApiStructure;
       
       expect(body.namespace).toBe(API_VERSION);
       expect(body.routes).toBeInstanceOf(Object);
-      expect(Object.values(body.routes).some((route: any) => route.namespace === API_VERSION)).toBeTruthy();
+      
+      const allRoutes = Object.values(body.routes);
+      const hasOurNamespace = allRoutes.some(route => route.namespace === API_VERSION);
+      expect(hasOurNamespace).toBeTruthy();
     });
   });
 
@@ -24,7 +38,7 @@ test.describe('WordPress API Tests', () => {
       });
       
       await expect(response).toBeOK();
-      const pages = await response.json();
+      const pages = (await response.json()) as Page[];
       
       expect(pages).toBeInstanceOf(Array);
       pages.forEach(page => {
@@ -46,7 +60,7 @@ test.describe('WordPress API Tests', () => {
       });
       
       await expect(response).toBeOK();
-      const posts = await response.json();
+      const posts = (await response.json()) as Post[];
       
       expect(posts).toHaveLength(perPage);
       expect(response.headers()['x-wp-total']).toBeTruthy();
@@ -60,7 +74,7 @@ test.describe('WordPress API Tests', () => {
       });
       
       await expect(response).toBeOK();
-      const categories = await response.json();
+      const categories = (await response.json()) as Category[];
       
       expect(categories).toBeInstanceOf(Array);
       categories.forEach(category => {
@@ -80,7 +94,7 @@ test.describe('WordPress API Tests', () => {
       });
       
       await expect(response).toBeOK();
-      const mediaItems = await response.json();
+      const mediaItems = (await response.json()) as MediaItem[];
       
       expect(mediaItems).toBeInstanceOf(Array);
       mediaItems.forEach(media => {
@@ -116,7 +130,7 @@ test.describe('WordPress API Tests', () => {
       });
       
       await expect(response).toBeOK();
-      const results = await response.json();
+      const results = (await response.json()) as SearchResult[];
       
       expect(results).toBeInstanceOf(Array);
       results.forEach(post => {
@@ -127,13 +141,15 @@ test.describe('WordPress API Tests', () => {
 
   test.describe('User Management', () => {
     test('GET /users should not expose sensitive information', async ({ request }) => {
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/users`, {
-        params: { _fields: 'id,name,slug' }
-      });
+      const response = await request.get(
+        `${BASE_URL}/${API_VERSION}/users`,
+        { params: { _fields: 'id,name,slug' } }
+      );
       
       await expect(response).toBeOK();
-      const users = await response.json();
+      const users = (await response.json()) as User[];
       
+      expect(users).toBeInstanceOf(Array);
       users.forEach(user => {
         expect(user).not.toHaveProperty('email');
         expect(user).not.toHaveProperty('password');
@@ -145,7 +161,7 @@ test.describe('WordPress API Tests', () => {
   test.describe('Comment System', () => {
     test('GET /comments should return comments for valid post', async ({ request }) => {
       const postsResponse = await request.get(`${BASE_URL}/${API_VERSION}/posts`);
-      const posts = await postsResponse.json();
+      const posts = (await postsResponse.json()) as Post[];
       const postId = posts[0]?.id;
       
       test.skip(!postId, 'No posts available for comment testing');
@@ -155,7 +171,7 @@ test.describe('WordPress API Tests', () => {
       });
       
       await expect(response).toBeOK();
-      const comments = await response.json();
+      const comments = (await response.json()) as CommentItem[];
       
       expect(comments).toBeInstanceOf(Array);
       comments.forEach(comment => {

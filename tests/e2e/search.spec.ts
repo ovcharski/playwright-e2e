@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 const testData = [
     { searchQuery: 'Album', sku: 'woo-album', url: 'https://ovcharski.com/shop/product/album/' },
