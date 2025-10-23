@@ -84,15 +84,6 @@ The framework can be configured through `playwright.config.ts`. Key configuratio
 - Test timeouts
 - Parallel execution settings
 
-# For future improvements and considerations
-
-- Using Environment Variables - to create .env file and use library like dotenv to load the sensitive data.
-- Visual Regression Testing (VRT)
-- Performance testing - Playwright is not designed for performance testing, but there are various ways to do it (Navigation and Resource Timing API, Paint Timing API, Largest Contentful Paint API, Layout Instability, Long Task API). ([Blog post](https://ray.run/blog/measuring-website-performance-with-playwright-tests)). These types of tests are not included in this repo/framework.
-- BDD - Playwright does not support natively BDD / Gherkin, but various integrations and plugins are available (Cucumber.js, Playwright-Cucumber, Jest-Cucumber, Playwright-BDD). 
-
-A repo with Postman collection for API testing of the same website is available at [ovcharski/postman-wp](https://github.com/ovcharski/postman-wp). The repo is just for an idea for combination of Playwright UI and Postman API testing in a one whole package.
-
 # Checklist
 
 | Task                          | Status              | 
@@ -109,14 +100,6 @@ A repo with Postman collection for API testing of the same website is available 
 | Accessibility - Axe-core      | :white_check_mark:  |
 | Visual Comparisons            | :black_square_button: |
 
-# Page Object Model (POM)
-
-Page Object Model (POM) is a design pattern that creates a repository for storing all web elements. In POM, consider each web page of an application as a separate class file. Each class file will contain only corresponding web page elements. Page objects are organized under the `/pages/` directory, making the test code more readable, maintainable, and less prone to duplication.
-
-## Benefits of POM
-- **Maintainability**: Changes in the UI require updates only in the page classes.
-- **Reusability**: Common operations can be reused across different tests.
-- **Readability**: Tests are more readable and easier to understand.
 
 # E2E test
 
