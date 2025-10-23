@@ -84,23 +84,6 @@ The framework can be configured through `playwright.config.ts`. Key configuratio
 - Test timeouts
 - Parallel execution settings
 
-# Checklist
-
-| Task                          | Status              | 
-|-------------------------------|---------------------| 
-| GitHub Actions                | :white_check_mark:  |
-| Page Object Model             | :white_check_mark:  |
-| E2E tests                      | :white_check_mark:  |
-| API tests                     | :white_check_mark:  |
-| Mobile ViewPorts tests        | :white_check_mark:  |
-| FakerJS                       | :white_check_mark:  |
-| Reuse authentication state    | :white_check_mark:  |
-| Multiple browser tabs         | :white_check_mark:  |
-| Data driven tests             | :white_check_mark:  |
-| Accessibility - Axe-core      | :white_check_mark:  |
-| Visual Comparisons            | :black_square_button: |
-
-
 # E2E test
 
 The e2e tests are located in `/tests/e2e/` folder. They cover scenarios such as user authentication, navigation, and interactions with different pages.
@@ -215,3 +198,18 @@ Usually after Playwright update, browsers need to be updated
 ```bash
 npx playwright install
 ```
+# Checklist
+
+| Task                          | Status              | 
+|-------------------------------|---------------------| 
+| GitHub Actions                | :white_check_mark:  |
+| Page Object Model             | :white_check_mark:  |
+| E2E tests                      | :white_check_mark:  |
+| API tests                     | :white_check_mark:  |
+| Mobile ViewPorts tests        | :white_check_mark:  |
+| FakerJS                       | :white_check_mark:  |
+| Reuse authentication state    | :white_check_mark:  |
+| Multiple browser tabs         | :white_check_mark:  |
+| Data driven tests             | :white_check_mark:  |
+| Accessibility - Axe-core      | :white_check_mark:  |
+| Visual Comparisons            | :black_square_button: |
