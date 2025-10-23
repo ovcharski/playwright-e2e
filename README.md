@@ -1,53 +1,37 @@
-# Playwright E2E Testing Framework
+# 🎭 Playwright Demo
 
-![Playwright logo](/assets/images/playwright-logo.png "Playwright logo")
+![Playwright logo](https://playwright.dev/img/playwright-logo.svg "Playwright logo")
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Playwright](https://img.shields.io/badge/playwright-latest-green)
 
-Demo automation testing framework created with Playwright, a NodeJS library made for browser automation. It's free, open source and backed up by Microsoft. 
+Demo automation testing framework created with **Playwright**, a NodeJS library for browser automation.  
+It’s open-source, maintained by **Microsoft**, and built for **fast, reliable, cross-browser testing**.
 
-Playwright supports all modern rendering engines including Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation of Google Chrome for Android and Mobile Safari.
+Playwright supports all major rendering engines — **Chromium**, **WebKit**, and **Firefox** — and works seamlessly across **Windows, Linux, and macOS**.  
+You can test headless or with UI, locally or on CI/CD, and even emulate **mobile browsers** like Chrome for Android or Safari for iOS.
 
-This testing framework is currently being remade with [Playwright with Python](https://github.com/ovcharski/playwright-e2e-python) and [WebdriverIO with Cucumber and Javascript](https://github.com/ovcharski/webdriverio-cucumber-e2e) variants.
+---
 
-[Playwright Github](https://github.com/microsoft/playwright)
+## 📘 Overview
 
-# What does Playwright support
+This project demonstrates **end-to-end (E2E) web testing** using Playwright.  
+It automates real browser actions — such as navigation, form filling, clicks, and assertions — to validate web application behavior.  
+The demo highlights Playwright’s speed, stability, and flexibility compared to traditional tools like Selenium.
 
-- One API, cross platform, cross language and cross browser
-- Test on Windows, Linux and MacOS
-- Supports Chromium, Firefox & Webkit
-- Mobile device emulation (e.g., iPhone, Pixel)
-- Playwright API can be used in JavaScript, TypeScript, Python, Java & .NET
+---
 
-# Why Playwright
+## 🚀 Features
 
-Resilent tests:
-- **Auto-waiting**: Elements are automatically waited for before interactions.
-- **Web-first assertions**: Assertions retry until conditions are met.
-- **Tracing**: Debug tests with screenshots, network logs, and execution traces.
+✅ **Cross-browser automation** (Chromium, Firefox, WebKit)  
+🧠 **Auto-waiting** for elements to be ready before interacting  
+💻 **Headless & UI modes** supported  
+🧪 **TypeScript-based configuration** for cleaner, strongly-typed tests  
+📊 **Generates detailed HTML reports** after each test run  
+📸 **Captures screenshots** automatically for test results  
+🔧 **Customizable setup** via `playwright.config.ts`
 
-Fast execution:
-- Isolated testing (new browser profile for each test)
-- Re-use authentication (save and reuse state)
-
-Powerful tooling:
-- CodeGen
-- Inspector
-- Traceviewer
-
-Limitations:
-- Multi tab, origin and windows support
-- Iframe support
-- Pierce the shadow DOM
-- Make API request
-
-# Technologies Used
-
-- **Playwright**: A versatile library tailored for browser automation with a focus on reliability.
-- **TypeScript**: A statically typed superset of JavaScript.
-- **npm**: The package manager for JavaScript.
+---
 
 
 # Demo site - E-commerce
