@@ -2,7 +2,7 @@ import { Page, expect } from '@playwright/test';
 import BasePage from './BasePage';
 
 export default class ProfilePage extends BasePage {
-    private readonly baseUrl = '/user/playwrightuser/';
+    private readonly baseUrl = 'user/playwrightuser/';
     private readonly imagePath = 'assets/images/yu-alu-air-serbia-atr-72-500.jpg';
 
     constructor(page: Page) {
