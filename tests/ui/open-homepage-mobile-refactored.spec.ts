@@ -9,7 +9,7 @@ const commonTestSetup = (viewportName: string) => {
 
       // The empty object represents options passed to the goto() method.
       // This object could include several configuration options, such as: timeout, waitUntil, referer, headers
-      await page.goto('/shop/', {});
+      await page.goto('', {});
 
       // Verify the welcome text using HomePage methods
       await homePage.verifyWelcomeText("Welcome to the store");

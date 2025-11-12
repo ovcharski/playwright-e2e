@@ -19,7 +19,7 @@ test('Register user with combined method', async ({ page }) => {
     const fakeData = generateFakeData();
     const register = new RegisterPage(page);
 
-    await page.goto('/register/');
+    await page.goto('register/');
 
     await register.registerUser(
         fakeData.username,
@@ -38,7 +38,7 @@ test('Register user with separate steps', async ({ page }) => {
     const fakeData = generateFakeData();
     const register = new RegisterPage(page);
 
-    await page.goto('/register/');
+    await page.goto('register/');
 
     // Fill out the form
     await register.fillRegistrationForm(
@@ -62,7 +62,7 @@ test.describe('Invalid Registration Scenarios', () => {
     let register: RegisterPage;
 
     test.beforeEach(async ({ page }) => {
-        await page.goto('/register/');
+        await page.goto('register/');
         register = new RegisterPage(page);
     });
 

@@ -11,11 +11,11 @@ async function globalSetup() {
         const page: Page = await context.newPage();
         const login = new LoginPage(page);
 
-        await page.goto('/login/');
+        await page.goto('login/');
         await login.login('playwrightuser', 'playwrightuser');
 
         await expect(page).toHaveTitle('User – Automation Demo Site');
-        await expect(page).toHaveURL('/user/playwrightuser/');
+        await expect(page).toHaveURL('user/playwrightuser/');
 
         // Save the state of the web page
         await page.context().storageState({ path: './LoginAuth.json' });

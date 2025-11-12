@@ -9,7 +9,7 @@ test.describe('Galaxy S10 viewport', () => {
         const homePage = new HomePage(page);
 
         // Go to homepage
-        await page.goto('/shop/');
+        await page.goto('');
 
         // Verify text on the homepage
         await homePage.verifyWelcomeText('Welcome to the store');
@@ -27,7 +27,7 @@ test.describe('Galaxy S20 viewport', () => {
         const homePage = new HomePage(page);
 
         // Go to homepage
-        await page.goto('/shop/');
+        await page.goto('');
 
         // Verify text on the homepage
         await homePage.verifyWelcomeText('Welcome to the store');
@@ -49,7 +49,7 @@ test.describe('Galaxy S20 Ultra viewport', () => {
         const homePage = new HomePage(page);
 
         // Go to homepage
-        await page.goto('/shop/');
+        await page.goto('');
 
         // Verify text on the homepage
         await homePage.verifyWelcomeText('Welcome to the store');
@@ -71,7 +71,7 @@ test.describe('Galaxy iPhone SE 2 viewport', () => {
         const homePage = new HomePage(page);
 
         // Go to homepage
-        await page.goto('/shop/');
+        await page.goto('');
 
         // Verify text on the homepage
         await homePage.verifyWelcomeText('Welcome to the store');

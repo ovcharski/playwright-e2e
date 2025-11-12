@@ -5,12 +5,12 @@ test.use({ storageState: './NoAuth.json' });
 test('Login with wrong username and password', async ({ page }) => {
     const login = new LoginPage(page);
 
-    await page.goto('/login/');
+    await page.goto('login/');
     await login.login('playwrightuser99', 'playwrightuser88'); // Use the login method
 
     // Validate the login failure
     await expect(page).toHaveTitle('Login – Automation Demo Site');
-    await expect(page).toHaveURL('/login/');
+    await expect(page).toHaveURL('login/');
     await expect(page.getByText('Password is incorrect. Please try again.')).toHaveText(
         'Password is incorrect. Please try again.',
     );

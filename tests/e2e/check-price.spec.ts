@@ -20,14 +20,14 @@ test('Navigate to 2 products and check their prices', async ({ page }) => {
     const productPage = new ProductPage(page);
 
     // Jenkins Beekeeper Jenkins
-    await productPage.navigateToCategory('/shop/product-category/jenkins-artwork/');
+    await productPage.navigateToCategory('product-category/jenkins-artwork/');
     await productPage.clickProductLink('Jenkins Beekeeper Jenkins' );
     await expect(page).toHaveURL(/jenkins-beekeeper/);
     await productPage.verifyOldPrice('122', '20,00 лв');
     await productPage.verifyNewPrice('122', '15,99 лв');
 
     // Jenkins Magician
-    await productPage.navigateToCategory('/shop/product-category/jenkins-artwork/');
+    await productPage.navigateToCategory('product-category/jenkins-artwork/');
     await productPage.clickProductLink('Jenkins Magician');
     await expect(page).toHaveURL(/jenkins-magician/);
     // await productPage.verifySaleBadge();
@@ -44,7 +44,7 @@ test.describe('Product Price Verification', () => {
 
     test('Verify all product prices', async () => {
         for (const product of products) {
-            await productPage.navigateToProduct(`/product/${product.url}/`);
+            await productPage.navigateToProduct(`product/${product.url}/`);
             await productPage.verifyPrice(product.id, product.price);
         }
     });

@@ -10,7 +10,7 @@ test('Open homepage', async ({ page }) => {
     const homePage = new HomePage(page);
 
     // Go to homepage
-    await page.goto('/shop/');
+    await page.goto('');
 
     // Verify text on the homepage
     await homePage.verifyWelcomeText('Welcome to the store');

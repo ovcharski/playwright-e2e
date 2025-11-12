@@ -21,7 +21,7 @@ const testData = [
 const search = '#woocommerce-product-search-field-0';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
 });
 
 test.describe('Search for products with SKUs', () => {
