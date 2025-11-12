@@ -1,21 +1,21 @@
 import { test, expect, type Page } from '@playwright/test';
 
 const testData = [
-    { searchQuery: 'Album', sku: 'woo-album', url: '/product/album/' },
+    { searchQuery: 'Album', sku: 'woo-album', url: 'product/album/' },
     {
         searchQuery: 'Beanie with Logo',
         sku: 'Woo-beanie-logo',
-        url: '/product/beanie-with-logo/',
+        url: 'product/beanie-with-logo/',
     },
     {
         searchQuery: 'Shirt Green',
         sku: 'woo-fasion-shirt-green',
-        url: '/product/shirt-green/',
+        url: 'product/shirt-green/',
     },
-    { searchQuery: 'Shoes', sku: 'woo-fasion-shoes', url: '/product/shoes/' },
-    { searchQuery: 'Socks', sku: 'woo-fasion-socks', url: '/product/socks/' },
-    { searchQuery: 'V-Neck', sku: 'woo-vneck-tee', url: '/product/v-neck-t-shirt/' },
-    { searchQuery: 'Pennant', sku: 'wp-pennant', url: '/product/wordpress-pennant/' },
+    { searchQuery: 'Shoes', sku: 'woo-fasion-shoes', url: 'product/shoes/' },
+    { searchQuery: 'Socks', sku: 'woo-fasion-socks', url: 'product/socks/' },
+    { searchQuery: 'V-Neck', sku: 'woo-vneck-tee', url: 'product/v-neck-t-shirt/' },
+    { searchQuery: 'Pennant', sku: 'wp-pennant', url: 'product/wordpress-pennant/' },
 ];
 
 const search = '#woocommerce-product-search-field-0';

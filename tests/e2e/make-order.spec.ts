@@ -43,7 +43,7 @@ test('Make an order', async ({ page }) => {
     await expect(page).toHaveURL('product-category/jenkins-artwork/');
     await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 лв.' }).click();
     await expect(page).toHaveURL('product/jenkins-cosmonaut/');
-    await page.getByRole('button', { name: 'Add to cart' }).click();
+    await page.getByRole('button', { name: 'Add to cart', exact: true }).click();
     await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
     await expect(page).toHaveURL('cart/');
     await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
@@ -59,7 +59,7 @@ test('Make an order via search', async ({ page }) => {
     await page.getByRole('searchbox', { name: 'Search for:' }).fill('Jenkinstein');
     await page.getByRole('searchbox', { name: 'Search for:' }).press('Enter');
     await expect(page).toHaveURL('product/jenkins-jenkinstein/');
-    await page.getByRole('button', { name: 'Add to cart' }).click();
+    await page.getByRole('button', { name: 'Add to cart', exact: true }).click();
     await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
     await expect(page).toHaveURL('cart/');
     await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
