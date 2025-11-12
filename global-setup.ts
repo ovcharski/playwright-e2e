@@ -5,7 +5,7 @@ import config from './playwright.config';
 async function globalSetup() {
     let browser: Browser | null = null;
     try {
-        const baseURL = config.use?.baseURL || 'http://ovcharski.com/shop/';
+        const baseURL = config.use?.baseURL || 'https://ovcharski.com/shop/';
         browser = await chromium.launch({ headless: true });
         const context = await browser.newContext({ baseURL });
         const page: Page = await context.newPage();
