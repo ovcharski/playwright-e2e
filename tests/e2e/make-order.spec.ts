@@ -2,7 +2,6 @@ import test, { expect } from '@playwright/test';
 import CheckoutPage from '../../pages/CheckoutPage';
 import { faker } from '@faker-js/faker';
 
-const baseURL = 'https://ovcharski.com/shop/';
 const PHONE_NUMBER = '0883883883';
 
 function generateCheckoutData() {
@@ -39,16 +38,16 @@ test.use({ storageState: './NoAuth.json' });
 
 test('Make an order', async ({ page }) => {
     const checkout = new CheckoutPage(page);
-    await page.goto(baseURL);
+    await page.goto('/');
     await page.getByLabel('Visit product category Jenkins Artwork').click();
-    await expect(page).toHaveURL(`${baseURL}product-category/jenkins-artwork/`);
+    await expect(page).toHaveURL('/product-category/jenkins-artwork/');
     await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 лв.' }).click();
-    await expect(page).toHaveURL(`${baseURL}product/jenkins-cosmonaut/`);
+    await expect(page).toHaveURL('/product/jenkins-cosmonaut/');
     await page.getByRole('button', { name: 'Add to cart' }).click();
     await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
-    await expect(page).toHaveURL(`${baseURL}cart/`);
+    await expect(page).toHaveURL('/cart/');
     await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
-    await expect(page).toHaveURL(`${baseURL}checkout/`);
+    await expect(page).toHaveURL('/checkout/');
     await completeCheckout(page, checkout);
     await expect(page.getByRole('heading', { name: 'Order received' })).toBeVisible();
     await expect(page.getByText('Thank you. Your order has been received.')).toBeVisible();
@@ -56,15 +55,15 @@ test('Make an order', async ({ page }) => {
 
 test('Make an order via search', async ({ page }) => {
     const checkout = new CheckoutPage(page);
-    await page.goto(baseURL);
+    await page.goto('/');
     await page.getByRole('searchbox', { name: 'Search for:' }).fill('Jenkinstein');
     await page.getByRole('searchbox', { name: 'Search for:' }).press('Enter');
-    await expect(page).toHaveURL(`${baseURL}product/jenkins-jenkinstein/`);
+    await expect(page).toHaveURL('/product/jenkins-jenkinstein/');
     await page.getByRole('button', { name: 'Add to cart' }).click();
     await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
-    await expect(page).toHaveURL(`${baseURL}cart/`);
+    await expect(page).toHaveURL('/cart/');
     await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
-    await expect(page).toHaveURL(`${baseURL}checkout/`);
+    await expect(page).toHaveURL('/checkout/');
     await completeCheckout(page, checkout);
     await expect(page.getByRole('heading', { name: 'Order received' })).toBeVisible();
 });

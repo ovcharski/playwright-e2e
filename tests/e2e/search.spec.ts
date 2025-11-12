@@ -1,31 +1,27 @@
 import { test, expect, type Page } from '@playwright/test';
 
 const testData = [
-    { searchQuery: 'Album', sku: 'woo-album', url: 'https://ovcharski.com/shop/product/album/' },
+    { searchQuery: 'Album', sku: 'woo-album', url: '/product/album/' },
     {
         searchQuery: 'Beanie with Logo',
         sku: 'Woo-beanie-logo',
-        url: 'https://ovcharski.com/shop/product/beanie-with-logo/',
+        url: '/product/beanie-with-logo/',
     },
     {
         searchQuery: 'Shirt Green',
         sku: 'woo-fasion-shirt-green',
-        url: 'https://ovcharski.com/shop/product/shirt-green/',
+        url: '/product/shirt-green/',
     },
-    { searchQuery: 'Shoes', sku: 'woo-fasion-shoes', url: 'https://ovcharski.com/shop/product/shoes/' },
-    { searchQuery: 'Socks', sku: 'woo-fasion-socks', url: 'https://ovcharski.com/shop/product/socks/' },
-    { searchQuery: 'V-Neck', sku: 'woo-vneck-tee', url: 'https://ovcharski.com/shop/product/v-neck-t-shirt/' },
-    { searchQuery: 'Pennant', sku: 'wp-pennant', url: 'https://ovcharski.com/shop/product/wordpress-pennant/' },
+    { searchQuery: 'Shoes', sku: 'woo-fasion-shoes', url: '/product/shoes/' },
+    { searchQuery: 'Socks', sku: 'woo-fasion-socks', url: '/product/socks/' },
+    { searchQuery: 'V-Neck', sku: 'woo-vneck-tee', url: '/product/v-neck-t-shirt/' },
+    { searchQuery: 'Pennant', sku: 'wp-pennant', url: '/product/wordpress-pennant/' },
 ];
 
 const search = '#woocommerce-product-search-field-0';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('https://ovcharski.com/shop/');
-});
-
-test.afterEach(async ({ page }) => {
-    await page.close();
+    await page.goto('/');
 });
 
 test.describe('Search for products with SKUs', () => {

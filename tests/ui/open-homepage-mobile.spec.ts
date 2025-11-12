@@ -17,8 +17,6 @@ test.describe('Galaxy S10 viewport', () => {
         // Capture screenshots
         await homePage.captureScreenshot('screenshot-s10');
         await homePage.captureFullPageScreenshot('screenshot-s10');
-
-        await page.close();
     });
 });
 
@@ -41,8 +39,6 @@ test.describe('Galaxy S20 viewport', () => {
         // Capture screenshots
         await homePage.captureScreenshot('screenshot-s20');
         await homePage.captureFullPageScreenshot('screenshot-s20');
-
-        await page.close();
     });
 });
 
@@ -65,8 +61,6 @@ test.describe('Galaxy S20 Ultra viewport', () => {
         // Capture screenshots
         await homePage.captureScreenshot('screenshot-s20-ultra');
         await homePage.captureFullPageScreenshot('screenshot-s20-ultra');
-
-        await page.close();
     });
 });
 
@@ -89,7 +83,5 @@ test.describe('Galaxy iPhone SE 2 viewport', () => {
         // Capture screenshots
         await homePage.captureScreenshot('screenshot-SE');
         await homePage.captureFullPageScreenshot('screenshot-SE');
-
-        await page.close();
     });
 });

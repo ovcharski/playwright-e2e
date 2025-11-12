@@ -24,8 +24,6 @@ const commonTestSetup = (viewportName: string) => {
     } catch (error) {
       console.error(`Test failed for ${viewportName} viewport:`, error);
       throw error;
-    } finally {
-      await page.close();
     }
   };
 };

@@ -21,7 +21,4 @@ test('Open homepage', async ({ page }) => {
     // Capture screenshots
     await homePage.captureHomePageScreenshot('homepage');
     await homePage.captureFullPageScreenshot('homepage');
-
-    // Close the page after the test
-    await page.close();
 });

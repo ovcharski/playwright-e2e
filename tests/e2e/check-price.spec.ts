@@ -33,8 +33,6 @@ test('Navigate to 2 products and check their prices', async ({ page }) => {
     // await productPage.verifySaleBadge();
     await productPage.verifyOldPrice('104', '20,00 лв');
     await productPage.verifyNewPrice('104', '9,99 лв');
-
-    await page.close();
 });
 
 test.describe('Product Price Verification', () => {
@@ -46,7 +44,7 @@ test.describe('Product Price Verification', () => {
 
     test('Verify all product prices', async () => {
         for (const product of products) {
-            await productPage.navigateToProduct(`https://ovcharski.com/shop/product/${product.url}/`);
+            await productPage.navigateToProduct(`/product/${product.url}/`);
             await productPage.verifyPrice(product.id, product.price);
         }
     });
