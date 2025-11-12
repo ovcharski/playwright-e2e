@@ -14,13 +14,13 @@ const config: PlaywrightTestConfig = {
     globalSetup: './global-setup',
     testDir: './tests',
     /* Maximum time one test can run for. */
-    timeout: 30 * 3000,
+    timeout: 30000, // 30 seconds
     expect: {
         /**
          * Maximum time expect() should wait for the condition to be met.
          * For example in `await expect(locator).toHaveText();`
          */
-        timeout: 50000,
+        timeout: 15000, // 15 seconds
     },
     /* Run tests in files in parallel */
     fullyParallel: true,
