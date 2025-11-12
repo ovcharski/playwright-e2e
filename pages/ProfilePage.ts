@@ -11,7 +11,6 @@ export default class ProfilePage extends BasePage {
 
     async navigateToProfile() {
         await this.page.goto(this.baseUrl);
-        await this.page.getByRole('link', { name: '' }).click();
     }
 
     async openProfileEditPage() {
