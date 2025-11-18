@@ -8,10 +8,10 @@ test.describe('Checkout and Payment Tests', () => {
         checkoutPage = new CheckoutPage(page);
 
         // Navigate to the shop and add a product to the cart
-        await page.goto('https://ovcharski.com/shop/');
+        await page.goto('');
         await page.locator('#menu-item-126').getByRole('link', { name: 'Shop' }).click();
         await page.getByRole('link', { name: 'Hat 12,00 лв' }).click();
-        await page.getByRole('button', { name: 'Add to cart' }).click();
+        await page.getByRole('button', { name: 'Add to cart', exact: true }).click();
 
         // Proceed to checkout
         await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();

@@ -4,7 +4,7 @@ import fs from 'fs';
 
 test.describe('Homepage Accessibility', () => {
     test('Should have no automatically detectable accessibility issues', async ({ page }) => {
-        await page.goto('https://ovcharski.com/shop/');
+        await page.goto('');
 
         // Perform the accessibility scan
         const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
@@ -32,8 +32,6 @@ test.describe('Homepage Accessibility', () => {
         // expect(accessibilityScanResults.violations).toEqual([]);
 
         // Verify the page URL
-        await expect(page).toHaveURL('https://ovcharski.com/shop/');
-
-        await page.close();
+        await expect(page).toHaveURL('');
     });
 });

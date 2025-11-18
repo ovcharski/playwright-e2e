@@ -3,9 +3,9 @@ import { Page, Locator, expect } from '@playwright/test';
 export default abstract class BasePage {
     protected constructor(protected page: Page) {}
 
-    // Common method to type into any input field
+    // Common method to fill any input field
     protected async typeIntoLocator(locator: string, value: string) {
-        await this.page.locator(locator).type(value, { delay: 100 });
+        await this.page.locator(locator).fill(value);
     }
 
     // Common method to click any element

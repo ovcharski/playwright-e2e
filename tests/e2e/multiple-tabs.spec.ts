@@ -23,8 +23,4 @@ test('Verify navigation between multiple tabs', async ({ page, context }) => {
         page.screenshot({ path: `screenshots/wikipedia-${timestamp}.png` }),
         newTab.screenshot({ path: `screenshots/mediawiki-${timestamp}.png` }),
     ]);
-
-    // Close second tab
-    await newTab.close();
-    await page.close();
 });
