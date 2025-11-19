@@ -3,5 +3,7 @@ node_modules/
 /playwright-report/
 /playwright/.cache/
 /screenshots/
-/test-results/
 /LoginAuth.json
+.vscode/
+.github/instructions/
+accessibility-results.json
