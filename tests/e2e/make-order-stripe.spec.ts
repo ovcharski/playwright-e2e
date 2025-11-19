@@ -18,20 +18,23 @@ test.describe('Checkout and Payment Tests', () => {
         await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
     });
 
-    test('Make an order and pay with VISA Card', async () => {
+    test('Make an order and pay with VISA Card', async ({ page }) => {
         await checkoutPage.fillCardDetails('4242 4242 4242 4242', '11/28', '123');
+        await page.getByText('Credit / Debit Card').click();
         await checkoutPage.placeOrder();
         await checkoutPage.expectOrderReceived();
     });
 
-    test('Make an order and pay with Mastercard Card', async () => {
+    test('Make an order and pay with Mastercard Card', async ({ page }) => {
         await checkoutPage.fillCardDetails('5555 5555 5555 4444', '11/28', '123');
+        await page.getByText('Credit / Debit Card').click();
         await checkoutPage.placeOrder();
         await checkoutPage.expectOrderReceived();
     });
 
-    test('Make an order and pay with American Express Card', async () => {
+    test('Make an order and pay with American Express Card', async ({ page }) => {
         await checkoutPage.fillCardDetails('3782 822463 10005', '11/28', '1234');
+        await page.getByText('Credit / Debit Card').click();
         await checkoutPage.placeOrder();
         await checkoutPage.expectOrderReceived();
     });
