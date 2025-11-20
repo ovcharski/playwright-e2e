@@ -22,17 +22,7 @@ function generateCheckoutData() {
 
 async function completeCheckout(page: Page, checkoutPage: CheckoutPage) {
     const data = generateCheckoutData();
-    await checkoutPage.fillCheckoutForm(
-        data.firstname,
-        data.lastname,
-        data.company,
-        data.streetaddress,
-        data.apaddress,
-        data.towncity,
-        data.postcode,
-        data.phone,
-        data.email,
-    );
+    await checkoutPage.fillCheckoutForm(data);
 }
 
 // Test Configuration
