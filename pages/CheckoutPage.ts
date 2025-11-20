@@ -46,6 +46,9 @@ export default class CheckoutPage extends BasePage {
         await cardFrame?.getByPlaceholder('1234 1234 1234 1234').fill(cardNumber);
         await cardFrame?.getByPlaceholder('MM / YY').fill(expiryDate);
         await cardFrame?.getByPlaceholder('CVC').fill(cvc);
+
+        // Blur the CVC field to trigger validation
+        await cardFrame?.getByPlaceholder('CVC').blur();
     }
 
     async expectOrderReceived() {
@@ -60,6 +63,13 @@ export default class CheckoutPage extends BasePage {
 
         // Switch to the iframe and verify the error message
         const cardFrame = await iframeLocator.contentFrame();
-        await expect(cardFrame?.getByText(message)).toBeVisible();
+
+        // Wait for validation to trigger and error to appear after blur
+        await this.page.waitForTimeout(2000);
+
+        // Use regex to handle potential character encoding issues with apostrophes
+        const messageRegex = new RegExp(message.replace(/'/g, "['\u2019]"), 'i');
+        const errorLocator = cardFrame?.getByText(messageRegex);
+        await expect(errorLocator).toBeVisible({ timeout: 15000 });
     }
 }
