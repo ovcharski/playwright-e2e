@@ -68,7 +68,7 @@ export default class CheckoutPage extends BasePage {
         await this.page.waitForTimeout(2000);
 
         // Use regex to handle potential character encoding issues with apostrophes
-        const messageRegex = new RegExp(message.replaceAll("'", "['\u2019]"), 'i');
+        const messageRegex = new RegExp(message.replaceAll("'", String.raw`['\u2019]`), 'i');
         const errorLocator = cardFrame?.getByText(messageRegex);
         await expect(errorLocator).toBeVisible({ timeout: 15000 });
     }
