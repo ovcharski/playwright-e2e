@@ -51,7 +51,7 @@ const config: PlaywrightTestConfig = {
         headless: true,
 
         /* Record video */
-        video: 'on',
+        video: 'retain-on-failure',
     },
 
     /* Configure projects for major browsers */

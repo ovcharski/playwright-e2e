@@ -19,6 +19,6 @@ export default class LoginPage extends BasePage {
         };
 
         await this.fillForm(fields);
-        await this.clickElement(this.selectors.loginButton);
+        await this.clickElement(this.page.locator(this.selectors.loginButton));
     }
 }

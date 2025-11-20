@@ -12,12 +12,13 @@ export default class HomePage extends BasePage {
     };
 
     async verifyWelcomeText(expectedText: string) {
-        await this.verifyElementVisible(this.selectors.welcomeText);
-        await this.verifyText(this.selectors.welcomeText, expectedText, true);
+        const welcomeLocator = this.page.locator(this.selectors.welcomeText);
+        await this.verifyElementVisible(welcomeLocator);
+        await this.verifyText(welcomeLocator, expectedText, true);
     }
 
     async verifyFooterText(expectedText: string) {
-        await this.verifyTextWithOptions(this.selectors.footerText, expectedText, {
+        await this.verifyTextWithOptions(this.page.locator(this.selectors.footerText), expectedText, {
             normalizeWhitespace: true,
             timeout: 5000,
         });

@@ -30,7 +30,6 @@ test('Navigate to 2 products and check their prices', async ({ page }) => {
     await productPage.navigateToCategory('product-category/jenkins-artwork/');
     await productPage.clickProductLink('Jenkins Magician');
     await expect(page).toHaveURL(/jenkins-magician/);
-    // await productPage.verifySaleBadge();
     await productPage.verifyOldPrice('104', '20,00 лв');
     await productPage.verifyNewPrice('104', '9,99 лв');
 });

@@ -4,28 +4,28 @@ export default abstract class BasePage {
     protected constructor(protected page: Page) {}
 
     // Common method to fill any input field
-    protected async typeIntoLocator(locator: string, value: string) {
-        await this.page.locator(locator).fill(value);
+    protected async typeIntoLocator(locator: Locator, value: string) {
+        await locator.fill(value);
     }
 
     // Common method to click any element
-    protected async clickElement(locator: string, options: { timeout?: number } = {}) {
+    protected async clickElement(locator: Locator, options: { timeout?: number } = {}) {
         const { timeout = 25000 } = options;
-        await this.page.locator(locator).click({ timeout });
+        await locator.click({ timeout });
     }
 
     // Common method to verify text content
-    protected async verifyText(locator: string, expectedText: string, exact: boolean = false) {
+    protected async verifyText(locator: Locator, expectedText: string, exact: boolean = false) {
         if (exact) {
-            await expect(this.page.locator(locator)).toHaveText(expectedText);
+            await expect(locator).toHaveText(expectedText);
         } else {
             // Use contains for partial matching and normalize whitespace
-            await expect(this.page.locator(locator)).toContainText(expectedText);
+            await expect(locator).toContainText(expectedText);
         }
     }
 
     protected async verifyTextWithOptions(
-        locator: string,
+        locator: Locator,
         expectedText: string,
         options: {
             exact?: boolean;
@@ -36,20 +36,20 @@ export default abstract class BasePage {
         const { exact = false, normalizeWhitespace = true, timeout = 5000 } = options;
 
         if (normalizeWhitespace) {
-            await expect(this.page.locator(locator)).toHaveText(new RegExp(expectedText.replace(/\s+/g, '\\s+')), {
+            await expect(locator).toHaveText(new RegExp(expectedText.replace(/\s+/g, '\\s+')), {
                 timeout,
             });
         } else if (exact) {
-            await expect(this.page.locator(locator)).toHaveText(expectedText, { timeout });
+            await expect(locator).toHaveText(expectedText, { timeout });
         } else {
-            await expect(this.page.locator(locator)).toContainText(expectedText, { timeout });
+            await expect(locator).toContainText(expectedText, { timeout });
         }
     }
 
     // Common method to verify element visibility
-    protected async verifyElementVisible(locator: string, options: { timeout?: number } = {}) {
+    protected async verifyElementVisible(locator: Locator, options: { timeout?: number } = {}) {
         const { timeout = 25000 } = options;
-        await expect(this.page.locator(locator)).toBeVisible({ timeout });
+        await expect(locator).toBeVisible({ timeout });
     }
 
     // Common method to capture screenshots
@@ -62,9 +62,9 @@ export default abstract class BasePage {
     }
 
     // Common method to fill out a form with multiple fields
-    protected async fillForm(fields: { [key: string]: string }) {
-        for (const [locator, value] of Object.entries(fields)) {
-            await this.typeIntoLocator(locator, value);
+    protected async fillForm(fields: { [selector: string]: string }) {
+        for (const [selector, value] of Object.entries(fields)) {
+            await this.typeIntoLocator(this.page.locator(selector), value);
         }
     }
 
@@ -74,7 +74,7 @@ export default abstract class BasePage {
     }
 
     // Common method to get text content
-    protected async getTextContent(locator: string): Promise<string | null> {
-        return await this.page.locator(locator).textContent();
+    protected async getTextContent(locator: Locator): Promise<string | null> {
+        return await locator.textContent();
     }
 }
