@@ -14,9 +14,9 @@ export default class ProfilePage extends BasePage {
     }
 
     async openProfileEditPage() {
-        await this.page.getByRole('link', { name: '' }).click();
+        await this.page.locator('.um-faicon-cog').click();
         await this.page.getByRole('link', { name: 'Edit Profile' }).click();
-        await this.page.getByRole('link', { name: ' Automation User' }).click();
+        await this.page.locator('.um-profile-photo-img').click();
     }
 
     async changeAvatar() {
