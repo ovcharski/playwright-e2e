@@ -7,3 +7,5 @@ node_modules/
 .vscode/
 .github/instructions/
 accessibility-results.json
+# Snyk Security Extension - AI Rules (auto-generated)
+.github\instructions\snyk_rules.instructions.md

@@ -60,7 +60,7 @@ export default class RegisterPage extends BasePage {
 
     // Public method to click register button
     async clickRegisterBtn() {
-        await this.clickElement(this.selectors.registerButton);
+        await this.clickElement(this.page.locator(this.selectors.registerButton));
     }
 
     // Method that combines all steps
@@ -79,8 +79,9 @@ export default class RegisterPage extends BasePage {
 
     // Method to verify error message
     async verifyErrorMessage(field: keyof typeof this.errorSelectors, expectedMessage: string) {
-        await this.verifyElementVisible(this.errorSelectors[field]);
-        await this.verifyText(this.errorSelectors[field], expectedMessage);
+        const errorLocator = this.page.locator(this.errorSelectors[field]);
+        await this.verifyElementVisible(errorLocator);
+        await this.verifyText(errorLocator, expectedMessage);
     }
 
     // Method to verify form submission blocked

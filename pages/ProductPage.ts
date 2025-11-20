@@ -19,25 +19,25 @@ export default class ProductPage extends BasePage {
     }
 
     async verifyPrice(productId: string, expectedPrice: string) {
-        const priceSelector = `#product-${productId}`;
-        await this.verifyElementVisible(priceSelector);
-        await this.verifyText(priceSelector, expectedPrice);
+        const priceLocator = this.page.locator(`#product-${productId}`);
+        await this.verifyElementVisible(priceLocator);
+        await this.verifyText(priceLocator, expectedPrice);
     }
 
     async verifyOldPrice(productId: string, price: string) {
-        const oldPriceSelector = `#product-${productId} del:has-text("${price}")`;
-        await this.verifyElementVisible(oldPriceSelector);
-        await this.verifyText(oldPriceSelector, price);
+        const oldPriceLocator = this.page.locator(`#product-${productId} del`).first();
+        await this.verifyElementVisible(oldPriceLocator);
+        await this.verifyText(oldPriceLocator, price);
     }
 
     async verifyNewPrice(productId: string, price: string) {
-        const newPriceSelector = `#product-${productId} .price ins:has-text("${price}")`;
-        await this.verifyElementVisible(newPriceSelector);
-        await this.verifyText(newPriceSelector, price);
+        const newPriceLocator = this.page.locator(`#product-${productId} .price ins`).first();
+        await this.verifyElementVisible(newPriceLocator);
+        await this.verifyText(newPriceLocator, price);
     }
 
     async verifySaleBadge() {
-        const saleBadgeSelector = '.onsale:has-text("Sale!")';
-        await this.verifyElementVisible(saleBadgeSelector);
+        const saleBadgeLocator = this.page.locator('.onsale:has-text("Sale!")');
+        await this.verifyElementVisible(saleBadgeLocator);
     }
 }

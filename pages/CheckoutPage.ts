@@ -33,7 +33,7 @@ export default class CheckoutPage extends BasePage {
     }
 
     async placeOrder() {
-        await this.clickElement('#place_order');
+        await this.clickElement(this.page.locator('#place_order'));
     }
 
     async fillCardDetails(cardNumber: string, expiryDate: string, cvc: string) {
