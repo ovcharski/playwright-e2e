@@ -25,13 +25,13 @@ export default class ProductPage extends BasePage {
     }
 
     async verifyOldPrice(productId: string, price: string) {
-        const oldPriceSelector = `#product-${productId} del:has-text("${price}")`;
+        const oldPriceSelector = `#product-${productId} del`;
         await this.verifyElementVisible(oldPriceSelector);
         await this.verifyText(oldPriceSelector, price);
     }
 
     async verifyNewPrice(productId: string, price: string) {
-        const newPriceSelector = `#product-${productId} .price ins:has-text("${price}")`;
+        const newPriceSelector = `#product-${productId} .price ins`;
         await this.verifyElementVisible(newPriceSelector);
         await this.verifyText(newPriceSelector, price);
     }

@@ -29,7 +29,7 @@ test.describe('Homepage Accessibility', () => {
         }
 
         // Assert that there are no accessibility violations
-        // expect(accessibilityScanResults.violations).toEqual([]);
+        expect(accessibilityScanResults.violations).toEqual([]);
 
         // Verify the page URL
         await expect(page).toHaveURL('');
