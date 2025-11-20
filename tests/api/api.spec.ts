@@ -13,7 +13,7 @@ test.describe('WordPress API Tests', () => {
       
       expect(body.namespace).toBe(API_VERSION);
       expect(body.routes).toBeInstanceOf(Object);
-      expect(Object.values(body.routes).some((route: any) => route.namespace === API_VERSION)).toBeTruthy();
+      expect(Object.values(body.routes as Record<string, { namespace?: string }>).some((route) => route.namespace === API_VERSION)).toBeTruthy();
     });
   });
 
@@ -27,7 +27,7 @@ test.describe('WordPress API Tests', () => {
       const pages = await response.json();
       
       expect(pages).toBeInstanceOf(Array);
-      pages.forEach(page => {
+      pages.forEach((page: { id: number; link: string; slug: string }) => {
         expect(page).toMatchObject({
           id: expect.any(Number),
           link: expect.stringContaining('https://'),
@@ -63,7 +63,7 @@ test.describe('WordPress API Tests', () => {
       const categories = await response.json();
       
       expect(categories).toBeInstanceOf(Array);
-      categories.forEach(category => {
+      categories.forEach((category: { id: number; name: string; slug: string }) => {
         expect(category).toMatchObject({
           id: expect.any(Number),
           name: expect.any(String),
@@ -83,7 +83,7 @@ test.describe('WordPress API Tests', () => {
       const mediaItems = await response.json();
       
       expect(mediaItems).toBeInstanceOf(Array);
-      mediaItems.forEach(media => {
+      mediaItems.forEach((media: { id: number; source_url: string; alt_text: string }) => {
         expect(media).toMatchObject({
           id: expect.any(Number),
           source_url: expect.stringMatching(/^https?:\/\/.+\/.+\.(jpg|png|gif|jpeg|webp)$/i),
@@ -119,7 +119,7 @@ test.describe('WordPress API Tests', () => {
       const results = await response.json();
       
       expect(results).toBeInstanceOf(Array);
-      results.forEach(post => {
+      results.forEach((post: { title: { rendered: string } }) => {
         expect(post.title.rendered.toLowerCase()).toContain(searchTerm);
       });
     });
@@ -133,8 +133,8 @@ test.describe('WordPress API Tests', () => {
       
       await expect(response).toBeOK();
       const users = await response.json();
-      
-      users.forEach(user => {
+
+      users.forEach((user: { id: number; name: string; slug: string }) => {
         expect(user).not.toHaveProperty('email');
         expect(user).not.toHaveProperty('password');
         expect(user).not.toHaveProperty('roles');
@@ -156,9 +156,9 @@ test.describe('WordPress API Tests', () => {
       
       await expect(response).toBeOK();
       const comments = await response.json();
-      
+
       expect(comments).toBeInstanceOf(Array);
-      comments.forEach(comment => {
+      comments.forEach((comment: { post: number }) => {
         expect(comment.post).toBe(postId);
       });
     });

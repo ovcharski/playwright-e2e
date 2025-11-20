@@ -36,7 +36,8 @@ export default abstract class BasePage {
         const { exact = false, normalizeWhitespace = true, timeout = 5000 } = options;
 
         if (normalizeWhitespace) {
-            await expect(locator).toHaveText(new RegExp(expectedText.replace(/\s+/g, '\\s+')), {
+            // Note: replaceAll() doesn't support regex, must use replace() with global flag
+            await expect(locator).toHaveText(new RegExp(expectedText.replace(/\s+/g, String.raw`\s+`)), {
                 timeout,
             });
         } else if (exact) {

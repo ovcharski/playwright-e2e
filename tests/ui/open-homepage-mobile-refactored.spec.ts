@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import HomePage from '../../pages/HomePage';
 
 // Common test setup to reduce repetition

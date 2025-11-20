@@ -6,27 +6,27 @@ export default class CheckoutPage extends BasePage {
         super(page);
     }
 
-    async fillCheckoutForm(
-        firstname: string,
-        lastname: string,
-        company: string,
-        streetaddress: string,
-        apaddress: string,
-        towncity: string,
-        postcode: string,
-        phone: string,
-        email: string,
-    ) {
+    async fillCheckoutForm(billingInfo: {
+        firstname: string;
+        lastname: string;
+        company: string;
+        streetaddress: string;
+        apaddress: string;
+        towncity: string;
+        postcode: string;
+        phone: string;
+        email: string;
+    }) {
         const fields = {
-            '#billing_first_name': firstname,
-            '#billing_last_name': lastname,
-            '#billing_company': company,
-            '#billing_address_1': streetaddress,
-            '#billing_address_2': apaddress,
-            '#billing_city': towncity,
-            '#billing_postcode': postcode,
-            '#billing_phone': phone,
-            '#billing_email': email,
+            '#billing_first_name': billingInfo.firstname,
+            '#billing_last_name': billingInfo.lastname,
+            '#billing_company': billingInfo.company,
+            '#billing_address_1': billingInfo.streetaddress,
+            '#billing_address_2': billingInfo.apaddress,
+            '#billing_city': billingInfo.towncity,
+            '#billing_postcode': billingInfo.postcode,
+            '#billing_phone': billingInfo.phone,
+            '#billing_email': billingInfo.email,
         };
 
         await this.fillForm(fields);
@@ -42,10 +42,13 @@ export default class CheckoutPage extends BasePage {
         await iframeLocator.waitFor({ state: 'visible', timeout: 50000 });
 
         // Switch to the iframe and fill card details
-        const cardFrame = await iframeLocator.contentFrame();
+        const cardFrame = iframeLocator.contentFrame();
         await cardFrame?.getByPlaceholder('1234 1234 1234 1234').fill(cardNumber);
         await cardFrame?.getByPlaceholder('MM / YY').fill(expiryDate);
         await cardFrame?.getByPlaceholder('CVC').fill(cvc);
+
+        // Blur the CVC field to trigger validation
+        await cardFrame?.getByPlaceholder('CVC').blur();
     }
 
     async expectOrderReceived() {
@@ -59,7 +62,14 @@ export default class CheckoutPage extends BasePage {
         await iframeLocator.waitFor({ state: 'visible', timeout: 50000 });
 
         // Switch to the iframe and verify the error message
-        const cardFrame = await iframeLocator.contentFrame();
-        await expect(cardFrame?.getByText(message)).toBeVisible();
+        const cardFrame = iframeLocator.contentFrame();
+
+        // Wait for validation to trigger and error to appear after blur
+        await this.page.waitForTimeout(2000);
+
+        // Use regex to handle potential character encoding issues with apostrophes
+        const messageRegex = new RegExp(message.replaceAll("'", String.raw`['\u2019]`), 'i');
+        const errorLocator = cardFrame?.getByText(messageRegex);
+        await expect(errorLocator).toBeVisible({ timeout: 15000 });
     }
 }
