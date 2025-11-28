@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx playwright test:*)"
+      "Bash(npx playwright test:*)",
+      "Bash(npx eslint:*)"
     ],
     "deny": [],
     "ask": []
