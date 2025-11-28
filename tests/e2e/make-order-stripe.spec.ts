@@ -49,8 +49,8 @@ test.describe('Checkout and Payment Tests', () => {
         await checkoutPage.expectCardError('Your card’s expiration year is in the past.');
     });
 
-    // test('Make an order and enter invalid CVC number', async () => {
-    //     await checkoutPage.fillCardDetails('4242 4242 4242 4242', '11/28', '1');
-    //     await checkoutPage.expectCardError('Your card’s security code is incomplete.');
-    // });
+    test('Make an order and enter invalid CVC number', async () => {
+        await checkoutPage.fillCardDetails('4242 4242 4242 4242', '11/28', '12');
+        await checkoutPage.expectCardError('Your card\'s security code is incomplete.');
+    });
 });
