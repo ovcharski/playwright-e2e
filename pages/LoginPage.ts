@@ -21,4 +21,9 @@ export default class LoginPage extends BasePage {
         await this.fillForm(fields);
         await this.clickElement(this.page.locator(this.selectors.loginButton));
     }
+
+    async logout() {
+        await this.clickElement(this.page.locator('#menu-item-130').getByRole('link', { name: 'Login' }));
+        await this.clickElement(this.page.locator('#post-96').getByRole('link', { name: 'Logout' }));
+    }
 }

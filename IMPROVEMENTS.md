@@ -5,14 +5,14 @@ This document outlines recommended improvements to enhance test coverage, config
 ## Test Coverage Gaps
 
 ### Missing Critical User Flows
-- **No logout tests** - Add test to verify user can successfully log out and session is cleared
+- ~~**No logout tests**~~ - ✅ **COMPLETED** - `tests/e2e/logout.spec.ts` created with logout functionality in `LoginPage.ts`
 - **No shopping cart tests** - Missing add/remove/update cart item operations
 - **No password reset flow** - Missing forgot password and reset password tests
 - **Limited profile edit scenarios** - Only basic profile update is tested, need edge cases
 - **Guest checkout missing** - Need to test checkout flow without authentication
 
 ### Recommended Actions
-1. Create `tests/e2e/logout.spec.ts` to verify logout functionality
+1. ~~Create `tests/e2e/logout.spec.ts` to verify logout functionality~~ - ✅ **COMPLETED**
 2. Create `tests/e2e/shopping-cart.spec.ts` for cart operations (add, remove, update quantity, clear cart)
 3. Create `tests/e2e/password-reset.spec.ts` for password recovery flow
 4. Expand `tests/e2e/profile-edit.spec.ts` with validation tests (invalid data, character limits)
@@ -44,20 +44,19 @@ This document outlines recommended improvements to enhance test coverage, config
 
 ## Code Quality
 
-### Type Safety Issues
+### ~~Type Safety Issues~~ - ✅ **RESOLVED**
 
-#### pages/BasePage.ts
-- **Problem**: Methods accept `string` selectors instead of `Locator` objects
-- **Impact**: Bypasses Playwright's type safety and auto-waiting features
-- **Recommended Fix**:
-  ```typescript
-  // Instead of:
-  async verifyText(selector: string, expectedText: string)
-
-  // Use:
-  async verifyText(locator: Locator, expectedText: string)
-  ```
-- **File**: `pages/BasePage.ts`
+~~#### pages/BasePage.ts~~
+- ~~**Problem**: Methods accept `string` selectors instead of `Locator` objects~~
+- ~~**Impact**: Bypasses Playwright's type safety and auto-waiting features~~
+- ✅ **RESOLVED** - All methods now properly use `Locator` objects:
+  - `typeIntoLocator(locator: Locator, ...)`
+  - `clickElement(locator: Locator, ...)`
+  - `verifyText(locator: Locator, ...)`
+  - `verifyTextWithOptions(locator: Locator, ...)`
+  - `verifyElementVisible(locator: Locator, ...)`
+  - `getTextContent(locator: Locator)`
+  - Note: `fillForm()` accepts string selectors by design for convenience, but converts them to Locators internally
 
 ### Code Duplication
 
@@ -108,12 +107,12 @@ This document outlines recommended improvements to enhance test coverage, config
 ### High Priority
 1. Fix flaky test in `tests/e2e/check-price.spec.ts`
 2. Enable `video: 'retain-on-failure'` to save CI storage
-3. Fix type safety in `BasePage.ts`
+3. ~~Fix type safety in `BasePage.ts`~~ - ✅ **COMPLETED**
 4. Add shopping cart tests (critical user flow)
 
 ### Medium Priority
 5. Refactor duplicated mobile viewport tests
-6. Add logout tests
+6. ~~Add logout tests~~ - ✅ **COMPLETED**
 7. Enable Firefox browser testing
 8. Add guest checkout tests
 
@@ -130,13 +129,13 @@ This document outlines recommended improvements to enhance test coverage, config
    - Remove commented code
    - Refactor mobile viewport tests
 
-2. **Test Coverage** (4-6 hours):
-   - Add logout tests
+2. **Test Coverage** (~~4-6~~ 2-4 hours):
+   - ~~Add logout tests~~ - ✅ **COMPLETED**
    - Add shopping cart tests
    - Add guest checkout tests
 
-3. **Code Quality** (3-4 hours):
-   - Fix type safety in BasePage
+3. **Code Quality** (~~3-4~~ 2-3 hours):
+   - ~~Fix type safety in BasePage~~ - ✅ **COMPLETED**
    - Investigate and fix flaky test
    - Enable Firefox testing
 

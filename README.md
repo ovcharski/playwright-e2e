@@ -48,6 +48,8 @@ Limitations:
 - **Playwright**: A versatile library tailored for browser automation with a focus on reliability.
 - **TypeScript**: A statically typed superset of JavaScript.
 - **npm**: The package manager for JavaScript.
+- **@axe-core/playwright**: Accessibility testing integration.
+- **@faker-js/faker**: Test data generation library.
 
 
 # Demo site - E-commerce
@@ -83,22 +85,28 @@ playwright-e2e/
 │   ├── HomePage.ts
 │   ├── LoginPage.ts
 │   ├── ProductPage.ts
+│   ├── ProfilePage.ts
 │   ├── RegisterPage.ts
 ├── tests/
 │   ├── api/
 │   ├── e2e/
 │   ├── ui/
-├── global-setup.js
-├── playwright.config.js
+├── global-setup.ts
+├── playwright.config.ts
+├── LoginAuth.json
+├── NoAuth.json
 └── ...
 ```
 
 # Configuration
 The framework can be configured through `playwright.config.ts`. Key configurations include:
-- Browsers: Chromium, Firefox, WebKit
-- Viewport sizes
-- Test timeouts
-- Parallel execution settings
+- **Browser**: Chromium (default configuration)
+- **Base URL**: `https://ovcharski.com/shop/`
+- **Test timeout**: 30 seconds
+- **Expect timeout**: 15 seconds
+- **Video recording**: Always enabled
+- **Viewport sizes**: Configurable for mobile device emulation
+- **Parallel execution**: Configured for CI (single worker with 2 retries)
 
 # For future improvements and considerations
 
@@ -133,6 +141,17 @@ Page Object Model (POM) is a design pattern that creates a repository for storin
 - **Maintainability**: Changes in the UI require updates only in the page classes.
 - **Reusability**: Common operations can be reused across different tests.
 - **Readability**: Tests are more readable and easier to understand.
+
+# Authentication
+
+The framework uses global authentication setup (`global-setup.ts`) that authenticates before all tests and saves the state to `LoginAuth.json`. This allows tests to reuse the authenticated state, significantly speeding up test execution.
+
+```typescript
+// Default: tests use authenticated state from LoginAuth.json
+
+// For unauthenticated tests (e.g., login, registration):
+test.use({ storageState: './NoAuth.json' });
+```
 
 # E2E test
 
@@ -195,6 +214,11 @@ Run tests in headed browsers
 npx playwright test --headed
 ```
 
+Run tests in UI mode
+```bash
+npx playwright test --ui
+```
+
 Run all the tests against a specific project
 ```bash
 npx playwright test --project=chromium
@@ -213,6 +237,11 @@ npx playwright test --reporter=dot
 Run in debug mode with Playwright Inspector
 ```bash
 npx playwright test --debug
+```
+
+View HTML report
+```bash
+npx playwright show-report
 ```
 
 Ask for help
