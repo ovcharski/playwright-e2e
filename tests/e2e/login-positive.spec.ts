@@ -1,12 +1,15 @@
 import test, { expect } from '@playwright/test';
 import LoginPage from '../../pages/LoginPage';
 
+const username = process.env.TEST_USERNAME!;
+const password = process.env.TEST_PASSWORD!;
+
 test.use({ storageState: './NoAuth.json' });
-test('Login succesfull', async ({ page }) => {
+test('Login successful', async ({ page }) => {
     const login = new LoginPage(page);
 
     await page.goto('login/');
-    await login.login('playwrightuser', 'playwrightuser'); // Login method
+    await login.login(username, password);
 
     // Validate the login process
     await expect(page).toHaveTitle('User – Automation Demo Site');

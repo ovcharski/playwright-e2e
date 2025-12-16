@@ -105,9 +105,51 @@ The framework can be configured through `playwright.config.ts`. Key configuratio
 -   Test timeouts
 -   Parallel execution settings
 
+# Getting Started
+
+## Prerequisites
+
+- Node.js 18 or higher
+- npm
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/ovcharski/playwright-e2e.git
+cd playwright-e2e
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Install Playwright browsers:
+```bash
+npx playwright install --with-deps
+```
+
+4. Set up environment variables:
+```bash
+cp .env.example .env
+```
+
+5. Add the test credentials to `.env`:
+```
+TEST_USERNAME=playwrightuser
+TEST_PASSWORD=playwrightuser
+```
+
+> **Note:** These are test credentials for the demo site. In real projects, never commit credentials to source control. This framework uses environment variables to demonstrate the proper security pattern.
+
+6. Run the tests:
+```bash
+npx playwright test
+```
+
 # For future improvements and considerations
 
--   Using Environment Variables - to create .env file and use library like dotenv to load the sensitive data.
 -   Visual Regression Testing (VRT)
 -   Performance testing - Playwright is not designed for performance testing, but there are various ways to do it (Navigation and Resource Timing API, Paint Timing API, Largest Contentful Paint API, Layout Instability, Long Task API). ([Blog post](https://ray.run/blog/measuring-website-performance-with-playwright-tests)). These types of tests are not included in this repo/framework.
 -   BDD - Playwright does not support natively BDD / Gherkin, but various integrations and plugins are available (Cucumber.js, Playwright-Cucumber, Jest-Cucumber, Playwright-BDD).
@@ -128,6 +170,7 @@ A repo with Postman collection for API testing of the same website is available 
 | Multiple browser tabs      | :white_check_mark:    |
 | Data driven tests          | :white_check_mark:    |
 | Accessibility - Axe-core   | :white_check_mark:    |
+| Environment Variables      | :white_check_mark:    |
 | Visual Comparisons         | :black_square_button: |
 
 # Page Object Model (POM)
