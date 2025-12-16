@@ -12,6 +12,20 @@ function getFutureExpiryDate(): string {
 
 const validExpiryDate = getFutureExpiryDate();
 
+// Test data for valid card payments
+const validCards = [
+    { name: 'VISA', number: '4242 4242 4242 4242', cvc: '123' },
+    { name: 'Mastercard', number: '5555 5555 5555 4444', cvc: '123' },
+    { name: 'American Express', number: '3782 822463 10005', cvc: '1234' },
+];
+
+// Test data for invalid card scenarios
+const invalidCardScenarios = [
+    { name: 'invalid card number', number: '3782', expiry: validExpiryDate, cvc: '123', error: 'Your card number is incomplete.' },
+    { name: 'invalid card date', number: '4242 4242 4242 4242', expiry: '11/24', cvc: '123', error: "Your card's expiration year is in the past." },
+    { name: 'invalid CVC number', number: '4242 4242 4242 4242', expiry: validExpiryDate, cvc: '12', error: "Your card's security code is incomplete." },
+];
+
 test.describe('Checkout and Payment Tests', () => {
     let checkoutPage: CheckoutPage;
 
@@ -25,43 +39,25 @@ test.describe('Checkout and Payment Tests', () => {
         await page.getByRole('button', { name: 'Add to cart', exact: true }).click();
 
         // Proceed to checkout
-        await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
-        await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
+        await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
+        await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
     });
 
-    test('Make an order and pay with VISA Card', async ({ page }) => {
-        await checkoutPage.fillCardDetails('4242 4242 4242 4242', validExpiryDate, '123');
-        await page.getByText('Credit / Debit Card').click();
-        await checkoutPage.placeOrder();
-        await checkoutPage.expectOrderReceived();
+    // Data-driven tests for valid card payments
+    validCards.forEach((card) => {
+        test(`Make an order and pay with ${card.name} Card`, async ({ page }) => {
+            await checkoutPage.fillCardDetails(card.number, validExpiryDate, card.cvc);
+            await page.getByText('Credit / Debit Card').click();
+            await checkoutPage.placeOrder();
+            await checkoutPage.expectOrderReceived();
+        });
     });
 
-    test('Make an order and pay with Mastercard Card', async ({ page }) => {
-        await checkoutPage.fillCardDetails('5555 5555 5555 4444', validExpiryDate, '123');
-        await page.getByText('Credit / Debit Card').click();
-        await checkoutPage.placeOrder();
-        await checkoutPage.expectOrderReceived();
-    });
-
-    test('Make an order and pay with American Express Card', async ({ page }) => {
-        await checkoutPage.fillCardDetails('3782 822463 10005', validExpiryDate, '1234');
-        await page.getByText('Credit / Debit Card').click();
-        await checkoutPage.placeOrder();
-        await checkoutPage.expectOrderReceived();
-    });
-
-    test('Make an order and enter invalid card number', async () => {
-        await checkoutPage.fillCardDetails('3782', validExpiryDate, '123');
-        await checkoutPage.expectCardError('Your card number is incomplete.');
-    });
-
-    test('Make an order and enter invalid card date', async () => {
-        await checkoutPage.fillCardDetails('4242 4242 4242 4242', '11/24', '123');
-        await checkoutPage.expectCardError('Your card’s expiration year is in the past.');
-    });
-
-    test('Make an order and enter invalid CVC number', async () => {
-        await checkoutPage.fillCardDetails('4242 4242 4242 4242', validExpiryDate, '12');
-        await checkoutPage.expectCardError('Your card\'s security code is incomplete.');
+    // Data-driven tests for invalid card scenarios
+    invalidCardScenarios.forEach((scenario) => {
+        test(`Make an order and enter ${scenario.name}`, async () => {
+            await checkoutPage.fillCardDetails(scenario.number, scenario.expiry, scenario.cvc);
+            await checkoutPage.expectCardError(scenario.error);
+        });
     });
 });
