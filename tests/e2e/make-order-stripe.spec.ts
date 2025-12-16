@@ -1,6 +1,17 @@
 import { test } from '@playwright/test';
 import CheckoutPage from '../../pages/CheckoutPage';
 
+// Generate dynamic expiry date (3 years in the future)
+function getFutureExpiryDate(): string {
+    const futureDate = new Date();
+    futureDate.setFullYear(futureDate.getFullYear() + 3);
+    const month = String(futureDate.getMonth() + 1).padStart(2, '0');
+    const year = String(futureDate.getFullYear()).slice(-2);
+    return `${month}/${year}`;
+}
+
+const validExpiryDate = getFutureExpiryDate();
+
 test.describe('Checkout and Payment Tests', () => {
     let checkoutPage: CheckoutPage;
 
@@ -19,28 +30,28 @@ test.describe('Checkout and Payment Tests', () => {
     });
 
     test('Make an order and pay with VISA Card', async ({ page }) => {
-        await checkoutPage.fillCardDetails('4242 4242 4242 4242', '11/28', '123');
+        await checkoutPage.fillCardDetails('4242 4242 4242 4242', validExpiryDate, '123');
         await page.getByText('Credit / Debit Card').click();
         await checkoutPage.placeOrder();
         await checkoutPage.expectOrderReceived();
     });
 
     test('Make an order and pay with Mastercard Card', async ({ page }) => {
-        await checkoutPage.fillCardDetails('5555 5555 5555 4444', '11/28', '123');
+        await checkoutPage.fillCardDetails('5555 5555 5555 4444', validExpiryDate, '123');
         await page.getByText('Credit / Debit Card').click();
         await checkoutPage.placeOrder();
         await checkoutPage.expectOrderReceived();
     });
 
     test('Make an order and pay with American Express Card', async ({ page }) => {
-        await checkoutPage.fillCardDetails('3782 822463 10005', '11/28', '1234');
+        await checkoutPage.fillCardDetails('3782 822463 10005', validExpiryDate, '1234');
         await page.getByText('Credit / Debit Card').click();
         await checkoutPage.placeOrder();
         await checkoutPage.expectOrderReceived();
     });
 
     test('Make an order and enter invalid card number', async () => {
-        await checkoutPage.fillCardDetails('3782', '11/28', '123');
+        await checkoutPage.fillCardDetails('3782', validExpiryDate, '123');
         await checkoutPage.expectCardError('Your card number is incomplete.');
     });
 
@@ -50,7 +61,7 @@ test.describe('Checkout and Payment Tests', () => {
     });
 
     test('Make an order and enter invalid CVC number', async () => {
-        await checkoutPage.fillCardDetails('4242 4242 4242 4242', '11/28', '12');
+        await checkoutPage.fillCardDetails('4242 4242 4242 4242', validExpiryDate, '12');
         await checkoutPage.expectCardError('Your card\'s security code is incomplete.');
     });
 });
