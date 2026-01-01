@@ -1,5 +1,9 @@
-import { test } from '@playwright/test';
+import { test, type Page } from '@playwright/test';
 import CheckoutPage from '../../pages/CheckoutPage';
+import { faker } from '@faker-js/faker';
+
+// Constants
+const PHONE_NUMBER = '0883883883';
 
 // Generate dynamic expiry date (3 years in the future)
 function getFutureExpiryDate(): string {
@@ -11,6 +15,26 @@ function getFutureExpiryDate(): string {
 }
 
 const validExpiryDate = getFutureExpiryDate();
+
+// Helper Functions
+function generateCheckoutData() {
+    return {
+        firstname: faker.person.firstName(),
+        lastname: faker.person.lastName(),
+        company: faker.company.name(),
+        streetaddress: faker.location.streetAddress(),
+        apaddress: faker.location.secondaryAddress(),
+        towncity: faker.location.city(),
+        postcode: faker.location.zipCode(),
+        phone: PHONE_NUMBER,
+        email: faker.internet.email(),
+    };
+}
+
+async function completeCheckout(page: Page, checkoutPage: CheckoutPage) {
+    const data = generateCheckoutData();
+    await checkoutPage.fillCheckoutForm(data);
+}
 
 // Test data for valid card payments
 const validCards = [
@@ -35,7 +59,7 @@ test.describe('Checkout and Payment Tests', () => {
         // Navigate to the shop and add a product to the cart
         await page.goto('');
         await page.locator('#menu-item-126').getByRole('link', { name: 'Shop' }).click();
-        await page.getByRole('link', { name: 'Hat 12,00 лв' }).click();
+        await page.getByRole('link', { name: 'Hat 12,00 €' }).click();
         await page.getByRole('button', { name: 'Add to cart', exact: true }).click();
 
         // Proceed to checkout
@@ -46,6 +70,7 @@ test.describe('Checkout and Payment Tests', () => {
     // Data-driven tests for valid card payments
     validCards.forEach((card) => {
         test(`Make an order and pay with ${card.name} Card`, async ({ page }) => {
+            await completeCheckout(page, checkoutPage);
             await checkoutPage.fillCardDetails(card.number, validExpiryDate, card.cvc);
             await page.getByText('Credit / Debit Card').click();
             await checkoutPage.placeOrder();
