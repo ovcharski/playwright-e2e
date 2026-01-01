@@ -14,8 +14,7 @@ function generateFakeData() {
 
 test.use({ storageState: './NoAuth.json' });
 
-// Test using the combined registerUser method
-test('Register user with combined method', async ({ page }) => {
+test('Register user', async ({ page }) => {
     const fakeData = generateFakeData();
     const register = new RegisterPage(page);
 
@@ -29,31 +28,6 @@ test('Register user with combined method', async ({ page }) => {
         fakeData.password,
         'male', // optional parameter, defaults to 'male'
     );
-
-    await expect(page).toHaveTitle('User – Automation Demo Site');
-});
-
-// Test using separate steps
-test('Register user with separate steps', async ({ page }) => {
-    const fakeData = generateFakeData();
-    const register = new RegisterPage(page);
-
-    await page.goto('register/');
-
-    // Fill out the form
-    await register.fillRegistrationForm(
-        fakeData.username,
-        fakeData.firstName,
-        fakeData.lastName,
-        fakeData.email,
-        fakeData.password,
-    );
-
-    // Select gender explicitly
-    await register.selectGender('male');
-
-    // Click register button
-    await register.clickRegisterBtn();
 
     await expect(page).toHaveTitle('User – Automation Demo Site');
 });

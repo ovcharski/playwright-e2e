@@ -38,7 +38,7 @@ test('Make an order', async ({ page }) => {
     await expect(page).toHaveURL('product-category/jenkins-artwork/');
 
     // Select Jenkins Cosmonaut product
-    await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 лв.' }).click();
+    await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 €' }).click();
     await expect(page).toHaveURL('product/jenkins-cosmonaut/');
 
     // Add product to cart

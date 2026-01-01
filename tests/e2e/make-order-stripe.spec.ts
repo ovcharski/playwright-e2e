@@ -35,7 +35,7 @@ test.describe('Checkout and Payment Tests', () => {
         // Navigate to the shop and add a product to the cart
         await page.goto('');
         await page.locator('#menu-item-126').getByRole('link', { name: 'Shop' }).click();
-        await page.getByRole('link', { name: 'Hat 12,00 лв' }).click();
+        await page.getByRole('link', { name: 'Hat 12,00 €' }).click();
         await page.getByRole('button', { name: 'Add to cart', exact: true }).click();
 
         // Proceed to checkout
