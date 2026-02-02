@@ -23,15 +23,22 @@ const config: PlaywrightTestConfig = {
         timeout: 15000, // 15 seconds
     },
     /* Run tests in files in parallel */
-    fullyParallel: false,
+    fullyParallel: true,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
     /* Retry on CI only */
-    retries: process.env.CI ? 2 : 0,
+    retries: process.env.CI ? 1 : 2,
     /* Run tests sequentially with 1 worker */
-    workers: 1,
+    workers: process.env.CI ? 7 : 5,
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-    reporter: 'html',
+    reporter: [
+      ['list'],
+      ['@testdino/playwright', { 
+        serverUrl: "https://malamute-noble-miserably.ngrok-free.app",
+        token: "trx_development_bbfbcff0ec0c5b835f37c2434345fcf9ed9d29d925eab61a3633787931747a1b",
+        debug: true
+      }]
+    ],
     /* Folder for test artifacts such as screenshots, videos, traces, etc. */
 
     outputDir: 'test-results',
@@ -63,19 +70,19 @@ const config: PlaywrightTestConfig = {
             },
         },
 
-        // {
-        //   name: 'firefox',
-        //   use: {
-        //     ...devices['Desktop Firefox'],
-        //   },
-        // },
+        {
+          name: 'firefox',
+          use: {
+            ...devices['Desktop Firefox'],
+          },
+        },
 
-        // {
-        //   name: 'webkit',
-        //   use: {
-        //     ...devices['Desktop Safari'],
-        //   },
-        // },
+        {
+          name: 'webkit',
+          use: {
+            ...devices['Desktop Safari'],
+          },
+        },
 
         /* Test against mobile viewports. */
         // {
