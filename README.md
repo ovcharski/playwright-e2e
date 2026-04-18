@@ -40,12 +40,12 @@ Powerful tooling:
 -   Inspector
 -   Trace viewer
 
-Limitations:
+Additional capabilities:
 
 -   Multi tab, origin and windows support
 -   Iframe support
 -   Pierce the shadow DOM
--   Make API request
+-   Make API requests
 
 # Technologies Used
 
@@ -86,13 +86,14 @@ playwright-e2e/
 │   ├── HomePage.ts
 │   ├── LoginPage.ts
 │   ├── ProductPage.ts
+│   ├── ProfilePage.ts
 │   ├── RegisterPage.ts
 ├── tests/
 │   ├── api/
 │   ├── e2e/
 │   ├── ui/
-├── global-setup.js
-├── playwright.config.js
+├── global-setup.ts
+├── playwright.config.ts
 └── ...
 ```
 
@@ -100,10 +101,12 @@ playwright-e2e/
 
 The framework can be configured through `playwright.config.ts`. Key configurations include:
 
--   Browsers: Chromium, Firefox, WebKit
--   Viewport sizes
--   Test timeouts
--   Parallel execution settings
+-   Browser: Chromium only (Firefox/WebKit projects are scaffolded but commented out)
+-   Base URL: `https://ovcharski.com/shop/`
+-   Test timeout: 30s, expect timeout: 15s
+-   Workers: 1 (sequential); CI retries: 2
+-   Video: `retain-on-failure`; Trace: `on-first-retry`
+-   Storage state reused from `LoginAuth.json` (populated by `global-setup.ts`)
 
 # Getting Started
 
@@ -145,8 +148,24 @@ TEST_PASSWORD=playwrightuser
 
 6. Run the tests:
 ```bash
-npx playwright test
+npm test
+# or: npx playwright test
 ```
+
+## npm scripts
+
+| Script | Description |
+| ------ | ----------- |
+| `npm test` | Run all tests |
+| `npm run test:headed` | Headed mode |
+| `npm run test:ui` | UI mode |
+| `npm run report` | Open last HTML report |
+| `npm run lint` | ESLint check |
+| `npm run lint:fix` | ESLint auto-fix |
+
+## Stripe and currency
+
+Checkout currency is **Euro**. The Stripe test card flow requires billing details (name, address, email, phone) to be filled before the card input — payment is rejected otherwise. See `pages/CheckoutPage.ts` and `tests/e2e/` for working examples.
 
 # For future improvements and considerations
 
@@ -171,7 +190,7 @@ A repo with Postman collection for API testing of the same website is available 
 | Data driven tests          | :white_check_mark:    |
 | Accessibility - Axe-core   | :white_check_mark:    |
 | Environment Variables      | :white_check_mark:    |
-| Visual Comparisons         | :black_square_button: |
+| Visual Comparisons         | :white_check_mark:    |
 
 # Page Object Model (POM)
 
