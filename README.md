@@ -80,20 +80,27 @@ The tests in the framework cover:
 
 ```bash
 playwright-e2e/
-├── pages/
+├── pages/                # Page Object Model classes
 │   ├── BasePage.ts
 │   ├── CheckoutPage.ts
 │   ├── HomePage.ts
 │   ├── LoginPage.ts
 │   ├── ProductPage.ts
 │   ├── ProfilePage.ts
-│   ├── RegisterPage.ts
+│   └── RegisterPage.ts
+├── constants/            # Shared constants (e.g. named timeout budgets)
+│   └── timeouts.ts
+├── helpers/              # Test data factories (faker wrappers)
+│   └── test-data.ts
 ├── tests/
-│   ├── api/
-│   ├── e2e/
-│   ├── ui/
-├── global-setup.ts
+│   ├── api/              # WordPress REST API tests
+│   ├── e2e/              # End-to-end user flows
+│   └── ui/               # Visual and viewport tests
+├── assets/               # Images and fixtures used by tests
+├── global-setup.ts       # Authenticates once, persists state to LoginAuth.json
 ├── playwright.config.ts
+├── .env.example          # Template for required env vars
+├── eslint.config.js
 └── ...
 ```
 
@@ -112,7 +119,7 @@ The framework can be configured through `playwright.config.ts`. Key configuratio
 
 ## Prerequisites
 
-- Node.js 18 or higher
+- Node.js 20 or higher
 - npm
 
 ## Installation
@@ -167,14 +174,6 @@ npm test
 
 Checkout currency is **Euro**. The Stripe test card flow requires billing details (name, address, email, phone) to be filled before the card input — payment is rejected otherwise. See `pages/CheckoutPage.ts` and `tests/e2e/` for working examples.
 
-# For future improvements and considerations
-
--   Visual Regression Testing (VRT)
--   Performance testing - Playwright is not designed for performance testing, but there are various ways to do it (Navigation and Resource Timing API, Paint Timing API, Largest Contentful Paint API, Layout Instability, Long Task API). ([Blog post](https://ray.run/blog/measuring-website-performance-with-playwright-tests)). These types of tests are not included in this repo/framework.
--   BDD - Playwright does not support natively BDD / Gherkin, but various integrations and plugins are available (Cucumber.js, Playwright-Cucumber, Jest-Cucumber, Playwright-BDD).
-
-A repo with Postman collection for API testing of the same website is available at [ovcharski/postman-wp](https://github.com/ovcharski/postman-wp). The repo is just for an idea for combination of Playwright UI and Postman API testing in a one whole package.
-
 # Checklist
 
 | Task                       | Status                |
@@ -186,7 +185,6 @@ A repo with Postman collection for API testing of the same website is available 
 | Mobile ViewPorts tests     | :white_check_mark:    |
 | FakerJS                    | :white_check_mark:    |
 | Reuse authentication state | :white_check_mark:    |
-| Multiple browser tabs      | :white_check_mark:    |
 | Data driven tests          | :white_check_mark:    |
 | Accessibility - Axe-core   | :white_check_mark:    |
 | Environment Variables      | :white_check_mark:    |
@@ -253,13 +251,13 @@ npx playwright test
 Run a single test file
 
 ```bash
-npx playwright test tests/todo-page.spec.ts
+npx playwright test tests/e2e/login-positive.spec.ts
 ```
 
 Run a set of test files
 
 ```bash
-npx playwright test tests/todo-page/ tests/landing-page/
+npx playwright test tests/e2e/ tests/ui/
 ```
 
 Run tests in headed browsers
