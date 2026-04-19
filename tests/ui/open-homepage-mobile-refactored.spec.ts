@@ -1,9 +1,9 @@
-import { test } from '@playwright/test';
+import { test, Page } from '@playwright/test';
 import HomePage from '../../pages/HomePage';
 
 // Common test setup to reduce repetition
 const commonTestSetup = (viewportName: string) => {
-  return async ({ page }) => {
+  return async ({ page }: { page: Page }) => {
     try {
       const homePage = new HomePage(page);
 
@@ -15,7 +15,7 @@ const commonTestSetup = (viewportName: string) => {
       await homePage.verifyWelcomeText("Welcome to the store");
 
       // Verify the footer text using HomePage methods
-      await homePage.verifyFooterText("© Automation Demo Site 2025 Built with WooCommerce.");
+      await homePage.verifyFooterText("© Automation Demo Site 2026 Built with WooCommerce.");
 
       // Capture screenshots with consistent naming
       await homePage.captureScreenshot(viewportName);

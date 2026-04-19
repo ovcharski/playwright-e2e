@@ -1,28 +1,9 @@
 import test, { expect, type Page } from '@playwright/test';
 import CheckoutPage from '../../pages/CheckoutPage';
-import { faker } from '@faker-js/faker';
-
-// Constants
-const PHONE_NUMBER = '0883883883';
-
-// Helper Functions
-function generateCheckoutData() {
-    return {
-        firstname: faker.person.firstName(),
-        lastname: faker.person.lastName(),
-        company: faker.company.name(),
-        streetaddress: faker.location.streetAddress(),
-        apaddress: faker.location.secondaryAddress(),
-        towncity: faker.location.city(),
-        postcode: faker.location.zipCode(),
-        phone: PHONE_NUMBER,
-        email: faker.internet.email(),
-    };
-}
+import { buildBillingInfo } from '../../helpers/test-data';
 
 async function completeCheckout(page: Page, checkoutPage: CheckoutPage) {
-    const data = generateCheckoutData();
-    await checkoutPage.fillCheckoutForm(data);
+    await checkoutPage.fillCheckoutForm(buildBillingInfo());
 }
 
 // Test Configuration
@@ -38,7 +19,7 @@ test('Make an order', async ({ page }) => {
     await expect(page).toHaveURL('product-category/jenkins-artwork/');
 
     // Select Jenkins Cosmonaut product
-    await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 лв.' }).click();
+    await page.getByRole('link', { name: 'Jenkins Cosmonaut Jenkins Cosmonaut 20,00 €' }).click();
     await expect(page).toHaveURL('product/jenkins-cosmonaut/');
 
     // Add product to cart

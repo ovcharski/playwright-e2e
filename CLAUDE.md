@@ -9,29 +9,19 @@ Playwright E2E testing framework for a WooCommerce shop at `https://ovcharski.co
 ## Commands
 
 ```bash
-# Run all tests
-npx playwright test
+# npm scripts (preferred)
+npm test                 # Run all tests
+npm run test:headed      # Headed mode
+npm run test:ui          # UI mode
+npm run report           # View HTML report
+npm run lint             # Lint all files
+npm run lint:fix         # Lint and auto-fix
 
-# Run specific test file
-npx playwright test tests/e2e/login-positive.spec.ts
-
-# Run tests in headed mode
-npx playwright test --headed
-
-# Run with UI mode
-npx playwright test --ui
-
-# Debug mode
-npx playwright test --debug
-
-# Run single worker (disable parallelization)
-npx playwright test --workers=1
-
-# View HTML report
-npx playwright show-report
-
-# Install/update browsers
-npx playwright install --with-deps
+# Playwright CLI (for flags not covered by scripts)
+npx playwright test tests/e2e/login-positive.spec.ts   # Single file
+npx playwright test --debug                            # Debug mode
+npx playwright test --workers=1                        # Disable parallelization
+npx playwright install --with-deps                     # Install/update browsers
 ```
 
 ## Architecture
@@ -43,8 +33,9 @@ All page classes extend `BasePage` which provides common methods:
 
 Page classes in `pages/`:
 - **BasePage.ts**: Abstract base with shared utilities
+- **HomePage.ts**: Welcome text, footer, home screenshots
 - **LoginPage.ts**, **RegisterPage.ts**: Authentication flows
-- **CheckoutPage.ts**: Order placement, Stripe iframe handling
+- **CheckoutPage.ts**: Order placement, billing form, Stripe iframe handling
 - **ProductPage.ts**: Category/product navigation, price verification
 - **ProfilePage.ts**: Profile updates, file uploads
 
@@ -93,10 +84,19 @@ testData.forEach((data) => {
 ```
 
 ### Stripe Payment Handling
-Tests interact with Stripe iframe using `page.frameLocator()` and test card numbers (4242 4242 4242 4242, etc.).
+Tests interact with Stripe iframe using `page.frameLocator()` and test card numbers (4242 4242 4242 4242, etc.). Billing details (name, address, email, phone) must be filled before payment — Stripe rejects the transaction otherwise. Checkout currency is Euro.
 
 ## Dependencies
 
 - `@playwright/test`: Test framework
 - `@axe-core/playwright`: Accessibility testing
 - `@faker-js/faker`: Test data generation
+- `dotenv`: Env-var loading (used in `global-setup.ts`, `playwright.config.ts`, and some specs)
+- `csv-parser`, `csvtojson`: CSV-driven test data
+- `eslint` with `@typescript-eslint/*`: Linting (config in `eslint.config.js`)
+
+## Related Docs
+
+- `README.md`: Public-facing project intro and setup
+- `IMPROVEMENTS.md`: Tracked improvement ideas and rationale
+- `plawryghtchanges.md`: Running change log

@@ -1,22 +1,12 @@
 import test, { expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import RegisterPage from '../../pages/RegisterPage';
-
-function generateFakeData() {
-    return {
-        username: faker.person.lastName(),
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
-        email: faker.internet.email(),
-        password: faker.internet.password(),
-    };
-}
+import { buildRegistrationUser } from '../../helpers/test-data';
 
 test.use({ storageState: './NoAuth.json' });
 
-// Test using the combined registerUser method
-test('Register user with combined method', async ({ page }) => {
-    const fakeData = generateFakeData();
+test('Register user', async ({ page }) => {
+    const fakeData = buildRegistrationUser();
     const register = new RegisterPage(page);
 
     await page.goto('register/');
@@ -33,31 +23,6 @@ test('Register user with combined method', async ({ page }) => {
     await expect(page).toHaveTitle('User – Automation Demo Site');
 });
 
-// Test using separate steps
-test('Register user with separate steps', async ({ page }) => {
-    const fakeData = generateFakeData();
-    const register = new RegisterPage(page);
-
-    await page.goto('register/');
-
-    // Fill out the form
-    await register.fillRegistrationForm(
-        fakeData.username,
-        fakeData.firstName,
-        fakeData.lastName,
-        fakeData.email,
-        fakeData.password,
-    );
-
-    // Select gender explicitly
-    await register.selectGender('male');
-
-    // Click register button
-    await register.clickRegisterBtn();
-
-    await expect(page).toHaveTitle('User – Automation Demo Site');
-});
-
 test.describe('Invalid Registration Scenarios', () => {
     let register: RegisterPage;
 
@@ -67,13 +32,7 @@ test.describe('Invalid Registration Scenarios', () => {
     });
 
     test('Should not register with invalid email format', async () => {
-        const invalidData = {
-            username: faker.person.lastName(),
-            firstName: faker.person.firstName(),
-            lastName: faker.person.lastName(),
-            email: 'invalid-email-format',
-            password: faker.internet.password(),
-        };
+        const invalidData = buildRegistrationUser({ email: 'invalid-email-format' });
 
         await register.registerUser(
             invalidData.username,
@@ -88,13 +47,7 @@ test.describe('Invalid Registration Scenarios', () => {
     });
 
     test('Should not register with short password', async () => {
-        const invalidData = {
-            username: faker.person.lastName(),
-            firstName: faker.person.firstName(),
-            lastName: faker.person.lastName(),
-            email: faker.internet.email(),
-            password: '123', // Too short password
-        };
+        const invalidData = buildRegistrationUser({ password: '123' }); // Too short password
 
         await register.registerUser(
             invalidData.username,
@@ -109,13 +62,7 @@ test.describe('Invalid Registration Scenarios', () => {
     });
 
     test('should not register with existing username', async () => {
-        const invalidData = {
-            username: 'playwrightuser', // Known existing username
-            firstName: faker.person.firstName(),
-            lastName: faker.person.lastName(),
-            email: faker.internet.email(),
-            password: faker.internet.password(),
-        };
+        const invalidData = buildRegistrationUser({ username: 'playwrightuser' }); // Known existing username
 
         await register.registerUser(
             invalidData.username,

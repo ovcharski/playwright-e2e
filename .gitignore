@@ -6,6 +6,7 @@ node_modules/
 /screenshots/
 /LoginAuth.json
 .vscode/
+.claude/settings.local.json
 .github/instructions/
 accessibility-results.json
 # Snyk Security Extension - AI Rules (auto-generated)

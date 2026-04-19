@@ -16,13 +16,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@faker-js/faker": "^9.2.0",
-    "@playwright/test": "^1.51.0",
-    "@types/node": "^22.10.9",
-    "@typescript-eslint/eslint-plugin": "^8.17.0",
-    "@typescript-eslint/parser": "^8.17.0",
-    "dotenv": "^16.4.7",
-    "eslint": "^9.16.0"
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^22.19.7",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
+    "@typescript-eslint/parser": "^8.58.2",
+    "dotenv": "^16.6.1",
+    "eslint": "^9.39.2"
   },
   "dependencies": {
     "@axe-core/playwright": "^4.11.0",
