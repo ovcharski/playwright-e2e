@@ -1,4 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { TIMEOUTS } from '../constants/timeouts';
 
 export default abstract class BasePage {
     protected constructor(protected page: Page) {}
@@ -10,7 +11,7 @@ export default abstract class BasePage {
 
     // Common method to click any element
     protected async clickElement(locator: Locator, options: { timeout?: number } = {}) {
-        const { timeout = 25000 } = options;
+        const { timeout = TIMEOUTS.ACTION } = options;
         await locator.click({ timeout });
     }
 
@@ -33,7 +34,7 @@ export default abstract class BasePage {
             timeout?: number;
         } = {},
     ) {
-        const { exact = false, normalizeWhitespace = true, timeout = 5000 } = options;
+        const { exact = false, normalizeWhitespace = true, timeout = TIMEOUTS.SHORT } = options;
 
         if (normalizeWhitespace) {
             // Note: replaceAll() doesn't support regex, must use replace() with global flag
@@ -49,7 +50,7 @@ export default abstract class BasePage {
 
     // Common method to verify element visibility
     protected async verifyElementVisible(locator: Locator, options: { timeout?: number } = {}) {
-        const { timeout = 25000 } = options;
+        const { timeout = TIMEOUTS.ACTION } = options;
         await expect(locator).toBeVisible({ timeout });
     }
 

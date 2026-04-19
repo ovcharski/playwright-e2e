@@ -1,5 +1,6 @@
 import { Page, expect } from '@playwright/test';
 import BasePage from './BasePage';
+import { TIMEOUTS } from '../constants/timeouts';
 
 export default class ProfilePage extends BasePage {
     private readonly baseUrl = 'user/playwrightuser/';
@@ -40,7 +41,7 @@ export default class ProfilePage extends BasePage {
         // The following timeout is a workaround for a frontend bug where the "Apply" button
         // becomes enabled before the image upload is actually complete.
         await this.page.waitForTimeout(2000);
-        await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({ timeout: 30000 });
+        await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({ timeout: TIMEOUTS.UPLOAD_PROCESSING });
         await this.page.getByRole('link', { name: 'Apply' }).click();
         // Wait up to 15s for the Update Profile button to be enabled
         await expect(this.page.getByRole('button', { name: 'Update Profile' })).toBeEnabled();

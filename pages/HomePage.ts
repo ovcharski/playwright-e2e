@@ -1,5 +1,6 @@
 import { Page } from '@playwright/test';
 import BasePage from './BasePage';
+import { TIMEOUTS } from '../constants/timeouts';
 
 export default class HomePage extends BasePage {
     constructor(page: Page) {
@@ -20,7 +21,7 @@ export default class HomePage extends BasePage {
     async verifyFooterText(expectedText: string) {
         await this.verifyTextWithOptions(this.page.locator(this.selectors.footerText), expectedText, {
             normalizeWhitespace: true,
-            timeout: 5000,
+            timeout: TIMEOUTS.SHORT,
         });
     }
 

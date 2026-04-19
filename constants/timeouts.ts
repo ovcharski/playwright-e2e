@@ -1,0 +1,7 @@
+export const TIMEOUTS = {
+    SHORT: 5_000,
+    ERROR_MESSAGE: 15_000,
+    ACTION: 25_000,
+    UPLOAD_PROCESSING: 30_000,
+    IFRAME_LOAD: 50_000,
+} as const;

@@ -1,9 +1,6 @@
 import { test, type Page } from '@playwright/test';
 import CheckoutPage from '../../pages/CheckoutPage';
-import { faker } from '@faker-js/faker';
-
-// Constants
-const PHONE_NUMBER = '0883883883';
+import { buildBillingInfo } from '../../helpers/test-data';
 
 // Generate dynamic expiry date (3 years in the future)
 function getFutureExpiryDate(): string {
@@ -16,24 +13,8 @@ function getFutureExpiryDate(): string {
 
 const validExpiryDate = getFutureExpiryDate();
 
-// Helper Functions
-function generateCheckoutData() {
-    return {
-        firstname: faker.person.firstName(),
-        lastname: faker.person.lastName(),
-        company: faker.company.name(),
-        streetaddress: faker.location.streetAddress(),
-        apaddress: faker.location.secondaryAddress(),
-        towncity: faker.location.city(),
-        postcode: faker.location.zipCode(),
-        phone: PHONE_NUMBER,
-        email: faker.internet.email(),
-    };
-}
-
 async function completeCheckout(page: Page, checkoutPage: CheckoutPage) {
-    const data = generateCheckoutData();
-    await checkoutPage.fillCheckoutForm(data);
+    await checkoutPage.fillCheckoutForm(buildBillingInfo());
 }
 
 // Test data for valid card payments

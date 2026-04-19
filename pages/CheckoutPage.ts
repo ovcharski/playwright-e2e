@@ -1,5 +1,6 @@
 import { expect, Page } from '@playwright/test';
 import BasePage from './BasePage';
+import { TIMEOUTS } from '../constants/timeouts';
 
 export default class CheckoutPage extends BasePage {
     constructor(page: Page) {
@@ -10,6 +11,7 @@ export default class CheckoutPage extends BasePage {
         firstname: string;
         lastname: string;
         company: string;
+        country: string;
         streetaddress: string;
         apaddress: string;
         towncity: string;
@@ -17,6 +19,11 @@ export default class CheckoutPage extends BasePage {
         phone: string;
         email: string;
     }) {
+        // Set country first — WooCommerce refreshes shipping methods via AJAX
+        // when the country changes and overlays the form with .blockUI until done.
+        await this.page.locator('#billing_country').selectOption(billingInfo.country);
+        await expect(this.page.locator('.blockUI')).toHaveCount(0);
+
         const fields = {
             '#billing_first_name': billingInfo.firstname,
             '#billing_last_name': billingInfo.lastname,
@@ -39,7 +46,7 @@ export default class CheckoutPage extends BasePage {
     async fillCardDetails(cardNumber: string, expiryDate: string, cvc: string) {
         // Wait for the iframe to be visible
         const iframeLocator = this.page.locator('iframe[name*="__privateStripeFrame"]').first();
-        await iframeLocator.waitFor({ state: 'visible', timeout: 50000 });
+        await iframeLocator.waitFor({ state: 'visible', timeout: TIMEOUTS.IFRAME_LOAD });
 
         // Switch to the iframe and fill card details
         const cardFrame = iframeLocator.contentFrame();
@@ -59,7 +66,7 @@ export default class CheckoutPage extends BasePage {
     async expectCardError(message: string) {
         // Wait for the iframe to be visible
         const iframeLocator = this.page.locator('iframe[name*="__privateStripeFrame"]').first();
-        await iframeLocator.waitFor({ state: 'visible', timeout: 50000 });
+        await iframeLocator.waitFor({ state: 'visible', timeout: TIMEOUTS.IFRAME_LOAD });
 
         // Switch to the iframe and verify the error message
         const cardFrame = iframeLocator.contentFrame();
@@ -70,6 +77,6 @@ export default class CheckoutPage extends BasePage {
         // Use regex to handle potential character encoding issues with apostrophes
         const messageRegex = new RegExp(message.replaceAll("'", String.raw`['\u2019]`), 'i');
         const errorLocator = cardFrame?.getByText(messageRegex);
-        await expect(errorLocator).toBeVisible({ timeout: 15000 });
+        await expect(errorLocator).toBeVisible({ timeout: TIMEOUTS.ERROR_MESSAGE });
     }
 }
