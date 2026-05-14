@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import LoginPage from './pages/LoginPage';
 import config from './playwright.config';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 async function globalSetup() {
     const username = process.env.TEST_USERNAME;
