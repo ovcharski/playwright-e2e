@@ -21,7 +21,7 @@
     "@types/node": "^22.19.7",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.2",
-    "dotenv": "^16.6.1",
+    "dotenv": "^17.4.2",
     "eslint": "^9.39.2"
   },
   "dependencies": {
