@@ -1,8 +1,7 @@
 import test, { expect } from '@playwright/test';
 
-const BASE_URL = 'https://ovcharski.com/shop/wp-json';
-const STORE_PRODUCTS = `${BASE_URL}/wc/store/v1/products`;
-const V3_PRODUCTS = `${BASE_URL}/wc/v3/products`;
+const STORE_PRODUCTS = 'wp-json/wc/store/v1/products';
+const V3_PRODUCTS = 'wp-json/wc/v3/products';
 
 // The Store API (/wc/store/v1) is designed for anonymous frontend access and
 // is the right surface for read-only WooCommerce checks. The classic /wc/v3

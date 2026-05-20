@@ -1,7 +1,6 @@
 import test, { expect } from '@playwright/test';
 
-const BASE_URL = 'https://ovcharski.com/shop/wp-json';
-const POSTS = `${BASE_URL}/wp/v2/posts`;
+const POSTS = 'wp-json/wp/v2/posts';
 
 test.describe('WP /posts — pagination boundaries', () => {
   const invalidPerPage = [
@@ -106,7 +105,7 @@ test.describe('WP /posts — _fields filter behavior', () => {
 
 test.describe('WP /posts — unsupported namespace', () => {
   test('GET /wp/v99/posts → 404 rest_no_route', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/wp/v99/posts`);
+    const response = await request.get('wp-json/wp/v99/posts');
     expect(response.status()).toBe(404);
 
     const body = await response.json();
