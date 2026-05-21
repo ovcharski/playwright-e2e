@@ -1,13 +1,12 @@
 import test, { expect } from '@playwright/test';
 
-const BASE_URL = 'https://ovcharski.com/shop/wp-json';
 const API_VERSION = 'wp/v2';
 
 test.describe('WordPress API Tests', () => {
   
   test.describe('Core API Endpoints', () => {
     test('GET /wp/v2 should return API structure', async ({ request }) => {
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/`);
+      const response = await request.get(`wp-json/${API_VERSION}/`);
       await expect(response).toBeOK();
       const body = await response.json();
       
@@ -19,7 +18,7 @@ test.describe('WordPress API Tests', () => {
 
   test.describe('Content Endpoints', () => {
     test('GET /pages should return pages with required fields', async ({ request }) => {
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/pages`, {
+      const response = await request.get(`wp-json/${API_VERSION}/pages`, {
         params: { _fields: 'id,link,slug' }
       });
       
@@ -38,7 +37,7 @@ test.describe('WordPress API Tests', () => {
 
     test('GET /posts should support pagination', async ({ request }) => {
       const perPage = 3;
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/posts`, {
+      const response = await request.get(`wp-json/${API_VERSION}/posts`, {
         params: {
           per_page: perPage,
           _fields: 'id'
@@ -55,7 +54,7 @@ test.describe('WordPress API Tests', () => {
 
   test.describe('Taxonomy Endpoints', () => {
     test('GET /categories should return categories with expected structure', async ({ request }) => {
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/categories`, {
+      const response = await request.get(`wp-json/${API_VERSION}/categories`, {
         params: { _fields: 'id,name,slug' }
       });
       
@@ -75,7 +74,7 @@ test.describe('WordPress API Tests', () => {
 
   test.describe('Media Management', () => {
     test('GET /media should return valid media items', async ({ request }) => {
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/media`, {
+      const response = await request.get(`wp-json/${API_VERSION}/media`, {
         params: { _fields: 'id,source_url,alt_text' }
       });
       
@@ -95,12 +94,12 @@ test.describe('WordPress API Tests', () => {
 
   test.describe('Error Handling', () => {
     test('GET non-existent endpoint should return 404', async ({ request }) => {
-      const response = await request.get(`${BASE_URL}/invalid-endpoint`);
+      const response = await request.get('wp-json/invalid-endpoint');
       expect(response.status()).toBe(404);
     });
 
     test('GET invalid post ID should return 404', async ({ request }) => {
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/posts/invalid_id`);
+      const response = await request.get(`wp-json/${API_VERSION}/posts/invalid_id`);
       expect(response.status()).toBe(404);
     });
   });
@@ -108,7 +107,7 @@ test.describe('WordPress API Tests', () => {
   test.describe('Search Functionality', () => {
     test('Search for posts should return relevant results', async ({ request }) => {
       const searchTerm = 'hello';
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/posts`, {
+      const response = await request.get(`wp-json/${API_VERSION}/posts`, {
         params: {
           search: searchTerm,
           _fields: 'id,title,slug'
@@ -127,7 +126,7 @@ test.describe('WordPress API Tests', () => {
 
   test.describe('User Management', () => {
     test('GET /users should not expose sensitive information', async ({ request }) => {
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/users`, {
+      const response = await request.get(`wp-json/${API_VERSION}/users`, {
         params: { _fields: 'id,name,slug' }
       });
       
@@ -144,13 +143,13 @@ test.describe('WordPress API Tests', () => {
 
   test.describe('Comment System', () => {
     test('GET /comments should return comments for valid post', async ({ request }) => {
-      const postsResponse = await request.get(`${BASE_URL}/${API_VERSION}/posts`);
+      const postsResponse = await request.get(`wp-json/${API_VERSION}/posts`);
       const posts = await postsResponse.json();
       const postId = posts[0]?.id;
       
       test.skip(!postId, 'No posts available for comment testing');
       
-      const response = await request.get(`${BASE_URL}/${API_VERSION}/comments`, {
+      const response = await request.get(`wp-json/${API_VERSION}/comments`, {
         params: { post: postId }
       });
       
