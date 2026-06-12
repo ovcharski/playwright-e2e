@@ -92,7 +92,6 @@ Tests interact with Stripe iframe using `page.frameLocator()` and test card numb
 - `@axe-core/playwright`: Accessibility testing
 - `@faker-js/faker`: Test data generation
 - `dotenv`: Env-var loading (used in `global-setup.ts` only; the `playwright.config.ts` hook is commented out)
-- `csv-parser`, `csvtojson`: currently unused — no spec reads CSV data (`assets/searchData.csv` is also unreferenced)
 - `eslint` with `@typescript-eslint/*`: Linting (config in `eslint.config.js`)
 
 ## Related Docs
