@@ -2,7 +2,7 @@
 
 ![Playwright logo](/assets/images/playwright-logo.png 'Playwright logo')
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
 ![Playwright](https://img.shields.io/badge/playwright-latest-green)
 
 Demo automation testing framework created with Playwright, a NodeJS library made for browser automation. It's free, open source and backed up by Microsoft.
@@ -228,19 +228,7 @@ Playwright comes with multiple built-in locators. To make tests resilient, Playw
 
 **page.getByTestId()** to locate an element based on its data-testid attribute (other attributes can be configured).
 
-# Usage
-
-Get started by installing Playwright using npm or yarn. Alternatively you can also get started and run tests using the VS Code Extension.
-
-```bash
-npm init playwright@latest
-```
-
-```bash
-yarn create playwright
-```
-
-## Running tests
+# Running tests
 
 ```bash
 npx playwright test
