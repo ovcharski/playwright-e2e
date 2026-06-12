@@ -31,6 +31,9 @@ async function globalSetup() {
         await page.context().storageState({ path: './LoginAuth.json' });
     } catch (error) {
         console.error('Error during global setup:', error);
+        // Rethrow so a failed login aborts the run — otherwise every test
+        // proceeds with missing/stale auth state and fails confusingly.
+        throw error;
     } finally {
         if (browser) {
             await browser.close();
