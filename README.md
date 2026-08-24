@@ -59,9 +59,9 @@ The [demo website](https://ovcharski.com/shop/) is using WooCommerce - an open-s
 
 The website has few pages - Home, Shop, Login, Registration, Profile.
 
-The products (37) are in 4 categories - Clothing (23), Decor (1), Jenkins Artwork (10), Music (2). Clothing has few subcategories - Accessories (8), Hoodies (4), Jackets (1), Shirts (4), Sweater (1), T-shirts (5).
+The products (37) are in 4 categories - Clothing (23), Decor (1), Jenkins Artwork (10), Music (2). Clothing has few subcategories - Accessories (8), Hoodies (3), Jackets (1), Shirts (4), Sweater (1), T-shirts (5).
 
-The Registration form has 10 fields: username, first name, last name, email, password, gender, birth date, country, phone number. Some of the fields are required, some are optional. Different type of fields are used - text box, password, radio, date picker, dropdown, telephone box.
+The Registration form has 10 fields: username, first name, last name, email, password, confirm password, gender, birth date, country, phone number. Some of the fields are required, some are optional. Different type of fields are used - text box, password, radio, date picker, dropdown, telephone box.
 
 The payment provider is Stripe.
 
@@ -95,7 +95,7 @@ playwright-e2e/
 ├── tests/
 │   ├── api/              # WordPress REST API tests
 │   ├── e2e/              # End-to-end user flows
-│   └── ui/               # Visual and viewport tests
+│   └── ui/               # Viewport and logo checks
 ├── assets/               # Images and fixtures used by tests
 ├── global-setup.ts       # Authenticates once, persists state to LoginAuth.json
 ├── playwright.config.ts
@@ -159,6 +159,8 @@ npm test
 # or: npx playwright test
 ```
 
+> **Heads up:** the suite runs against the live demo shop — there is no local fixture site. A full run places real (Stripe test-mode) orders, registers real users, and leaves items in the shared cart. Avoid running it at the same time as CI: concurrent runs trip the site’s WAF and return 403s that look like test failures.
+
 ## npm scripts
 
 | Script | Description |
@@ -188,7 +190,9 @@ Checkout currency is **Euro**. The Stripe test card flow requires billing detail
 | Data driven tests          | :white_check_mark:    |
 | Accessibility - Axe-core   | :white_check_mark:    |
 | Environment Variables      | :white_check_mark:    |
-| Visual Comparisons         | :white_check_mark:    |
+| Visual Comparisons         | :warning: Disabled    |
+
+> **Visual Comparisons** are implemented but commented out in `tests/ui/logo-compare.spec.ts`. The reference snapshot is Windows-only, so the test fails on the Linux runners used by GitHub Actions.
 
 # Page Object Model (POM)
 
@@ -309,7 +313,7 @@ npm i @playwright/test
 Update to specific version
 
 ```bash
-npm install @playwright/test@1.36.2
+npm install @playwright/test@1.59.1
 ```
 
 Usually after Playwright update, browsers need to be updated
