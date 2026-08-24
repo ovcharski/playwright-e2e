@@ -28,7 +28,7 @@ const validCards = [
 const invalidCardScenarios = [
     { name: 'invalid card number', number: '3782', expiry: validExpiryDate, cvc: '123', error: 'Your card number is incomplete.' },
     { name: 'invalid card date', number: '4242 4242 4242 4242', expiry: '11/24', cvc: '123', error: "Your card's expiration year is in the past." },
-    { name: 'invalid CVC number', number: '4242 4242 4242 4242', expiry: validExpiryDate, cvc: '12', error: "Your card's security code is incomplete." },
+    { name: 'invalid CVC number', number: '4242 4242 4242 4242', expiry: validExpiryDate, cvc: '12', error: 'Your security code is incomplete.' },
 ];
 
 test.describe('Checkout and Payment Tests', () => {
@@ -53,7 +53,7 @@ test.describe('Checkout and Payment Tests', () => {
         test(`Make an order and pay with ${card.name} Card`, async ({ page }) => {
             await completeCheckout(page, checkoutPage);
             await checkoutPage.fillCardDetails(card.number, validExpiryDate, card.cvc);
-            await page.getByText('Credit / Debit Card').click();
+            await page.getByRole('radio', { name: 'Payment options' }).check();
             await checkoutPage.placeOrder();
             await checkoutPage.expectOrderReceived();
         });
