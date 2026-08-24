@@ -6,6 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Playwright E2E testing framework for a WooCommerce shop at `https://ovcharski.com/shop/`. Uses Page Object Model pattern with TypeScript.
 
+Tests run against a **live, shared, stateful site** — there is no local fixture or seeded database. This drives most decisions here:
+
+- Site-side changes (theme tweaks, plugin updates) break tests with no code change on our side. A failure is as likely to be UI drift as a test bug.
+- `make-order-stripe.spec.ts` places real test-mode orders, and the cart accumulates across runs because it lives in the saved auth state.
+- `register.spec.ts` creates real users.
+- API tests are anonymous `GET` only — no writes, no authenticated calls.
+- Concurrent runs (two CI jobs at once, or CI plus a local run) trip the site's WAF and return 403s that look like real failures. Stagger runs rather than adding a concurrency guard.
+
 ## Commands
 
 ```bash
@@ -19,8 +27,9 @@ npm run lint:fix         # Lint and auto-fix
 
 # Playwright CLI (for flags not covered by scripts)
 npx playwright test tests/e2e/login-positive.spec.ts   # Single file
+npx playwright test -g "pay with VISA"                 # Single test by title
+npx playwright test --last-failed                      # Re-run only failures
 npx playwright test --debug                            # Debug mode
-npx playwright test --workers=1                        # Disable parallelization
 npx playwright install --with-deps                     # Install/update browsers
 ```
 
@@ -29,7 +38,9 @@ npx playwright install --with-deps                     # Install/update browsers
 ### Page Object Model Structure
 
 All page classes extend `BasePage` which provides common methods:
-- `typeIntoLocator()`, `clickElement()`, `verifyText()`, `fillForm()`, `navigate()`
+- Actions: `typeIntoLocator()`, `clickElement()`, `fillForm()`, `navigate()`
+- Assertions: `verifyText()`, `verifyTextWithOptions()`, `verifyElementVisible()`, `getTextContent()`
+- `captureScreenshot()` — the only public member; writes timestamped files to `screenshots/`
 
 Page classes in `pages/`:
 - **BasePage.ts**: Abstract base with shared utilities
@@ -39,15 +50,22 @@ Page classes in `pages/`:
 - **ProductPage.ts**: Category/product navigation, price verification
 - **ProfilePage.ts**: Profile updates, file uploads
 
+### Shared Modules
+
+- `helpers/test-data.ts`: faker-backed builders `buildBillingInfo()` and `buildRegistrationUser()`, both accepting overrides. Billing country is pinned to `BG` — the only shipping zone configured in WooCommerce; other countries fail with "No shipping method has been selected".
+- `constants/timeouts.ts`: named timeouts (`SHORT`, `ERROR_MESSAGE`, `ACTION`, `UPLOAD_PROCESSING`, `IFRAME_LOAD`) used by the page objects.
+
 ### Test Organization
 
-- `tests/e2e/`: End-to-end user flows (login, register, checkout, search)
+- `tests/e2e/`: End-to-end user flows (login, register, checkout, search, price checks, accessibility scan)
 - `tests/api/`: WordPress REST API tests
-- `tests/ui/`: Visual and viewport tests
+- `tests/ui/`: Viewport and logo checks. The visual-comparison test in `logo-compare.spec.ts` is commented out — its committed snapshot is win32-only and fails on Linux CI.
 
 ### Authentication
 
-Global setup (`global-setup.ts`) authenticates before all tests and saves state to `LoginAuth.json`.
+Credentials come from `.env` (copy `.env.example`). `global-setup.ts` throws if `TEST_USERNAME` or `TEST_PASSWORD` is missing, which aborts the whole run.
+
+Global setup authenticates before all tests and saves state to `LoginAuth.json` (generated, gitignored). `NoAuth.json` is a committed empty state.
 
 ```typescript
 // Default: tests use authenticated state from LoginAuth.json
@@ -62,8 +80,13 @@ test.use({ storageState: './NoAuth.json' });
 - **Test timeout**: 30s
 - **Expect timeout**: 15s
 - **Browser**: Chromium only
+- **Workers**: 1 everywhere, with `fullyParallel: false` — not just on CI
 - **Video**: `retain-on-failure`; trace: `on-first-retry`
-- **CI**: Single worker, 2 retries
+- **CI**: 2 retries (0 locally)
+
+### CI
+
+`.github/workflows/playwright.yml` runs on push and PR to `main`/`master`: `npm ci` → `npm run lint` → `npx playwright test`. Credentials come from the `TEST_USERNAME` / `TEST_PASSWORD` GitHub secrets, and `playwright-report/` is uploaded as an artifact.
 
 ## Key Patterns
 
@@ -84,7 +107,17 @@ testData.forEach((data) => {
 ```
 
 ### Stripe Payment Handling
-Tests interact with Stripe iframe using `page.frameLocator()` and test card numbers (4242 4242 4242 4242, etc.). Billing details (name, address, email, phone) must be filled before payment — Stripe rejects the transaction otherwise. Checkout currency is Euro.
+
+The gateway renders the Stripe **Payment Element** inside an iframe. `CheckoutPage` reaches it with `page.locator('iframe[name*="__privateStripeFrame"]').first().contentFrame()` — not `frameLocator()`.
+
+- Target the **placeholders** (`1234 1234 1234 1234`, `MM / YY`, `CVC`), which have survived gateway updates. The visible labels ("Card number", "Expiration (MM/YY)", "Security code") have not.
+- The payment method radio is `Payment options` and is already selected — use `.check()`, not `.click()`, so it stays a no-op and cannot fire a stray `update_checkout` AJAX before `#place_order`.
+- Validation strings come from Stripe and change between element versions (e.g. "Your security code is incomplete."). When these tests break, read the current wording out of `error-context.md` instead of guessing.
+- Billing details (name, address, email, phone) must be filled before payment — Stripe rejects the transaction otherwise. Checkout currency is Euro; test cards are 4242 4242 4242 4242 and friends.
+
+### Debugging Failures
+
+`test-results/<test-name>/error-context.md` holds an accessibility snapshot of the page at the moment of failure. It is usually enough to spot a renamed label or moved element without opening a browser — start there. Videos land in the same folder.
 
 ## Dependencies
 
@@ -93,6 +126,7 @@ Tests interact with Stripe iframe using `page.frameLocator()` and test card numb
 - `@faker-js/faker`: Test data generation
 - `dotenv`: Env-var loading (used in `global-setup.ts` only; the `playwright.config.ts` hook is commented out)
 - `eslint` with `@typescript-eslint/*`: Linting (config in `eslint.config.js`)
+- `@types/node`: Node typings for `process.env` access
 
 ## Related Docs
 
