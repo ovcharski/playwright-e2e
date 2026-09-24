@@ -147,6 +147,7 @@ test.describe('WordPress API Tests', () => {
       const posts = await postsResponse.json();
       const postId = posts[0]?.id;
       
+      // eslint-disable-next-line playwright/no-skipped-test -- data-dependent guard: the shared demo site has no seeded fixtures
       test.skip(!postId, 'No posts available for comment testing');
       
       const response = await request.get(`wp-json/${API_VERSION}/comments`, {
