@@ -19,6 +19,10 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+        // Type-aware linting. Needs the TypeScript program, so it only became
+        // possible once tsconfig.json landed.
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
       globals: {
         console: 'readonly',
@@ -34,6 +38,13 @@ export default [
       ...tseslint.configs.recommended.rules,
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      // Promise safety. missing-playwright-await covers expect() and the test
+      // API; it does not cover Page Object methods, and almost every one of
+      // those is async. A forgotten await on one fails silently -- the test
+      // passes having asserted nothing. These three close that gap.
+      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/await-thenable': 'error',
+      '@typescript-eslint/no-misused-promises': 'error',
     },
   },
   {
