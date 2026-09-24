@@ -14,8 +14,28 @@ export default class ProductPage extends BasePage {
         await this.navigate(productUrl);
     }
 
+    // Scoped to the product grid on purpose: the mini-cart widget links to
+    // products by name too, and those links sit outside the viewport, so an
+    // unscoped lookup can resolve to one and then fail to click it.
     async clickProductLink(productName: string) {
-        await this.page.getByRole('link', { name: productName }).first().click();
+        await this.clickElement(this.page.locator('ul.products').getByRole('link', { name: productName }).first());
+    }
+
+    // Scoped to the menu item id on purpose: the primary nav carries a second
+    // "Shop" link inside its nested Pages submenu, so a role-based lookup
+    // matches two elements.
+    async openShop() {
+        await this.clickElement(this.page.locator('#menu-item-126').getByRole('link', { name: 'Shop' }));
+    }
+
+    async openCategory(categoryName: string) {
+        await this.clickElement(this.page.getByLabel(`Visit product category ${categoryName}`));
+    }
+
+    async searchForProduct(query: string) {
+        const searchBox = this.page.getByRole('searchbox', { name: 'Search for:' });
+        await this.typeIntoLocator(searchBox, query);
+        await searchBox.press('Enter');
     }
 
     async verifyPrice(productId: string, expectedPrice: string) {
