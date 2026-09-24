@@ -18,11 +18,11 @@
     "@axe-core/playwright": "^4.11.0",
     "@eslint/js": "^10.0.1",
     "@faker-js/faker": "^10.6.0",
-    "@playwright/test": "^1.59.1",
-    "@types/node": "^26.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.68.0",
-    "@typescript-eslint/parser": "^8.68.0",
-    "dotenv": "^17.4.2",
-    "eslint": "^10.9.1"
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.2",
+    "@typescript-eslint/eslint-plugin": "^8.70.1",
+    "@typescript-eslint/parser": "^8.70.1",
+    "dotenv": "^18.0.3",
+    "eslint": "^10.11.0"
   }
 }
