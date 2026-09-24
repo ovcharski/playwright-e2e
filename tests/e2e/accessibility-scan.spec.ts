@@ -10,6 +10,7 @@ test.describe('Homepage Accessibility', () => {
         const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
         // Save violations to file and log summary
+        // eslint-disable-next-line playwright/no-conditional-in-test -- reporting only; the assertion below runs unconditionally
         if (accessibilityScanResults.violations.length > 0) {
             // Save detailed violations to a file
             fs.writeFileSync('./accessibility-results.json', JSON.stringify(accessibilityScanResults, null, 2));

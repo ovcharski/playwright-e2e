@@ -1,0 +1,3 @@
+# Static checks only. The test suite is deliberately not run here: it drives a
+# live, shared site, takes minutes, and places real test-mode orders.
+npm run typecheck && npm run lint

@@ -5,6 +5,7 @@ const username = process.env.TEST_USERNAME!;
 const password = process.env.TEST_PASSWORD!;
 
 test.use({ storageState: './NoAuth.json' });
+
 test('Login successful', async ({ page }) => {
     const login = new LoginPage(page);
 

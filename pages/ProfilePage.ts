@@ -22,9 +22,10 @@ export default class ProfilePage extends BasePage {
 
     async changeAvatar() {
         await this.page.getByRole('link', { name: 'Change photo' }).click();
-        await this.page.setInputFiles('input[type="file"]', this.imagePath);
+        await this.page.locator('input[type="file"]').setInputFiles(this.imagePath);
         // The following timeout is a workaround for a frontend bug where the "Apply" button
         // becomes enabled before the image upload is actually complete.
+        // eslint-disable-next-line playwright/no-wait-for-timeout -- the bug is that the DOM lies, so there is no state to await
         await this.page.waitForTimeout(2000);
         // Wait for the Apply button to be enabled after file upload
         await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled();
@@ -37,9 +38,10 @@ export default class ProfilePage extends BasePage {
     async changeCoverPhoto() {
         await this.page.locator('ins').filter({ hasText: 'Change your cover photo' }).click();
         await this.page.getByRole('link', { name: 'Change cover photo' }).click();
-        await this.page.setInputFiles('input[type="file"]', this.imagePath);
+        await this.page.locator('input[type="file"]').setInputFiles(this.imagePath);
         // The following timeout is a workaround for a frontend bug where the "Apply" button
         // becomes enabled before the image upload is actually complete.
+        // eslint-disable-next-line playwright/no-wait-for-timeout -- the bug is that the DOM lies, so there is no state to await
         await this.page.waitForTimeout(2000);
         await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({ timeout: TIMEOUTS.UPLOAD_PROCESSING });
         await this.page.getByRole('link', { name: 'Apply' }).click();

@@ -2,6 +2,7 @@ import test, { expect } from '@playwright/test';
 import LoginPage from '../../pages/LoginPage';
 
 test.use({ storageState: './NoAuth.json' });
+
 test('Login with wrong username and password', async ({ page }) => {
     const login = new LoginPage(page);
 
