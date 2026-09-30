@@ -39,6 +39,17 @@ export default class CheckoutPage extends BasePage {
         await this.fillForm(fields);
     }
 
+    async selectCashOnDelivery() {
+        await this.clickElement(this.page.getByText('Cash on delivery'));
+    }
+
+    // .check() rather than .click(): the radio is already selected, so this
+    // stays a no-op and cannot fire a stray update_checkout AJAX before
+    // #place_order.
+    async selectCardPayment() {
+        await this.page.getByRole('radio', { name: 'Payment options' }).check();
+    }
+
     async placeOrder() {
         await this.clickElement(this.page.locator('#place_order'));
     }

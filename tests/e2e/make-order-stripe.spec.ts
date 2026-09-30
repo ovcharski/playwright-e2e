@@ -1,5 +1,7 @@
-import { test, type Page } from '@playwright/test';
+import { test } from '@playwright/test';
+import CartPage from '../../pages/CartPage';
 import CheckoutPage from '../../pages/CheckoutPage';
+import ProductPage from '../../pages/ProductPage';
 import { buildBillingInfo } from '../../helpers/test-data';
 
 // Generate dynamic expiry date (3 years in the future)
@@ -12,10 +14,6 @@ function getFutureExpiryDate(): string {
 }
 
 const validExpiryDate = getFutureExpiryDate();
-
-async function completeCheckout(page: Page, checkoutPage: CheckoutPage) {
-    await checkoutPage.fillCheckoutForm(buildBillingInfo());
-}
 
 // Test data for valid card payments
 const validCards = [
@@ -36,24 +34,26 @@ test.describe('Checkout and Payment Tests', () => {
 
     test.beforeEach(async ({ page }) => {
         checkoutPage = new CheckoutPage(page);
+        const productPage = new ProductPage(page);
+        const cart = new CartPage(page);
 
         // Navigate to the shop and add a product to the cart
         await page.goto('');
-        await page.locator('#menu-item-126').getByRole('link', { name: 'Shop' }).click();
-        await page.getByRole('link', { name: 'Hat 12,00 €' }).click();
-        await page.getByRole('button', { name: 'Add to cart', exact: true }).click();
+        await productPage.openShop();
+        await productPage.clickProductLink('Hat');
+        await cart.addToCart();
 
         // Proceed to checkout
-        await page.locator('#content').getByRole('link', { name: 'View cart ' }).click();
-        await page.getByRole('link', { name: 'Proceed to checkout ' }).click();
+        await cart.viewCart();
+        await cart.proceedToCheckout();
     });
 
     // Data-driven tests for valid card payments
     validCards.forEach((card) => {
-        test(`Make an order and pay with ${card.name} Card`, async ({ page }) => {
-            await completeCheckout(page, checkoutPage);
+        test(`Make an order and pay with ${card.name} Card`, async () => {
+            await checkoutPage.fillCheckoutForm(buildBillingInfo());
             await checkoutPage.fillCardDetails(card.number, validExpiryDate, card.cvc);
-            await page.getByRole('radio', { name: 'Payment options' }).check();
+            await checkoutPage.selectCardPayment();
             await checkoutPage.placeOrder();
             await checkoutPage.expectOrderReceived();
         });
