@@ -43,11 +43,13 @@ export function buildBillingInfo(overrides: Partial<BillingInfo> = {}): BillingI
 
 export function buildRegistrationUser(overrides: Partial<RegistrationUser> = {}): RegistrationUser {
     return {
-        username: faker.person.lastName(),
+        // Numeric suffix avoids collisions with users created by earlier runs
+        username: `${faker.person.lastName()}${faker.string.numeric(6)}`,
         firstName: faker.person.firstName(),
         lastName: faker.person.lastName(),
         email: faker.internet.email(),
-        password: faker.internet.password(),
+        // Site requires at least one number; random faker passwords sometimes have none
+        password: `${faker.internet.password()}1`,
         ...overrides,
     };
 }
