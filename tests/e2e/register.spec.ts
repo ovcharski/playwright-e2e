@@ -42,7 +42,7 @@ test.describe('Invalid Registration Scenarios', () => {
             invalidData.password,
         );
 
-        await register.verifyErrorMessage('emailError', 'The email you entered is incorrect');
+        await register.verifyErrorMessage('emailError', 'This is not a valid email');
         await register.verifyFormSubmissionBlocked();
     });
 
