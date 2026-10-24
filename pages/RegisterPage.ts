@@ -6,13 +6,15 @@ export default class RegisterPage extends BasePage {
         super(page);
     }
 
+    // Ultimate Member suffixes field ids with the form's post ID (-91 today),
+    // which changes if the form is rebuilt, so match on the prefix.
     private readonly selectors = {
-        username: '#user_login-91',
-        firstName: '#first_name-91',
-        lastName: '#last_name-91',
-        email: '#user_email-91',
-        password: '#user_password-91',
-        confirmPassword: '#confirm_user_password-91',
+        username: 'input[id^="user_login-"]',
+        firstName: 'input[id^="first_name-"]',
+        lastName: 'input[id^="last_name-"]',
+        email: 'input[id^="user_email-"]',
+        password: 'input[id^="user_password-"]',
+        confirmPassword: 'input[id^="confirm_user_password-"]',
         // genderMale: 'label:has-text("Male") i.um-icon-android-radio-button-off',
         // genderFemale: 'label:has-text("Female") i.um-icon-android-radio-button-off',
         registerButton: '#um-submit-btn',
@@ -20,10 +22,10 @@ export default class RegisterPage extends BasePage {
 
     private readonly errorSelectors = {
         // formError: '.um-field-error',
-        usernameError: '#um-error-for-user_login-91',
-        emailError: '#um-error-for-user_email-91',
-        passwordError: '#um-error-for-user_password-91',
-        confirmPasswordError: '#um-error-for-confirm_user_password-91',
+        usernameError: '[id^="um-error-for-user_login-"]',
+        emailError: '[id^="um-error-for-user_email-"]',
+        passwordError: '[id^="um-error-for-user_password-"]',
+        confirmPasswordError: '[id^="um-error-for-confirm_user_password-"]',
     };
 
     // Method to fill form fields

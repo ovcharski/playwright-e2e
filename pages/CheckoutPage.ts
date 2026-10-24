@@ -99,6 +99,15 @@ export default class CheckoutPage extends BasePage {
         await expect(this.page.getByText('Thank you. Your order has been received.')).toBeVisible();
     }
 
+    // A server-side decline comes back as a WooCommerce checkout notice, not an
+    // in-iframe validation error. The wording differs between Stripe ("Your
+    // card was declined.") and the gateway's own copy ("The card was
+    // declined."), so match the shared part.
+    async expectOrderDeclined() {
+        await expect(this.page.getByText(/card was declined/i)).toBeVisible();
+        await expect(this.page).toHaveURL('checkout/');
+    }
+
     async expectCardError(message: string) {
         // Wait for the iframe to be visible
         const iframeLocator = this.stripeCardFrame();

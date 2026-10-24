@@ -22,6 +22,10 @@ const validCards = [
     { name: 'American Express', number: '3782 822463 10005', cvc: '1234' },
 ];
 
+// Stripe test card that passes client-side validation but is declined by the
+// server when the order is placed
+const declinedCard = { number: '4000 0000 0000 0002', cvc: '123' };
+
 // Test data for invalid card scenarios
 const invalidCardScenarios = [
     { name: 'invalid card number', number: '3782', expiry: validExpiryDate, cvc: '123', error: 'Your card number is incomplete.' },
@@ -57,6 +61,14 @@ test.describe('Checkout and Payment Tests', () => {
             await checkoutPage.placeOrder();
             await checkoutPage.expectOrderReceived();
         });
+    });
+
+    test('Make an order and pay with a declined card', async () => {
+        await checkoutPage.fillCheckoutForm(buildBillingInfo());
+        await checkoutPage.fillCardDetails(declinedCard.number, validExpiryDate, declinedCard.cvc);
+        await checkoutPage.selectCardPayment();
+        await checkoutPage.placeOrder();
+        await checkoutPage.expectOrderDeclined();
     });
 
     // Data-driven tests for invalid card scenarios

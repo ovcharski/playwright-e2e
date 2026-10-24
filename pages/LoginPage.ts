@@ -6,9 +6,11 @@ export default class LoginPage extends BasePage {
         super(page);
     }
 
+    // Ultimate Member suffixes field ids with the form's post ID (-92 today),
+    // which changes if the form is rebuilt, so match on the prefix.
     private readonly selectors = {
-        username: '#username-92',
-        password: '#user_password-92',
+        username: 'input[id^="username-"]',
+        password: 'input[id^="user_password-"]',
         loginButton: '#um-submit-btn',
     };
 
@@ -23,7 +25,9 @@ export default class LoginPage extends BasePage {
     }
 
     async logout() {
-        await this.clickElement(this.page.locator('#menu-item-130').getByRole('link', { name: 'Login' }));
-        await this.clickElement(this.page.locator('#post-96').getByRole('link', { name: 'Logout' }));
+        await this.clickElement(
+            this.page.locator('.primary-navigation').getByRole('link', { name: 'Login', exact: true }),
+        );
+        await this.clickElement(this.page.getByRole('main').getByRole('link', { name: 'Logout' }));
     }
 }
