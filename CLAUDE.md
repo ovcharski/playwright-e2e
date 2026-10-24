@@ -135,7 +135,6 @@ The gateway renders the Stripe **Payment Element** inside an iframe. `CheckoutPa
 
 - `README.md`: Public-facing project intro and setup
 - `IMPROVEMENTS.md`: Tracked improvement ideas and rationale
-- `plawryghtchanges.md`: Digest of Playwright release notes (not a project change log)
 
 ## Behavioral Guidelines
 
