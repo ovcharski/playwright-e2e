@@ -37,8 +37,11 @@ export default abstract class BasePage {
         const { exact = false, normalizeWhitespace = true, timeout = TIMEOUTS.SHORT } = options;
 
         if (normalizeWhitespace) {
+            // Escape regex metacharacters first so text like "(" or "." matches
+            // literally, then let any run of whitespace match any other.
             // Note: replaceAll() doesn't support regex, must use replace() with global flag
-            await expect(locator).toHaveText(new RegExp(expectedText.replace(/\s+/g, String.raw`\s+`)), {
+            const escaped = expectedText.replace(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
+            await expect(locator).toHaveText(new RegExp(escaped.replace(/\s+/g, String.raw`\s+`)), {
                 timeout,
             });
         } else if (exact) {

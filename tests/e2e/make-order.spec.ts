@@ -43,7 +43,7 @@ test('Make an order via search', async ({ page }) => {
 
     // Search for product
     await page.goto('');
-    await productPage.searchForProduct('Jenkinstein');
+    await productPage.searchAndOpenProduct('Jenkinstein', 'product/jenkins-jenkinstein/');
     await expect(page).toHaveURL('product/jenkins-jenkinstein/');
 
     // Add product to cart and proceed to checkout

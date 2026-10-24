@@ -38,6 +38,18 @@ export default class ProductPage extends BasePage {
         await searchBox.press('Enter');
     }
 
+    // WooCommerce jumps straight to the product page when a search has exactly
+    // one match and shows a results grid otherwise. Handle both, so a new
+    // product that also matches the query does not break the test.
+    async searchAndOpenProduct(query: string, productPath: string) {
+        const isProductPage = (url: URL) => url.pathname.endsWith(`/${productPath}`);
+        await this.searchForProduct(query);
+        await this.page.waitForURL((url) => isProductPage(url) || url.searchParams.has('s'));
+        if (!isProductPage(new URL(this.page.url()))) {
+            await this.clickElement(this.page.locator(`ul.products a[href$="/${productPath}"]`).first());
+        }
+    }
+
     // Price lookups are scoped to the product's own .summary: #product-<id>
     // also wraps the related-products grid, whose prices would otherwise match.
     async verifyPrice(productId: string, expectedPrice: string) {
