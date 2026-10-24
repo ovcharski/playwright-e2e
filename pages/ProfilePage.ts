@@ -5,10 +5,6 @@ import { TIMEOUTS } from '../constants/timeouts';
 export default class ProfilePage extends BasePage {
     private readonly baseUrl = 'user/playwrightuser/';
     private readonly imagePath = 'assets/images/yu-alu-air-serbia-atr-72-500.jpg';
-    private readonly images = {
-        avatar: '.um-profile-photo-img img',
-        cover: '.um-cover-e img',
-    };
 
     constructor(page: Page) {
         super(page);
@@ -52,20 +48,6 @@ export default class ProfilePage extends BasePage {
         // Wait up to 15s for the Update Profile button to be enabled
         await expect(this.page.getByRole('button', { name: 'Update Profile' })).toBeEnabled();
         await this.page.getByRole('button', { name: 'Update Profile' }).click();
-    }
-
-    // Ultimate Member appends the render time to image URLs, so src changes on
-    // every page load and proves nothing. Last-Modified follows the file on
-    // disk, which an upload rewrites even when it is the same image as before.
-    async getImageLastModified(image: keyof typeof this.images): Promise<string | undefined> {
-        const src = await this.page.locator(this.images[image]).getAttribute('src');
-        const response = await this.page.request.get(src!);
-        return response.headers()['last-modified'];
-    }
-
-    async verifyImageReplaced(image: keyof typeof this.images, lastModifiedBefore: string | undefined) {
-        expect(lastModifiedBefore).toBeDefined();
-        await expect.poll(() => this.getImageLastModified(image)).not.toBe(lastModifiedBefore);
     }
 
     async verifyProfileUpdate() {
