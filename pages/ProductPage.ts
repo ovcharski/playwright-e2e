@@ -21,11 +21,11 @@ export default class ProductPage extends BasePage {
         await this.clickElement(this.page.locator('ul.products').getByRole('link', { name: productName }).first());
     }
 
-    // Scoped to the menu item id on purpose: the primary nav carries a second
-    // "Shop" link inside its nested Pages submenu, so a role-based lookup
-    // matches two elements.
+    // Top-level menu links only: the primary nav carries a second "Shop" link
+    // inside its nested Pages submenu, so a role-based lookup matches two
+    // elements. (Menu item ids would work too, but change if the menu is rebuilt.)
     async openShop() {
-        await this.clickElement(this.page.locator('#menu-item-126').getByRole('link', { name: 'Shop' }));
+        await this.clickElement(this.page.locator('.primary-navigation ul.menu > li > a').filter({ hasText: /^Shop$/ }));
     }
 
     async openCategory(categoryName: string) {
@@ -50,22 +50,22 @@ export default class ProductPage extends BasePage {
         }
     }
 
-    // Price lookups are scoped to the product's own .summary: #product-<id>
-    // also wraps the related-products grid, whose prices would otherwise match.
-    async verifyPrice(productId: string, expectedPrice: string) {
-        const priceLocator = this.page.locator(`#product-${productId} .summary .price`);
+    // Price lookups are scoped to the product's own .summary: the page also
+    // shows a related-products grid, whose prices would otherwise match.
+    async verifyPrice(expectedPrice: string) {
+        const priceLocator = this.page.locator('.summary .price');
         await this.verifyElementVisible(priceLocator);
         await this.verifyText(priceLocator, expectedPrice);
     }
 
-    async verifyOldPrice(productId: string, price: string) {
-        const oldPriceLocator = this.page.locator(`#product-${productId} .summary .price del`);
+    async verifyOldPrice(price: string) {
+        const oldPriceLocator = this.page.locator('.summary .price del');
         await this.verifyElementVisible(oldPriceLocator);
         await this.verifyText(oldPriceLocator, price);
     }
 
-    async verifyNewPrice(productId: string, price: string) {
-        const newPriceLocator = this.page.locator(`#product-${productId} .summary .price ins`);
+    async verifyNewPrice(price: string) {
+        const newPriceLocator = this.page.locator('.summary .price ins');
         await this.verifyElementVisible(newPriceLocator);
         await this.verifyText(newPriceLocator, price);
     }
