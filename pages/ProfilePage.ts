@@ -30,6 +30,9 @@ export default class ProfilePage extends BasePage {
         // Wait for the Apply button to be enabled after file upload
         await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled();
         await this.page.getByRole('link', { name: 'Apply' }).click();
+        // Apply fades Ultimate Member's modal out, and its overlay keeps
+        // intercepting clicks on Update Profile until it is gone.
+        await expect(this.page.locator('.um-modal-overlay')).toBeHidden();
         // Wait for the Update Profile button to be ready
         await expect(this.page.getByRole('button', { name: 'Update Profile' })).toBeEnabled();
         await this.page.getByRole('button', { name: 'Update Profile' }).click();
@@ -45,6 +48,9 @@ export default class ProfilePage extends BasePage {
         await this.page.waitForTimeout(2000);
         await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({ timeout: TIMEOUTS.UPLOAD_PROCESSING });
         await this.page.getByRole('link', { name: 'Apply' }).click();
+        // Apply fades Ultimate Member's modal out, and its overlay keeps
+        // intercepting clicks on Update Profile until it is gone.
+        await expect(this.page.locator('.um-modal-overlay')).toBeHidden();
         // Wait up to 15s for the Update Profile button to be enabled
         await expect(this.page.getByRole('button', { name: 'Update Profile' })).toBeEnabled();
         await this.page.getByRole('button', { name: 'Update Profile' }).click();
