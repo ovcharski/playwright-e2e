@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import ProductPage from '../../pages/ProductPage';
 
 const testData = [
     { searchQuery: 'Album', sku: 'woo-album', url: 'product/album/' },
@@ -18,8 +19,6 @@ const testData = [
     { searchQuery: 'Pennant', sku: 'wp-pennant', url: 'product/wordpress-pennant/' },
 ];
 
-const search = '#woocommerce-product-search-field-0';
-
 test.beforeEach(async ({ page }) => {
     await page.goto('');
 });
@@ -27,8 +26,7 @@ test.beforeEach(async ({ page }) => {
 test.describe('Search for products with SKUs', () => {
     testData.forEach((data) => {
         test(`Search for a ${data.searchQuery}`, async ({ page }) => {
-            await page.locator(search).fill(data.searchQuery);
-            await page.locator(search).press('Enter');
+            await new ProductPage(page).searchAndOpenProduct(data.searchQuery, data.url);
 
             await expect(page.getByText(`SKU: ${data.sku}`)).toBeVisible();
             await expect(page).toHaveURL(data.url);
