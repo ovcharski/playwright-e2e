@@ -1,10 +1,24 @@
-import { expect, Page } from '@playwright/test';
+import { expect, Page, Request } from '@playwright/test';
 import BasePage from './BasePage';
 import { TIMEOUTS } from '../constants/timeouts';
 
 export default class CheckoutPage extends BasePage {
+    // In-flight update_order_review requests. WooCommerce sends one whenever an
+    // address field changes, and its response re-renders the payment section,
+    // which remounts the Stripe iframe.
+    private pendingCheckoutUpdates = 0;
+
     constructor(page: Page) {
         super(page);
+        const isCheckoutUpdate = (request: Request) => request.url().includes('wc-ajax=update_order_review');
+        const settle = (request: Request) => {
+            if (isCheckoutUpdate(request)) this.pendingCheckoutUpdates--;
+        };
+        page.on('request', (request) => {
+            if (isCheckoutUpdate(request)) this.pendingCheckoutUpdates++;
+        });
+        page.on('requestfinished', settle);
+        page.on('requestfailed', settle);
     }
 
     async fillCheckoutForm(billingInfo: {
@@ -20,9 +34,8 @@ export default class CheckoutPage extends BasePage {
         email: string;
     }) {
         // Set country first — WooCommerce refreshes shipping methods via AJAX
-        // when the country changes and overlays the form with .blockUI until done.
+        // when the country changes.
         await this.page.locator('#billing_country').selectOption(billingInfo.country);
-        await expect(this.page.locator('.blockUI')).toHaveCount(0);
 
         const fields = {
             '#billing_first_name': billingInfo.firstname,
@@ -37,6 +50,12 @@ export default class CheckoutPage extends BasePage {
         };
 
         await this.fillForm(fields);
+
+        // Wait for every update the fields above triggered to land, so the
+        // payment section is not re-rendered while the card is being typed in.
+        // Checking .blockUI alone races: the overlay may not have appeared yet.
+        await expect.poll(() => this.pendingCheckoutUpdates).toBe(0);
+        await expect(this.page.locator('.blockUI')).toHaveCount(0);
     }
 
     async selectCashOnDelivery() {
@@ -56,17 +75,23 @@ export default class CheckoutPage extends BasePage {
 
     async fillCardDetails(cardNumber: string, expiryDate: string, cvc: string) {
         // Wait for the iframe to be visible
-        const iframeLocator = this.page.locator('iframe[name*="__privateStripeFrame"]').first();
+        const iframeLocator = this.stripeCardFrame();
         await iframeLocator.waitFor({ state: 'visible', timeout: TIMEOUTS.IFRAME_LOAD });
 
         // Switch to the iframe and fill card details
         const cardFrame = iframeLocator.contentFrame();
-        await cardFrame?.getByPlaceholder('1234 1234 1234 1234').fill(cardNumber);
-        await cardFrame?.getByPlaceholder('MM / YY').fill(expiryDate);
-        await cardFrame?.getByPlaceholder('CVC').fill(cvc);
+        await cardFrame.getByPlaceholder('1234 1234 1234 1234').fill(cardNumber);
+        await cardFrame.getByPlaceholder('MM / YY').fill(expiryDate);
+        await cardFrame.getByPlaceholder('CVC').fill(cvc);
 
         // Blur the CVC field to trigger validation
-        await cardFrame?.getByPlaceholder('CVC').blur();
+        await cardFrame.getByPlaceholder('CVC').blur();
+    }
+
+    // Stripe mounts hidden helper frames alongside the Payment Element, so
+    // take the first visible one rather than the first in DOM order.
+    private stripeCardFrame() {
+        return this.page.locator('iframe[name*="__privateStripeFrame"]').filter({ visible: true }).first();
     }
 
     async expectOrderReceived() {
@@ -76,7 +101,7 @@ export default class CheckoutPage extends BasePage {
 
     async expectCardError(message: string) {
         // Wait for the iframe to be visible
-        const iframeLocator = this.page.locator('iframe[name*="__privateStripeFrame"]').first();
+        const iframeLocator = this.stripeCardFrame();
         await iframeLocator.waitFor({ state: 'visible', timeout: TIMEOUTS.IFRAME_LOAD });
 
         // Switch to the iframe and verify the error message
@@ -88,7 +113,7 @@ export default class CheckoutPage extends BasePage {
 
         // Use regex to handle potential character encoding issues with apostrophes
         const messageRegex = new RegExp(message.replaceAll("'", String.raw`['\u2019]`), 'i');
-        const errorLocator = cardFrame?.getByText(messageRegex);
+        const errorLocator = cardFrame.getByText(messageRegex);
         await expect(errorLocator).toBeVisible({ timeout: TIMEOUTS.ERROR_MESSAGE });
     }
 }

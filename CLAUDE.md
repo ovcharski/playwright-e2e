@@ -108,7 +108,8 @@ testData.forEach((data) => {
 
 ### Stripe Payment Handling
 
-The gateway renders the Stripe **Payment Element** inside an iframe. `CheckoutPage` reaches it with `page.locator('iframe[name*="__privateStripeFrame"]').first().contentFrame()` — not `frameLocator()`.
+The gateway renders the Stripe **Payment Element** inside an iframe. `CheckoutPage` reaches it with `page.locator('iframe[name*="__privateStripeFrame"]').filter({ visible: true }).first().contentFrame()` — not `frameLocator()`. Stripe also mounts hidden helper frames, hence the visibility filter.
+- `fillCheckoutForm` waits until no `update_order_review` request is in flight before returning: each one re-renders the payment section and remounts the Stripe iframe.
 
 - Target the **placeholders** (`1234 1234 1234 1234`, `MM / YY`, `CVC`), which have survived gateway updates. The visible labels ("Card number", "Expiration (MM/YY)", "Security code") have not.
 - The payment method radio is `Payment options` and is already selected — use `.check()`, not `.click()`, so it stays a no-op and cannot fire a stray `update_checkout` AJAX before `#place_order`.

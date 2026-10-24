@@ -38,20 +38,22 @@ export default class ProductPage extends BasePage {
         await searchBox.press('Enter');
     }
 
+    // Price lookups are scoped to the product's own .summary: #product-<id>
+    // also wraps the related-products grid, whose prices would otherwise match.
     async verifyPrice(productId: string, expectedPrice: string) {
-        const priceLocator = this.page.locator(`#product-${productId}`);
+        const priceLocator = this.page.locator(`#product-${productId} .summary .price`);
         await this.verifyElementVisible(priceLocator);
         await this.verifyText(priceLocator, expectedPrice);
     }
 
     async verifyOldPrice(productId: string, price: string) {
-        const oldPriceLocator = this.page.locator(`#product-${productId} del`).first();
+        const oldPriceLocator = this.page.locator(`#product-${productId} .summary .price del`);
         await this.verifyElementVisible(oldPriceLocator);
         await this.verifyText(oldPriceLocator, price);
     }
 
     async verifyNewPrice(productId: string, price: string) {
-        const newPriceLocator = this.page.locator(`#product-${productId} .price ins`).first();
+        const newPriceLocator = this.page.locator(`#product-${productId} .summary .price ins`);
         await this.verifyElementVisible(newPriceLocator);
         await this.verifyText(newPriceLocator, price);
     }

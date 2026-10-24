@@ -1,8 +1,21 @@
 import test, { expect } from '@playwright/test';
 import LoginPage from '../../pages/LoginPage';
 
+const username = process.env.TEST_USERNAME!;
+const password = process.env.TEST_PASSWORD!;
+
+// Logging out destroys the session token server-side. With the shared
+// LoginAuth.json state that would log out every test that runs after this
+// file, so this test logs in with a session of its own.
+test.use({ storageState: './NoAuth.json' });
+
 test('Logout successful', async ({ page }) => {
     const loginPage = new LoginPage(page);
+
+    // Log in with a fresh session
+    await page.goto('login/');
+    await loginPage.login(username, password);
+    await expect(page).toHaveURL('user/playwrightuser/');
 
     // Navigate to login page
     await page.goto('login/');

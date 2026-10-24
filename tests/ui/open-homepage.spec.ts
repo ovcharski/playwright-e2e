@@ -16,7 +16,8 @@ test('Open homepage', async ({ page }) => {
     await homePage.verifyWelcomeText('Welcome to the store');
 
     // Verify footer content with complete text
-    await homePage.verifyFooterText('© Automation Demo Site 2026 Built with WooCommerce');
+    // The site renders the current year in the footer
+    await homePage.verifyFooterText(`© Automation Demo Site ${new Date().getFullYear()} Built with WooCommerce`);
 
     // Capture screenshots
     await homePage.captureHomePageScreenshot('homepage');
