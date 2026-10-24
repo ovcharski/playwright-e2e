@@ -17,7 +17,7 @@ These used to be on the todo list and are now implemented. They're listed here s
 - **Refactored mobile viewport tests.** `tests/ui/open-homepage-mobile-refactored.spec.ts` replaces the earlier duplicated spec.
 - **Visual regression.** `tests/ui/logo-compare.spec.ts` has a `toHaveScreenshot` test, currently commented out with no committed baseline. Generate one with `npx playwright test --update-snapshots` before re-enabling it.
 - **CI on every push/PR.** `.github/workflows/playwright.yml` runs the suite on `ubuntu-latest` for pushes and PRs against `main`/`master`. Uploads the HTML report as a 30-day artifact.
-- **Accessibility checks.** `tests/e2e/accessibility-scan.spec.ts` uses `@axe-core/playwright`.
+- **Accessibility checks.** `tests/e2e/accessibility-scan.spec.ts` uses `@axe-core/playwright` and fails on `critical` violations only; lower-impact ones are logged, and the full results are attached to the HTML report.
 - **Logout flow.** `tests/e2e/logout.spec.ts`.
 - **npm scripts.** `npm test`, `test:headed`, `test:ui`, `report`, `lint`, `lint:fix`, `typecheck`.
 - **Centralized timeouts.** `constants/timeouts.ts` exports named constants (`SHORT`, `ERROR_MESSAGE`, `ACTION`, `UPLOAD_PROCESSING`, `IFRAME_LOAD`). Page objects import these instead of inlining numbers, so tuning a category is a one-line change.
