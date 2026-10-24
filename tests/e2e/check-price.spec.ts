@@ -41,10 +41,10 @@ test.describe('Product Price Verification', () => {
         productPage = new ProductPage(page);
     });
 
-    test('Verify all product prices', async () => {
-        for (const product of products) {
+    products.forEach((product) => {
+        test(`Verify price of ${product.url}`, async () => {
             await productPage.navigateToProduct(`product/${product.url}/`);
             await productPage.verifyPrice(product.id, product.price);
-        }
+        });
     });
 });

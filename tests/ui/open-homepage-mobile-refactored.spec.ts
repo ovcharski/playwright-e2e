@@ -14,8 +14,8 @@ const commonTestSetup = (viewportName: string) => {
       // Verify the welcome text using HomePage methods
       await homePage.verifyWelcomeText("Welcome to the store");
 
-      // Verify the footer text using HomePage methods
-      await homePage.verifyFooterText("© Automation Demo Site 2026 Built with WooCommerce.");
+      // Verify the footer text using HomePage methods (the site renders the current year)
+      await homePage.verifyFooterText(`© Automation Demo Site ${new Date().getFullYear()} Built with WooCommerce.`);
 
       // Capture screenshots with consistent naming
       await homePage.captureScreenshot(viewportName);
