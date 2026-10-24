@@ -24,6 +24,7 @@ npm run test:ui          # UI mode
 npm run report           # View HTML report
 npm run lint             # Lint all files
 npm run lint:fix         # Lint and auto-fix
+npm run typecheck        # TypeScript check (tsc --noEmit)
 
 # Playwright CLI (for flags not covered by scripts)
 npx playwright test tests/e2e/login-positive.spec.ts   # Single file
@@ -39,13 +40,14 @@ npx playwright install --with-deps                     # Install/update browsers
 
 All page classes extend `BasePage` which provides common methods:
 - Actions: `typeIntoLocator()`, `clickElement()`, `fillForm()`, `navigate()`
-- Assertions: `verifyText()`, `verifyTextWithOptions()`, `verifyElementVisible()`, `getTextContent()`
+- Assertions: `verifyText()`, `verifyTextWithOptions()`, `verifyElementVisible()`
 - `captureScreenshot()` — the only public member; writes timestamped files to `screenshots/`
 
 Page classes in `pages/`:
 - **BasePage.ts**: Abstract base with shared utilities
 - **HomePage.ts**: Welcome text, footer, home screenshots
 - **LoginPage.ts**, **RegisterPage.ts**: Authentication flows
+- **CartPage.ts**: Add to cart, view cart, proceed to checkout
 - **CheckoutPage.ts**: Order placement, billing form, Stripe iframe handling
 - **ProductPage.ts**: Category/product navigation, price verification
 - **ProfilePage.ts**: Profile updates, file uploads
@@ -59,7 +61,7 @@ Page classes in `pages/`:
 
 - `tests/e2e/`: End-to-end user flows (login, register, checkout, search, price checks, accessibility scan)
 - `tests/api/`: WordPress REST API tests
-- `tests/ui/`: Viewport and logo checks. The visual-comparison test in `logo-compare.spec.ts` is commented out — its committed snapshot is win32-only and fails on Linux CI.
+- `tests/ui/`: Viewport and logo checks. The visual-comparison test in `logo-compare.spec.ts` is commented out — it has no committed baseline; re-enabling it needs a Linux one generated with `--update-snapshots`.
 
 ### Authentication
 
@@ -86,7 +88,7 @@ test.use({ storageState: './NoAuth.json' });
 
 ### CI
 
-`.github/workflows/playwright.yml` runs on push and PR to `main`/`master`: `npm ci` → `npm run lint` → `npx playwright test`. Credentials come from the `TEST_USERNAME` / `TEST_PASSWORD` GitHub secrets, and `playwright-report/` is uploaded as an artifact.
+`.github/workflows/playwright.yml` runs on push and PR to `main`/`master`: `npm ci` → `npm run lint` → `npm run typecheck` → `npx playwright test`. Credentials come from the `TEST_USERNAME` / `TEST_PASSWORD` GitHub secrets, and `playwright-report/` is uploaded as an artifact.
 
 ## Key Patterns
 
@@ -109,8 +111,8 @@ testData.forEach((data) => {
 ### Stripe Payment Handling
 
 The gateway renders the Stripe **Payment Element** inside an iframe. `CheckoutPage` reaches it with `page.locator('iframe[name*="__privateStripeFrame"]').filter({ visible: true }).first().contentFrame()` — not `frameLocator()`. Stripe also mounts hidden helper frames, hence the visibility filter.
-- `fillCheckoutForm` waits until no `update_order_review` request is in flight before returning: each one re-renders the payment section and remounts the Stripe iframe.
 
+- `fillCheckoutForm` waits until no `update_order_review` request is in flight before returning: each one re-renders the payment section and remounts the Stripe iframe.
 - Target the **placeholders** (`1234 1234 1234 1234`, `MM / YY`, `CVC`), which have survived gateway updates. The visible labels ("Card number", "Expiration (MM/YY)", "Security code") have not.
 - The payment method radio is `Payment options` and is already selected — use `.check()`, not `.click()`, so it stays a no-op and cannot fire a stray `update_checkout` AJAX before `#place_order`.
 - Validation strings come from Stripe and change between element versions (e.g. "Your security code is incomplete."). When these tests break, read the current wording out of `error-context.md` instead of guessing.

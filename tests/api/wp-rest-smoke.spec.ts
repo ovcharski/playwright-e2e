@@ -46,9 +46,11 @@ test.describe('WordPress API Tests', () => {
       
       await expect(response).toBeOK();
       const posts = await response.json();
-      
-      expect(posts).toHaveLength(perPage);
-      expect(response.headers()['x-wp-total']).toBeTruthy();
+      const total = Number(response.headers()['x-wp-total']);
+
+      // A full page unless the site has fewer posts than perPage
+      expect(total).toBeGreaterThan(0);
+      expect(posts).toHaveLength(Math.min(perPage, total));
     });
   });
 
@@ -85,7 +87,9 @@ test.describe('WordPress API Tests', () => {
       mediaItems.forEach((media: { id: number; source_url: string; alt_text: string }) => {
         expect(media).toMatchObject({
           id: expect.any(Number),
-          source_url: expect.stringMatching(/^https?:\/\/.+\/.+\.(jpg|png|gif|jpeg|webp)$/i),
+          // Media covers every attachment type (PDFs, video, svg...), not just
+          // raster images, so only check it is an absolute URL
+          source_url: expect.stringMatching(/^https?:\/\/.+/),
           alt_text: expect.any(String)
         });
       });
@@ -110,7 +114,7 @@ test.describe('WordPress API Tests', () => {
       const response = await request.get(`wp-json/${API_VERSION}/posts`, {
         params: {
           search: searchTerm,
-          _fields: 'id,title,slug'
+          _fields: 'id,title,excerpt,content'
         }
       });
       
@@ -118,17 +122,19 @@ test.describe('WordPress API Tests', () => {
       const results = await response.json();
       
       expect(results).toBeInstanceOf(Array);
-      results.forEach((post: { title: { rendered: string } }) => {
-        expect(post.title.rendered.toLowerCase()).toContain(searchTerm);
+      // WP search matches title, excerpt and content, not just the title
+      results.forEach((post: { title: { rendered: string }; excerpt: { rendered: string }; content: { rendered: string } }) => {
+        const searchable = [post.title.rendered, post.excerpt.rendered, post.content.rendered].join(' ').toLowerCase();
+        expect(searchable).toContain(searchTerm);
       });
     });
   });
 
   test.describe('User Management', () => {
     test('GET /users should not expose sensitive information', async ({ request }) => {
-      const response = await request.get(`wp-json/${API_VERSION}/users`, {
-        params: { _fields: 'id,name,slug' }
-      });
+      // No _fields filter: limiting the response to id,name,slug would strip
+      // the sensitive fields itself and make the assertions below vacuous
+      const response = await request.get(`wp-json/${API_VERSION}/users`);
       
       await expect(response).toBeOK();
       const users = await response.json();
@@ -144,6 +150,7 @@ test.describe('WordPress API Tests', () => {
   test.describe('Comment System', () => {
     test('GET /comments should return comments for valid post', async ({ request }) => {
       const postsResponse = await request.get(`wp-json/${API_VERSION}/posts`);
+      await expect(postsResponse).toBeOK();
       const posts = await postsResponse.json();
       const postId = posts[0]?.id;
       
