@@ -82,6 +82,7 @@ The tests in the framework cover:
 playwright-e2e/
 ├── pages/                # Page Object Model classes
 │   ├── BasePage.ts
+│   ├── CartPage.ts
 │   ├── CheckoutPage.ts
 │   ├── HomePage.ts
 │   ├── LoginPage.ts
@@ -171,6 +172,7 @@ npm test
 | `npm run report` | Open last HTML report |
 | `npm run lint` | ESLint check |
 | `npm run lint:fix` | ESLint auto-fix |
+| `npm run typecheck` | TypeScript check |
 
 ## Stripe and currency
 
@@ -192,7 +194,7 @@ Checkout currency is **Euro**. The Stripe test card flow requires billing detail
 | Environment Variables      | :white_check_mark:    |
 | Visual Comparisons         | :warning: Disabled    |
 
-> **Visual Comparisons** are implemented but commented out in `tests/ui/logo-compare.spec.ts`. The reference snapshot is Windows-only, so the test fails on the Linux runners used by GitHub Actions.
+> **Visual Comparisons** are implemented but commented out in `tests/ui/logo-compare.spec.ts`. There is no committed baseline: the old one was Windows-only and failed on the Linux runners used by GitHub Actions. Re-enabling the test needs a Linux baseline generated with `npx playwright test --update-snapshots`.
 
 # Page Object Model (POM)
 

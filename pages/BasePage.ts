@@ -74,9 +74,4 @@ export default abstract class BasePage {
     protected async navigate(url: string) {
         await this.page.goto(url);
     }
-
-    // Common method to get text content
-    protected async getTextContent(locator: Locator): Promise<string | null> {
-        return await locator.textContent();
-    }
 }
