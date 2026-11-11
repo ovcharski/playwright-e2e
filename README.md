@@ -89,6 +89,8 @@ playwright-e2e/
 │   ├── ProductPage.ts
 │   ├── ProfilePage.ts
 │   └── RegisterPage.ts
+├── fixtures/             # Custom Playwright fixtures (page objects, checkoutWithProduct)
+│   └── test-fixtures.ts
 ├── constants/            # Shared constants (e.g. named timeout budgets)
 │   └── timeouts.ts
 ├── helpers/              # Test data factories (faker wrappers)

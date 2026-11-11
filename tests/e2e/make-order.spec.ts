@@ -1,18 +1,11 @@
-import test, { expect } from '@playwright/test';
-import CartPage from '../../pages/CartPage';
-import CheckoutPage from '../../pages/CheckoutPage';
-import ProductPage from '../../pages/ProductPage';
+import { test, expect } from '../../fixtures/test-fixtures';
 import { buildBillingInfo } from '../../helpers/test-data';
 
 // Test Configuration
 test.use({ storageState: './NoAuth.json' });
 
 // Test Suite
-test('Make an order', async ({ page }) => {
-    const productPage = new ProductPage(page);
-    const cart = new CartPage(page);
-    const checkout = new CheckoutPage(page);
-
+test('Make an order', async ({ page, productPage, cartPage, checkoutPage }) => {
     // Navigate to homepage and browse to Jenkins Artwork category
     await page.goto('');
     await productPage.openCategory('Jenkins Artwork');
@@ -23,39 +16,35 @@ test('Make an order', async ({ page }) => {
     await expect(page).toHaveURL('product/jenkins-cosmonaut/');
 
     // Add product to cart and proceed to checkout
-    await cart.addToCart();
-    await cart.viewCart();
-    await cart.proceedToCheckout();
+    await cartPage.addToCart();
+    await cartPage.viewCart();
+    await cartPage.proceedToCheckout();
 
     // Fill checkout form and select payment method
-    await checkout.fillCheckoutForm(buildBillingInfo());
-    await checkout.selectCashOnDelivery();
-    await checkout.placeOrder();
+    await checkoutPage.fillCheckoutForm(buildBillingInfo());
+    await checkoutPage.selectCashOnDelivery();
+    await checkoutPage.placeOrder();
 
     // Verify order confirmation
-    await checkout.expectOrderReceived();
+    await checkoutPage.expectOrderReceived();
 });
 
-test('Make an order via search', async ({ page }) => {
-    const productPage = new ProductPage(page);
-    const cart = new CartPage(page);
-    const checkout = new CheckoutPage(page);
-
+test('Make an order via search', async ({ page, productPage, cartPage, checkoutPage }) => {
     // Search for product
     await page.goto('');
     await productPage.searchAndOpenProduct('Jenkinstein', 'product/jenkins-jenkinstein/');
     await expect(page).toHaveURL('product/jenkins-jenkinstein/');
 
     // Add product to cart and proceed to checkout
-    await cart.addToCart();
-    await cart.viewCart();
-    await cart.proceedToCheckout();
+    await cartPage.addToCart();
+    await cartPage.viewCart();
+    await cartPage.proceedToCheckout();
 
     // Fill checkout form and complete order
-    await checkout.fillCheckoutForm(buildBillingInfo());
-    await checkout.selectCashOnDelivery();
-    await checkout.placeOrder();
+    await checkoutPage.fillCheckoutForm(buildBillingInfo());
+    await checkoutPage.selectCashOnDelivery();
+    await checkoutPage.placeOrder();
 
     // Verify order confirmation
-    await checkout.expectOrderReceived();
+    await checkoutPage.expectOrderReceived();
 });

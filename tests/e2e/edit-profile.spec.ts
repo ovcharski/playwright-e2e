@@ -1,21 +1,17 @@
-import test from '@playwright/test';
-import ProfilePage from '../../pages/ProfilePage';
+import { test } from '../../fixtures/test-fixtures';
 
 test.describe('User Profile Image Updates', () => {
-    let profilePage: ProfilePage;
-
-    test.beforeEach(async ({ page }) => {
-        profilePage = new ProfilePage(page);
+    test.beforeEach(async ({ profilePage }) => {
         await profilePage.navigateToProfile();
         await profilePage.openProfileEditPage();
     });
 
-    test('Change avatar image', async () => {
+    test('Change avatar image', async ({ profilePage }) => {
         await profilePage.changeAvatar();
         await profilePage.verifyProfileUpdate();
     });
 
-    test('Change cover image', async () => {
+    test('Change cover image', async ({ profilePage }) => {
         await profilePage.changeCoverPhoto();
         await profilePage.verifyProfileUpdate();
     });

@@ -1,14 +1,11 @@
-import { test } from '@playwright/test';
-import HomePage from '../../pages/HomePage';
+import { test } from '../../fixtures/test-fixtures';
 
 test.afterEach(async ({ page }, testInfo) => {
     console.log(`Finished ${testInfo.title} with status ${testInfo.status}`);
     if (testInfo.status !== testInfo.expectedStatus) console.log(`Did not run as expected, ended up at ${page.url()}`);
 });
 
-test('Open homepage', async ({ page }) => {
-    const homePage = new HomePage(page);
-
+test('Open homepage', async ({ page, homePage }) => {
     // Go to homepage
     await page.goto('');
 

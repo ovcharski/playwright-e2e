@@ -1,18 +1,16 @@
-import test, { expect } from '@playwright/test';
+import { test, expect } from '../../fixtures/test-fixtures';
 import { faker } from '@faker-js/faker';
-import RegisterPage from '../../pages/RegisterPage';
 import { buildRegistrationUser } from '../../helpers/test-data';
 import { testUser } from '../../helpers/test-user';
 
 test.use({ storageState: './NoAuth.json' });
 
-test('Register user', async ({ page }) => {
+test('Register user', async ({ page, registerPage }) => {
     const fakeData = buildRegistrationUser();
-    const register = new RegisterPage(page);
 
     await page.goto('register/');
 
-    await register.registerUser(
+    await registerPage.registerUser(
         fakeData.username,
         fakeData.firstName,
         fakeData.lastName,
@@ -25,17 +23,14 @@ test('Register user', async ({ page }) => {
 });
 
 test.describe('Invalid Registration Scenarios', () => {
-    let register: RegisterPage;
-
     test.beforeEach(async ({ page }) => {
         await page.goto('register/');
-        register = new RegisterPage(page);
     });
 
-    test('Should not register with invalid email format', async () => {
+    test('Should not register with invalid email format', async ({ registerPage }) => {
         const invalidData = buildRegistrationUser({ email: 'invalid-email-format' });
 
-        await register.registerUser(
+        await registerPage.registerUser(
             invalidData.username,
             invalidData.firstName,
             invalidData.lastName,
@@ -43,14 +38,14 @@ test.describe('Invalid Registration Scenarios', () => {
             invalidData.password,
         );
 
-        await register.verifyErrorMessage('emailError', 'This is not a valid email');
-        await register.verifyFormSubmissionBlocked();
+        await registerPage.verifyErrorMessage('emailError', 'This is not a valid email');
+        await registerPage.verifyFormSubmissionBlocked();
     });
 
-    test('Should not register with short password', async () => {
+    test('Should not register with short password', async ({ registerPage }) => {
         const invalidData = buildRegistrationUser({ password: '123' }); // Too short password
 
-        await register.registerUser(
+        await registerPage.registerUser(
             invalidData.username,
             invalidData.firstName,
             invalidData.lastName,
@@ -58,14 +53,14 @@ test.describe('Invalid Registration Scenarios', () => {
             invalidData.password,
         );
 
-        await register.verifyErrorMessage('passwordError', 'Your Password must contain at least 8 characters');
-        await register.verifyFormSubmissionBlocked();
+        await registerPage.verifyErrorMessage('passwordError', 'Your Password must contain at least 8 characters');
+        await registerPage.verifyFormSubmissionBlocked();
     });
 
-    test('Should not register with existing username', async () => {
+    test('Should not register with existing username', async ({ registerPage }) => {
         const invalidData = buildRegistrationUser({ username: testUser.username }); // Known existing username
 
-        await register.registerUser(
+        await registerPage.registerUser(
             invalidData.username,
             invalidData.firstName,
             invalidData.lastName,
@@ -73,13 +68,13 @@ test.describe('Invalid Registration Scenarios', () => {
             invalidData.password,
         );
 
-        await register.verifyErrorMessage('usernameError', 'The username you entered is incorrect');
-        await register.verifyFormSubmissionBlocked();
+        await registerPage.verifyErrorMessage('usernameError', 'The username you entered is incorrect');
+        await registerPage.verifyFormSubmissionBlocked();
     });
 
-    test('Should not register with empty required fields', async () => {
+    test('Should not register with empty required fields', async ({ registerPage }) => {
         // Only fill in some fields, leaving others empty
-        await register.fillRegistrationForm(
+        await registerPage.fillRegistrationForm(
             '', // empty username
             faker.person.firstName(),
             faker.person.lastName(),
@@ -87,12 +82,12 @@ test.describe('Invalid Registration Scenarios', () => {
             faker.internet.password(),
         );
 
-        await register.selectGender('male');
-        await register.clickRegisterBtn();
+        await registerPage.selectGender('male');
+        await registerPage.clickRegisterBtn();
 
         // Verify multiple error messages
-        await register.verifyErrorMessage('usernameError', 'Username is required');
-        await register.verifyErrorMessage('emailError', 'E-mail Address is required');
-        await register.verifyFormSubmissionBlocked();
+        await registerPage.verifyErrorMessage('usernameError', 'Username is required');
+        await registerPage.verifyErrorMessage('emailError', 'E-mail Address is required');
+        await registerPage.verifyFormSubmissionBlocked();
     });
 });

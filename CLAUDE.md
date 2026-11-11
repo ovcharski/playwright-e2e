@@ -40,13 +40,17 @@ npx playwright install --with-deps                     # Install/update browsers
 
 ### Page Object Model Structure
 
-All page classes extend `BasePage` which provides common methods:
-- Actions: `typeIntoLocator()`, `clickElement()`, `fillForm()`, `navigate()`
-- Assertions: `verifyText()`, `verifyTextWithOptions()`, `verifyElementVisible()`
-- `captureScreenshot()` — the only public member; attaches the image to the running test, so it appears in the HTML report
+Page objects call the Playwright API directly (`locator.click()`, `locator.fill()`, `expect(...)`). Do not add wrapper methods around single Playwright calls.
+
+All page classes extend `BasePage`, which holds only what every page shares: the `page` reference and `captureScreenshot()`, which attaches the image to the running test so it appears in the HTML report. Subclasses need no constructor of their own.
+
+Form fields are located by label (`getByLabel`). Known exceptions, each explained in a comment at the call site:
+- Checkout billing fields are scoped to `.woocommerce-billing-fields`, because a hidden shipping form carries the same labels.
+- `#billing_country` stays an id selector: the dropdown widget gives its replacement element the same label as the real `<select>`.
+- Registration error messages use id-prefix selectors; they have no accessible name.
 
 Page classes in `pages/`:
-- **BasePage.ts**: Abstract base with shared utilities
+- **BasePage.ts**: Abstract base holding `page` and `captureScreenshot()`
 - **HomePage.ts**: Welcome text, footer, home screenshots
 - **LoginPage.ts**, **RegisterPage.ts**: Authentication flows
 - **CartPage.ts**: Add to cart, view cart, proceed to checkout
@@ -54,10 +58,14 @@ Page classes in `pages/`:
 - **ProductPage.ts**: Category/product navigation, price verification
 - **ProfilePage.ts**: Profile updates, file uploads
 
+### Fixtures
+
+Specs that use page objects import `test` and `expect` from `fixtures/test-fixtures.ts`, not from `@playwright/test`. It provides one fixture per page object (`loginPage`, `cartPage`, `checkoutPage`, `homePage`, `productPage`, `profilePage`, `registerPage`) and `checkoutWithProduct`, a `CheckoutPage` already on the checkout page with one Hat in the cart. Ask for a fixture in the test arguments instead of writing `new XPage(page)`.
+
 ### Shared Modules
 
 - `helpers/test-data.ts`: faker-backed builders `buildBillingInfo()` and `buildRegistrationUser()`, both accepting overrides. Billing country is pinned to `BG` — the only shipping zone configured in WooCommerce; other countries fail with "No shipping method has been selected".
-- `constants/timeouts.ts`: named timeouts (`SHORT`, `ERROR_MESSAGE`, `ACTION`, `UPLOAD_PROCESSING`, `IFRAME_LOAD`) used by the page objects.
+- `constants/timeouts.ts`: named timeouts (`ERROR_MESSAGE`, `UPLOAD_PROCESSING`, `IFRAME_LOAD`) used by the page objects.
 
 ### Test Organization
 

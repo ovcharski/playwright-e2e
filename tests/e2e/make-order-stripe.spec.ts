@@ -1,7 +1,4 @@
-import { test } from '@playwright/test';
-import CartPage from '../../pages/CartPage';
-import CheckoutPage from '../../pages/CheckoutPage';
-import ProductPage from '../../pages/ProductPage';
+import { test } from '../../fixtures/test-fixtures';
 import { buildBillingInfo } from '../../helpers/test-data';
 
 // Generate dynamic expiry date (3 years in the future)
@@ -57,27 +54,12 @@ const invalidCardScenarios = [
 test.use({ storageState: './NoAuth.json' });
 
 test.describe('Checkout and Payment Tests', () => {
-    let checkoutPage: CheckoutPage;
-
-    test.beforeEach(async ({ page }) => {
-        checkoutPage = new CheckoutPage(page);
-        const productPage = new ProductPage(page);
-        const cart = new CartPage(page);
-
-        // Navigate to the shop and add a product to the cart
-        await page.goto('');
-        await productPage.openShop();
-        await productPage.clickProductLink('Hat');
-        await cart.addToCart();
-
-        // Proceed to checkout
-        await cart.viewCart();
-        await cart.proceedToCheckout();
-    });
+    // Every test starts from the checkoutWithProduct fixture: a Hat in the
+    // cart and the checkout page open.
 
     // Data-driven tests for valid card payments
     validCards.forEach((card) => {
-        test(`Make an order and pay with ${card.name} Card`, async () => {
+        test(`Make an order and pay with ${card.name} Card`, async ({ checkoutWithProduct: checkoutPage }) => {
             await checkoutPage.fillCheckoutForm(buildBillingInfo());
             await checkoutPage.fillCardDetails(card.number, validExpiryDate, card.cvc);
             await checkoutPage.selectCardPayment();
@@ -86,7 +68,7 @@ test.describe('Checkout and Payment Tests', () => {
         });
     });
 
-    test('Make an order and pay with a declined card', async () => {
+    test('Make an order and pay with a declined card', async ({ checkoutWithProduct: checkoutPage }) => {
         await checkoutPage.fillCheckoutForm(buildBillingInfo());
         await checkoutPage.fillCardDetails(declinedCard.number, validExpiryDate, declinedCard.cvc);
         await checkoutPage.selectCardPayment();
@@ -96,7 +78,7 @@ test.describe('Checkout and Payment Tests', () => {
 
     // Data-driven tests for invalid card scenarios
     invalidCardScenarios.forEach((scenario) => {
-        test(`Make an order and enter ${scenario.name}`, async () => {
+        test(`Make an order and enter ${scenario.name}`, async ({ checkoutWithProduct: checkoutPage }) => {
             await checkoutPage.fillCardDetails(scenario.number, scenario.expiry, scenario.cvc);
             await checkoutPage.expectCardError(scenario.error);
         });

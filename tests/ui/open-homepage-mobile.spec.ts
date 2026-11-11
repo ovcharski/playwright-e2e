@@ -1,24 +1,4 @@
-import { test, Page } from '@playwright/test';
-import HomePage from '../../pages/HomePage';
-
-// Common test setup to reduce repetition
-const commonTestSetup = (viewportName: string) => {
-    return async ({ page }: { page: Page }) => {
-        const homePage = new HomePage(page);
-
-        await page.goto('');
-
-        // Verify the welcome text using HomePage methods
-        await homePage.verifyWelcomeText('Welcome to the store');
-
-        // Verify the footer text using HomePage methods (the site renders the current year)
-        await homePage.verifyFooterText(`© Automation Demo Site ${new Date().getFullYear()} Built with WooCommerce.`);
-
-        // Capture screenshots with consistent naming
-        await homePage.captureScreenshot(viewportName);
-        await homePage.captureFullPageScreenshot(viewportName);
-    };
-};
+import { test } from '../../fixtures/test-fixtures';
 
 // Device viewport configurations
 const viewports = [
@@ -33,6 +13,18 @@ viewports.forEach((viewport) => {
     test.describe(`${viewport.name.toUpperCase()} viewport`, () => {
         test.use({ viewport: { width: viewport.width, height: viewport.height } });
 
-        test('Open Homepage Mobile', commonTestSetup(viewport.name));
+        test('Open Homepage Mobile', async ({ page, homePage }) => {
+            await page.goto('');
+
+            await homePage.verifyWelcomeText('Welcome to the store');
+
+            // The site renders the current year in the footer
+            await homePage.verifyFooterText(
+                `© Automation Demo Site ${new Date().getFullYear()} Built with WooCommerce.`,
+            );
+
+            await homePage.captureScreenshot(viewport.name);
+            await homePage.captureFullPageScreenshot(viewport.name);
+        });
     });
 });
