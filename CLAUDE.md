@@ -67,7 +67,7 @@ Page classes in `pages/`:
 
 ### Authentication
 
-Credentials come from `.env` (copy `.env.example`). `global-setup.ts` throws if `TEST_USERNAME` or `TEST_PASSWORD` is missing, which aborts the whole run.
+Credentials come from `.env` (copy `.env.example`) and are exposed as `testUser` in `helpers/test-user.ts`, along with the account's profile path and display name. Use `testUser` instead of hard-coding the username, profile URL or "Automation User". The display name defaults to the demo user's; set `TEST_DISPLAY_NAME` for a different account. `global-setup.ts` throws if `TEST_USERNAME` or `TEST_PASSWORD` is missing, which aborts the whole run.
 
 Global setup authenticates before all tests and saves state to `LoginAuth.json` (generated, gitignored). `NoAuth.json` is a committed empty state.
 
@@ -129,7 +129,7 @@ The gateway renders the Stripe **Payment Element** inside an iframe. `CheckoutPa
 - `@playwright/test`: Test framework
 - `@axe-core/playwright`: Accessibility testing
 - `@faker-js/faker`: Test data generation
-- `dotenv`: Env-var loading (used in `global-setup.ts` only; the `playwright.config.ts` hook is commented out)
+- `dotenv`: Env-var loading (in `helpers/test-user.ts`)
 - `eslint` with `@typescript-eslint/*`: Linting (config in `eslint.config.js`)
 - `prettier`: Formatting (config in `.prettierrc.json`: 4 spaces, single quotes, 120 columns)
 - `@types/node`: Node typings for `process.env` access
