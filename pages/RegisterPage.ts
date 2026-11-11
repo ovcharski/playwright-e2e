@@ -1,23 +1,10 @@
-import { expect, Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import BasePage from './BasePage';
 
 export default class RegisterPage extends BasePage {
-    constructor(page: Page) {
-        super(page);
-    }
-
-    // Ultimate Member suffixes field ids with the form's post ID (-91 today),
-    // which changes if the form is rebuilt, so match on the prefix.
-    private readonly selectors = {
-        username: 'input[id^="user_login-"]',
-        firstName: 'input[id^="first_name-"]',
-        lastName: 'input[id^="last_name-"]',
-        email: 'input[id^="user_email-"]',
-        password: 'input[id^="user_password-"]',
-        confirmPassword: 'input[id^="confirm_user_password-"]',
-        registerButton: '#um-submit-btn',
-    };
-
+    // The error elements have no accessible name to locate them by. Ultimate
+    // Member suffixes their ids with the form's post ID (-91 today), which
+    // changes if the form is rebuilt, so match on the prefix.
     private readonly errorSelectors = {
         usernameError: '[id^="um-error-for-user_login-"]',
         emailError: '[id^="um-error-for-user_email-"]',
@@ -25,44 +12,27 @@ export default class RegisterPage extends BasePage {
         confirmPasswordError: '[id^="um-error-for-confirm_user_password-"]',
     };
 
-    // Method to fill form fields
+    // exact: true where one label contains another ("Password" is also part
+    // of "Confirm Password").
     async fillRegistrationForm(username: string, firstname: string, lastname: string, email: string, password: string) {
-        const fields = {
-            [this.selectors.username]: username,
-            [this.selectors.firstName]: firstname,
-            [this.selectors.lastName]: lastname,
-            [this.selectors.email]: email,
-            [this.selectors.password]: password,
-            [this.selectors.confirmPassword]: password,
-        };
-
-        await this.fillForm(fields);
+        await this.page.getByLabel('Username', { exact: true }).fill(username);
+        await this.page.getByLabel('First Name').fill(firstname);
+        await this.page.getByLabel('Last Name').fill(lastname);
+        await this.page.getByLabel('E-mail Address').fill(email);
+        await this.page.getByLabel('Password', { exact: true }).fill(password);
+        await this.page.getByLabel('Confirm Password').fill(password);
     }
 
-    // Public method to select gender
     async selectGender(gender: 'male' | 'female' = 'male') {
-        const genderLocator =
-            gender.toLowerCase() === 'male'
-                ? this.page
-                      .locator('label')
-                      .filter({ hasText: /^Male$/ })
-                      .locator('i')
-                : this.page
-                      .locator('label')
-                      .filter({ hasText: /^Female$/ })
-                      .locator('i');
-
-        // Wait for the gender element to be visible
-        await genderLocator.waitFor({ state: 'visible' });
-        await genderLocator.click();
+        const label = gender === 'male' ? /^Male$/ : /^Female$/;
+        await this.page.locator('label').filter({ hasText: label }).locator('i').click();
     }
 
-    // Public method to click register button
     async clickRegisterBtn() {
-        await this.clickElement(this.page.locator(this.selectors.registerButton));
+        await this.page.getByRole('button', { name: 'Register' }).click();
     }
 
-    // Method that combines all steps
+    // Combines all the steps above
     async registerUser(
         username: string,
         firstname: string,
@@ -76,16 +46,12 @@ export default class RegisterPage extends BasePage {
         await this.clickRegisterBtn();
     }
 
-    // Method to verify error message
     async verifyErrorMessage(field: keyof typeof this.errorSelectors, expectedMessage: string) {
-        const errorLocator = this.page.locator(this.errorSelectors[field]);
-        await this.verifyElementVisible(errorLocator);
-        await this.verifyText(errorLocator, expectedMessage);
+        await expect(this.page.locator(this.errorSelectors[field])).toContainText(expectedMessage);
     }
 
-    // Method to verify form submission blocked
+    // The form was rejected if we are still on the registration page
     async verifyFormSubmissionBlocked() {
-        // Check if we're still on the registration page
         await expect(this.page).toHaveURL(/.*\/register\//);
     }
 }

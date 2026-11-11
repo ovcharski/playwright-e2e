@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import BasePage from './BasePage';
 import { TIMEOUTS } from '../constants/timeouts';
 import { testUser } from '../helpers/test-user';
@@ -6,10 +6,6 @@ import { testUser } from '../helpers/test-user';
 export default class ProfilePage extends BasePage {
     private readonly baseUrl = testUser.profilePath;
     private readonly imagePath = 'assets/images/yu-alu-air-serbia-atr-72-500.jpg';
-
-    constructor(page: Page) {
-        super(page);
-    }
 
     async navigateToProfile() {
         await this.page.goto(this.baseUrl);

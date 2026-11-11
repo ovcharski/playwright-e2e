@@ -1,28 +1,15 @@
-import { Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import BasePage from './BasePage';
-import { TIMEOUTS } from '../constants/timeouts';
 
 export default class HomePage extends BasePage {
-    constructor(page: Page) {
-        super(page);
-    }
-
-    private readonly selectors = {
-        welcomeText: 'text=Welcome to the store',
-        footerText: '.site-info', // Updated to use class selector instead of text
-    };
-
     async verifyWelcomeText(expectedText: string) {
-        const welcomeLocator = this.page.locator(this.selectors.welcomeText);
-        await this.verifyElementVisible(welcomeLocator);
-        await this.verifyText(welcomeLocator, expectedText, true);
+        await expect(this.page.getByText(expectedText, { exact: true })).toBeVisible();
     }
 
+    // toContainText ignores differences in whitespace, which the footer has
+    // plenty of between its text, link and icons.
     async verifyFooterText(expectedText: string) {
-        await this.verifyTextWithOptions(this.page.locator(this.selectors.footerText), expectedText, {
-            normalizeWhitespace: true,
-            timeout: TIMEOUTS.SHORT,
-        });
+        await expect(this.page.locator('.site-info')).toContainText(expectedText);
     }
 
     async captureHomePageScreenshot(screenshotName: string) {

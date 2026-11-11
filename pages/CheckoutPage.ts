@@ -24,22 +24,25 @@ export default class CheckoutPage extends BasePage {
 
     async fillCheckoutForm(billingInfo: BillingInfo) {
         // Set country first — WooCommerce refreshes shipping methods via AJAX
-        // when the country changes.
+        // when the country changes. It is the one field located by id: the
+        // site's dropdown widget hides the real <select> and gives its own
+        // replacement the same "Country / Region" label, so the label matches
+        // both.
         await this.page.locator('#billing_country').selectOption(billingInfo.country);
 
-        const fields = {
-            '#billing_first_name': billingInfo.firstname,
-            '#billing_last_name': billingInfo.lastname,
-            '#billing_company': billingInfo.company,
-            '#billing_address_1': billingInfo.streetaddress,
-            '#billing_address_2': billingInfo.apaddress,
-            '#billing_city': billingInfo.towncity,
-            '#billing_postcode': billingInfo.postcode,
-            '#billing_phone': billingInfo.phone,
-            '#billing_email': billingInfo.email,
-        };
+        // Scoped to the billing section: the page also holds a hidden shipping
+        // form whose fields carry the same labels.
+        const billing = this.page.locator('.woocommerce-billing-fields');
 
-        await this.fillForm(fields);
+        await billing.getByLabel('First name').fill(billingInfo.firstname);
+        await billing.getByLabel('Last name').fill(billingInfo.lastname);
+        await billing.getByLabel('Company name').fill(billingInfo.company);
+        await billing.getByLabel('Street address').fill(billingInfo.streetaddress);
+        await billing.getByLabel('Apartment, suite, unit, etc.').fill(billingInfo.apaddress);
+        await billing.getByLabel('Town / City').fill(billingInfo.towncity);
+        await billing.getByLabel('Postcode / ZIP').fill(billingInfo.postcode);
+        await billing.getByLabel('Phone').fill(billingInfo.phone);
+        await billing.getByLabel('Email address').fill(billingInfo.email);
 
         // Wait for every update the fields above triggered to land, so the
         // payment section is not re-rendered while the card is being typed in.
@@ -49,7 +52,7 @@ export default class CheckoutPage extends BasePage {
     }
 
     async selectCashOnDelivery() {
-        await this.clickElement(this.page.getByText('Cash on delivery'));
+        await this.page.getByText('Cash on delivery').click();
     }
 
     // .check() rather than .click(): the radio is already selected, so this
@@ -60,7 +63,7 @@ export default class CheckoutPage extends BasePage {
     }
 
     async placeOrder() {
-        await this.clickElement(this.page.locator('#place_order'));
+        await this.page.locator('#place_order').click();
     }
 
     async fillCardDetails(cardNumber: string, expiryDate: string, cvc: string) {
