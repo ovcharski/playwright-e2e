@@ -8,7 +8,7 @@ For architecture and commands, see [CLAUDE.md](./CLAUDE.md) and [README.md](./RE
 
 These used to be on the todo list and are now implemented. They're listed here so learners can see *what good looks like* in this codebase.
 
-- **Environment variables.** Credentials are read from `.env` in `global-setup.ts` via `dotenv`. A `.env.example` template ships with the repo.
+- **Environment variables.** Credentials are read from `.env` via `dotenv` in `helpers/test-user.ts`, the one place the suite describes the test account. A `.env.example` template ships with the repo.
 - **Video/trace strategy.** `video: 'retain-on-failure'` and `trace: 'retain-on-failure'` in `playwright.config.ts` — passing tests leave nothing behind, and a failure keeps its video and trace even locally, where there are no retries.
 - **Typed Page Object Model.** `BasePage` methods take `Locator` objects, preserving Playwright's auto-waiting and type safety. The exception is `fillForm`, which takes a map of CSS selector strings. Study `pages/BasePage.ts` first; every other page extends it.
 - **Reused auth state.** `global-setup.ts` logs in once and persists state to `LoginAuth.json`; tests that need an anonymous session opt in with `test.use({ storageState: './NoAuth.json' })`.

@@ -1,9 +1,10 @@
 import { Page, expect } from '@playwright/test';
 import BasePage from './BasePage';
 import { TIMEOUTS } from '../constants/timeouts';
+import { testUser } from '../helpers/test-user';
 
 export default class ProfilePage extends BasePage {
-    private readonly baseUrl = 'user/playwrightuser/';
+    private readonly baseUrl = testUser.profilePath;
     private readonly imagePath = 'assets/images/yu-alu-air-serbia-atr-72-500.jpg';
 
     constructor(page: Page) {
@@ -71,7 +72,7 @@ export default class ProfilePage extends BasePage {
         // A saved form redirects back to the profile; a rejected one stays on
         // ?um_action=edit.
         await expect(this.page).toHaveURL(this.baseUrl);
-        await expect(this.page.getByRole('link', { name: 'Automation User' }).first()).toBeVisible();
-        await expect(this.page.getByRole('heading')).toContainText('Automation User');
+        await expect(this.page.getByRole('link', { name: testUser.displayName }).first()).toBeVisible();
+        await expect(this.page.getByRole('heading')).toContainText(testUser.displayName);
     }
 }

@@ -152,6 +152,8 @@ TEST_USERNAME=playwrightuser
 TEST_PASSWORD=playwrightuser
 ```
 
+To run as a different account, also set `TEST_DISPLAY_NAME` to the name the site shows for it.
+
 > **Note:** These are test credentials for the demo site. In real projects, never commit credentials to source control. This framework uses environment variables to demonstrate the proper security pattern.
 
 6. Run the tests:

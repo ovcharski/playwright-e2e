@@ -1,8 +1,6 @@
 import test, { expect } from '@playwright/test';
 import LoginPage from '../../pages/LoginPage';
-
-const username = process.env.TEST_USERNAME!;
-const password = process.env.TEST_PASSWORD!;
+import { testUser } from '../../helpers/test-user';
 
 // Logging out destroys the session token server-side. With the shared
 // LoginAuth.json state that would log out every test that runs after this
@@ -14,15 +12,15 @@ test('Logout successful', async ({ page }) => {
 
     // Log in with a fresh session
     await page.goto('login/');
-    await loginPage.login(username, password);
-    await expect(page).toHaveURL('user/playwrightuser/');
+    await loginPage.login(testUser.username, testUser.password);
+    await expect(page).toHaveURL(testUser.profilePath);
 
     // Navigate to login page
     await page.goto('login/');
 
     // Verify user is logged in
-    await expect(page.getByRole('link', { name: 'Automation User' })).toBeVisible();
-    await expect(page.getByText('Automation User')).toBeVisible();
+    await expect(page.getByRole('link', { name: testUser.displayName })).toBeVisible();
+    await expect(page.getByText(testUser.displayName)).toBeVisible();
     await expect(page.getByRole('link', { name: 'Your account' })).toBeVisible();
 
     // Perform logout
