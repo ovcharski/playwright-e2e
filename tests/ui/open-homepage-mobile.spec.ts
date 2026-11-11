@@ -3,36 +3,36 @@ import HomePage from '../../pages/HomePage';
 
 // Common test setup to reduce repetition
 const commonTestSetup = (viewportName: string) => {
-  return async ({ page }: { page: Page }) => {
-    const homePage = new HomePage(page);
+    return async ({ page }: { page: Page }) => {
+        const homePage = new HomePage(page);
 
-    await page.goto('');
+        await page.goto('');
 
-    // Verify the welcome text using HomePage methods
-    await homePage.verifyWelcomeText("Welcome to the store");
+        // Verify the welcome text using HomePage methods
+        await homePage.verifyWelcomeText('Welcome to the store');
 
-    // Verify the footer text using HomePage methods (the site renders the current year)
-    await homePage.verifyFooterText(`© Automation Demo Site ${new Date().getFullYear()} Built with WooCommerce.`);
+        // Verify the footer text using HomePage methods (the site renders the current year)
+        await homePage.verifyFooterText(`© Automation Demo Site ${new Date().getFullYear()} Built with WooCommerce.`);
 
-    // Capture screenshots with consistent naming
-    await homePage.captureScreenshot(viewportName);
-    await homePage.captureFullPageScreenshot(viewportName);
-  };
+        // Capture screenshots with consistent naming
+        await homePage.captureScreenshot(viewportName);
+        await homePage.captureFullPageScreenshot(viewportName);
+    };
 };
 
 // Device viewport configurations
 const viewports = [
-  { name: 's10', width: 360, height: 760 },
-  { name: 's20', width: 360, height: 800 },
-  { name: 's20-ultra', width: 412, height: 915 },
-  { name: 'SE', width: 375, height: 667 },
+    { name: 's10', width: 360, height: 760 },
+    { name: 's20', width: 360, height: 800 },
+    { name: 's20-ultra', width: 412, height: 915 },
+    { name: 'SE', width: 375, height: 667 },
 ];
 
 // Dynamically generate tests for each viewport
-viewports.forEach(viewport => {
-  test.describe(`${viewport.name.toUpperCase()} viewport`, () => {
-    test.use({ viewport: { width: viewport.width, height: viewport.height } });
+viewports.forEach((viewport) => {
+    test.describe(`${viewport.name.toUpperCase()} viewport`, () => {
+        test.use({ viewport: { width: viewport.width, height: viewport.height } });
 
-    test('Open Homepage Mobile', commonTestSetup(viewport.name));
-  });
+        test('Open Homepage Mobile', commonTestSetup(viewport.name));
+    });
 });

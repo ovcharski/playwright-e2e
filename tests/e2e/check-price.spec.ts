@@ -21,7 +21,7 @@ test('Navigate to 2 products and check their prices', async ({ page }) => {
 
     // Jenkins Beekeeper Jenkins
     await productPage.navigateToCategory('product-category/jenkins-artwork/');
-    await productPage.clickProductLink('Jenkins Beekeeper Jenkins' );
+    await productPage.clickProductLink('Jenkins Beekeeper Jenkins');
     await expect(page).toHaveURL(/jenkins-beekeeper/);
     await productPage.verifyOldPrice('20,00 €');
     await productPage.verifyNewPrice('15,99 €');

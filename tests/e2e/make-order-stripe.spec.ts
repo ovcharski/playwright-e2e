@@ -28,9 +28,27 @@ const declinedCard = { number: '4000 0000 0000 0002', cvc: '123' };
 
 // Test data for invalid card scenarios
 const invalidCardScenarios = [
-    { name: 'invalid card number', number: '3782', expiry: validExpiryDate, cvc: '123', error: 'Your card number is incomplete.' },
-    { name: 'invalid card date', number: '4242 4242 4242 4242', expiry: '11/24', cvc: '123', error: "Your card's expiration year is in the past." },
-    { name: 'invalid CVC number', number: '4242 4242 4242 4242', expiry: validExpiryDate, cvc: '12', error: 'Your security code is incomplete.' },
+    {
+        name: 'invalid card number',
+        number: '3782',
+        expiry: validExpiryDate,
+        cvc: '123',
+        error: 'Your card number is incomplete.',
+    },
+    {
+        name: 'invalid card date',
+        number: '4242 4242 4242 4242',
+        expiry: '11/24',
+        cvc: '123',
+        error: "Your card's expiration year is in the past.",
+    },
+    {
+        name: 'invalid CVC number',
+        number: '4242 4242 4242 4242',
+        expiry: validExpiryDate,
+        cvc: '12',
+        error: 'Your security code is incomplete.',
+    },
 ];
 
 // Guest checkout: the logged-in user's cart is stored server-side, so the
