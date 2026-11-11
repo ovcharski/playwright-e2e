@@ -116,10 +116,6 @@ export default class CheckoutPage extends BasePage {
         // Switch to the iframe and verify the error message
         const cardFrame = iframeLocator.contentFrame();
 
-        // Wait for validation to trigger and error to appear after blur
-        // eslint-disable-next-line playwright/no-wait-for-timeout -- Stripe debounces validation inside the iframe; no DOM signal to await
-        await this.page.waitForTimeout(2000);
-
         // Use regex to handle potential character encoding issues with apostrophes
         const messageRegex = new RegExp(message.replaceAll("'", String.raw`['\u2019]`), 'i');
         const errorLocator = cardFrame.getByText(messageRegex);

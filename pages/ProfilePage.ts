@@ -17,6 +17,9 @@ export default class ProfilePage extends BasePage {
     async openProfileEditPage() {
         await this.page.locator('.um-faicon-cog').click();
         await this.page.getByRole('link', { name: 'Edit Profile' }).click();
+        // The photo exists in view mode too, where clicking it just reloads
+        // the profile, so wait for edit mode before touching it.
+        await expect(this.page).toHaveURL(/um_action=edit/);
         await this.page.locator('.um-profile-photo-img').click();
     }
 
@@ -29,7 +32,7 @@ export default class ProfilePage extends BasePage {
         await this.page.waitForTimeout(2000);
         // Wait for the Apply button to be enabled after file upload
         await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled();
-        await this.page.getByRole('link', { name: 'Apply' }).click();
+        await this.applyUpload();
         // Apply fades Ultimate Member's modal out, and its overlay keeps
         // intercepting clicks on Update Profile until it is gone.
         await expect(this.page.locator('.um-modal-overlay')).toBeHidden();
@@ -47,7 +50,7 @@ export default class ProfilePage extends BasePage {
         // eslint-disable-next-line playwright/no-wait-for-timeout -- the bug is that the DOM lies, so there is no state to await
         await this.page.waitForTimeout(2000);
         await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({ timeout: TIMEOUTS.UPLOAD_PROCESSING });
-        await this.page.getByRole('link', { name: 'Apply' }).click();
+        await this.applyUpload();
         // Apply fades Ultimate Member's modal out, and its overlay keeps
         // intercepting clicks on Update Profile until it is gone.
         await expect(this.page.locator('.um-modal-overlay')).toBeHidden();
@@ -56,7 +59,22 @@ export default class ProfilePage extends BasePage {
         await this.page.getByRole('button', { name: 'Update Profile' }).click();
     }
 
+    // Apply sends the crop to um_resize_image, which writes the final file.
+    // Its result is the only proof the picture was replaced: the tests upload
+    // the same image every run, and the <img> src gets a fresh cache-busting
+    // timestamp on every page load whether or not anything changed.
+    private async applyUpload() {
+        const resizeResponse = this.page.waitForResponse(
+            (response) => response.request().postData()?.includes('action=um_resize_image') ?? false,
+        );
+        await this.page.getByRole('link', { name: 'Apply' }).click();
+        expect(await (await resizeResponse).json()).toMatchObject({ success: true });
+    }
+
     async verifyProfileUpdate() {
+        // A saved form redirects back to the profile; a rejected one stays on
+        // ?um_action=edit.
+        await expect(this.page).toHaveURL(this.baseUrl);
         await expect(this.page.getByRole('link', { name: 'Automation User' }).first()).toBeVisible();
         await expect(this.page.getByRole('heading')).toContainText('Automation User');
     }

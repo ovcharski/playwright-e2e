@@ -36,7 +36,9 @@ export function buildBillingInfo(overrides: Partial<BillingInfo> = {}): BillingI
         towncity: faker.location.city(),
         postcode: faker.location.zipCode('####'),
         phone: PHONE_NUMBER,
-        email: faker.internet.email(),
+        // example.com/.org/.net are reserved and never deliver, so order and
+        // welcome mail cannot reach a real person's inbox.
+        email: faker.internet.exampleEmail(),
         ...overrides,
     };
 }
@@ -47,7 +49,9 @@ export function buildRegistrationUser(overrides: Partial<RegistrationUser> = {})
         username: `${faker.person.lastName()}${faker.string.numeric(6)}`,
         firstName: faker.person.firstName(),
         lastName: faker.person.lastName(),
-        email: faker.internet.email(),
+        // example.com/.org/.net are reserved and never deliver, so order and
+        // welcome mail cannot reach a real person's inbox.
+        email: faker.internet.exampleEmail(),
         // Site requires at least one number; random faker passwords sometimes have none
         password: `${faker.internet.password()}1`,
         ...overrides,

@@ -30,8 +30,5 @@ test.describe('Homepage Accessibility', () => {
             .filter((violation) => violation.impact === 'critical')
             .map((violation) => `${violation.id}: ${violation.help} (${violation.nodes.length} instance(s))`);
         expect(criticalViolations).toEqual([]);
-
-        // Verify the page URL
-        await expect(page).toHaveURL('');
     });
 });

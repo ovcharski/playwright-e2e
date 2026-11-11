@@ -1,5 +1,9 @@
 import test, { expect } from '@playwright/test';
 
+// The request fixture inherits storageState from the config; without this the
+// "anonymous" API tests would send the logged-in user's cookies.
+test.use({ storageState: './NoAuth.json' });
+
 const POSTS = 'wp-json/wp/v2/posts';
 
 test.describe('WP /posts — pagination boundaries', () => {
@@ -54,10 +58,15 @@ test.describe('WP /posts — invalid query params', () => {
 });
 
 test.describe('WP /posts — search edge cases', () => {
+  // No attack-shaped payloads (<script>, ' OR 1=1 --): the host's CDN firewall
+  // answers those with 403 before WordPress sees them, so they would test the
+  // firewall, not the API, and count against the runner's IP.
   const searchInputs = [
     { label: 'empty', value: '' },
-    { label: 'special chars (<script>)', value: '<script>alert(1)</script>' },
-    { label: 'sql-ish', value: "' OR 1=1 --" },
+    { label: 'URL-reserved chars', value: '100% & more + #1?' },
+    { label: 'apostrophe', value: "it's" },
+    { label: 'HTML tag', value: '<b>bold</b>' },
+    { label: 'non-ASCII', value: 'кирилица ñ 日本' },
     { label: 'very long (500 chars)', value: 'a'.repeat(500) },
   ];
 
@@ -73,19 +82,6 @@ test.describe('WP /posts — search edge cases', () => {
     });
   });
 
-  test('search with <script> payload is not echoed unsanitized in titles', async ({ request }) => {
-    const payload = '<script>alert(1)</script>';
-    const response = await request.get(POSTS, {
-      params: { search: payload, _fields: 'id,title' },
-    });
-    expect(response.status()).toBe(200);
-
-    const posts: Array<{ id: number; title: { rendered: string } }> = await response.json();
-    // No rendered title should contain the raw, unsanitized payload.
-    posts.forEach((post) => {
-      expect(post.title.rendered).not.toContain('<script>');
-    });
-  });
 });
 
 test.describe('WP /posts — _fields filter behavior', () => {

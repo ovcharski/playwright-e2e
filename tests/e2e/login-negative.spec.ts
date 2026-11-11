@@ -12,7 +12,5 @@ test('Login with wrong username and password', async ({ page }) => {
     // Validate the login failure
     await expect(page).toHaveTitle('Login – Automation Demo Site');
     await expect(page).toHaveURL('login/');
-    await expect(page.getByText('Password is incorrect. Please try again.')).toHaveText(
-        'Password is incorrect. Please try again.',
-    );
+    await expect(page.getByText('Password is incorrect. Please try again.')).toBeVisible();
 });

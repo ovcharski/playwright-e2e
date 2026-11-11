@@ -15,7 +15,7 @@ test('Login successful', async ({ page }) => {
     // Validate the login process
     await expect(page).toHaveTitle('User – Automation Demo Site');
     await expect(page).toHaveURL('user/playwrightuser/');
-    await expect(page.getByRole('heading', { name: 'Automation User' })).toHaveText('Automation User');
+    await expect(page.getByRole('heading', { name: 'Automation User' })).toBeVisible();
 
     // Validate cover photo
     await expect(page.getByRole('img', { name: 'playwrightuser' })).toBeVisible();
