@@ -10,9 +10,9 @@ These used to be on the todo list and are now implemented. They're listed here s
 
 - **Environment variables.** Credentials are read from `.env` in `global-setup.ts` via `dotenv`. A `.env.example` template ships with the repo.
 - **Video/trace strategy.** `video: 'retain-on-failure'` and `trace: 'on-first-retry'` in `playwright.config.ts` — keeps CI artifacts small without losing debug signal.
-- **Typed Page Object Model.** `BasePage` methods take `Locator` objects (not raw selectors), preserving Playwright's auto-waiting and type safety. Study `pages/BasePage.ts` first; every other page extends it.
+- **Typed Page Object Model.** `BasePage` methods take `Locator` objects, preserving Playwright's auto-waiting and type safety. The exception is `fillForm`, which takes a map of CSS selector strings. Study `pages/BasePage.ts` first; every other page extends it.
 - **Reused auth state.** `global-setup.ts` logs in once and persists state to `LoginAuth.json`; tests that need an anonymous session opt in with `test.use({ storageState: './NoAuth.json' })`.
-- **Data-driven tests.** See `tests/e2e/search.spec.ts`, `tests/e2e/register.spec.ts`, and `tests/e2e/make-order-stripe.spec.ts` for the pattern — one `forEach` over a scenario array instead of copy-pasted test blocks.
+- **Data-driven tests.** See `tests/e2e/search.spec.ts` and `tests/e2e/make-order-stripe.spec.ts` for the pattern — one `forEach` over a scenario array instead of copy-pasted test blocks.
 - **Dynamic Stripe expiry.** `make-order-stripe.spec.ts` computes an expiry date from `getFullYear() + 3` rather than hard-coding a year that will eventually expire.
 - **Refactored mobile viewport tests.** `tests/ui/open-homepage-mobile-refactored.spec.ts` replaces the earlier duplicated spec.
 - **Visual regression.** `tests/ui/logo-compare.spec.ts` has a `toHaveScreenshot` test, currently commented out with no committed baseline. Generate one with `npx playwright test --update-snapshots` before re-enabling it.
@@ -23,7 +23,7 @@ These used to be on the todo list and are now implemented. They're listed here s
 - **Centralized timeouts.** `constants/timeouts.ts` exports named constants (`SHORT`, `ERROR_MESSAGE`, `ACTION`, `UPLOAD_PROCESSING`, `IFRAME_LOAD`). Page objects import these instead of inlining numbers, so tuning a category is a one-line change.
 - **Test data factories.** `helpers/test-data.ts` exposes `buildBillingInfo()` and `buildRegistrationUser()` — thin faker wrappers that accept `Partial<>` overrides. Specs no longer repeat the 9-field billing block or the 5-field registration block inline.
 - **Checkout shipping correctness.** `CheckoutPage.fillCheckoutForm` selects `#billing_country` first (default `BG` — the only configured WooCommerce shipping zone), then after filling waits for every in-flight `update_order_review` request and the `.blockUI` overlay to clear, so the Stripe iframe is not remounted mid-entry. Postcode is pinned to a 4-digit Bulgarian format in the factory.
-- **API negative coverage (anonymous GET only).** `tests/api/wp-posts.spec.ts` pins pagination boundaries, invalid params, search edge cases (XSS/SQL-ish payloads), `_fields` abuse, and unsupported namespaces. `tests/api/wp-invalid-ids.spec.ts` parameterizes invalid-ID 404s across `/pages`, `/categories`, `/media`, `/tags`. `tests/api/wc-store-products.spec.ts` covers WooCommerce Store API reads (`/wc/store/v1/products`) plus the `/wc/v3` auth boundary (401 without credentials).
+- **API negative coverage (anonymous GET only).** `tests/api/wp-posts.spec.ts` pins pagination boundaries, invalid params, search edge cases (reserved characters, HTML tags, non-ASCII — no attack-shaped payloads, which the host's CDN firewall blocks with 403), `_fields` abuse, and unsupported namespaces. `tests/api/wp-invalid-ids.spec.ts` parameterizes invalid-ID 404s across `/pages`, `/categories`, `/media`, `/tags`. `tests/api/wc-store-products.spec.ts` covers WooCommerce Store API reads (`/wc/store/v1/products`) plus the `/wc/v3` auth boundary (401 without credentials).
 
 ## Active improvements
 
@@ -48,10 +48,7 @@ Within that scope, still worth adding:
 
 ### Known flake
 
-- **`tests/e2e/check-price.spec.ts`** is marked "Flaky test" with no investigation; CI's 2 retries mask it rather than fix it. The 10-product loop has since been split into one test per product, which removes the most obvious timeout risk. Likely cause: prices rendered after an AJAX call. Fixes to try, in order:
-  1. `await page.waitForLoadState('networkidle')` before assertions, or
-  2. Assert on the price locator with a web-first matcher (`await expect(locator).toHaveText(...)`) which auto-retries, or
-  3. Trace the test once (`--trace on`) and identify the exact moment the price swaps in.
+- **`tests/e2e/check-price.spec.ts`** is marked "Flaky test" with no investigation; CI's 2 retries mask it rather than fix it. The 10-product loop has since been split into one test per product, which removes the most obvious timeout risk. The cause is unknown. Capture a trace of a failing run (`npx playwright test tests/e2e/check-price.spec.ts --repeat-each 5 --trace on`) and read it before changing anything; the assertions are already web-first, so more waiting is unlikely to be the fix.
 
 ### Cross-browser coverage
 

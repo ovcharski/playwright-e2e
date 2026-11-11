@@ -120,7 +120,7 @@ The framework can be configured through `playwright.config.ts`. Key configuratio
 
 ## Prerequisites
 
-- Node.js 20 or higher
+- Node.js 20.19+, 22.13+, or 24 and newer (CI runs on 24)
 - npm
 
 ## Installation
