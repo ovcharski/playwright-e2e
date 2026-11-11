@@ -41,7 +41,7 @@ npx playwright install --with-deps                     # Install/update browsers
 All page classes extend `BasePage` which provides common methods:
 - Actions: `typeIntoLocator()`, `clickElement()`, `fillForm()`, `navigate()`
 - Assertions: `verifyText()`, `verifyTextWithOptions()`, `verifyElementVisible()`
-- `captureScreenshot()` — the only public member; writes timestamped files to `screenshots/`
+- `captureScreenshot()` — the only public member; attaches the image to the running test, so it appears in the HTML report
 
 Page classes in `pages/`:
 - **BasePage.ts**: Abstract base with shared utilities
@@ -61,7 +61,7 @@ Page classes in `pages/`:
 
 - `tests/e2e/`: End-to-end user flows (login, register, checkout, search, price checks, accessibility scan)
 - `tests/api/`: WordPress REST API tests
-- `tests/ui/`: Viewport and logo checks. The visual-comparison test in `logo-compare.spec.ts` is commented out — it has no committed baseline; re-enabling it needs a Linux one generated with `--update-snapshots`.
+- `tests/ui/`: Viewport and logo checks. The visual-comparison test in `logo.spec.ts` is commented out — it has no committed baseline; re-enabling it needs a Linux one generated with `--update-snapshots`.
 
 ### Authentication
 
@@ -83,7 +83,7 @@ test.use({ storageState: './NoAuth.json' });
 - **Expect timeout**: 15s
 - **Browser**: Chromium only
 - **Workers**: 1 everywhere, with `fullyParallel: false` — not just on CI
-- **Video**: `retain-on-failure`; trace: `on-first-retry`
+- **Video**: `retain-on-failure`; trace: `retain-on-failure`
 - **CI**: 2 retries (0 locally)
 
 ### CI

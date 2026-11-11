@@ -113,7 +113,7 @@ The framework can be configured through `playwright.config.ts`. Key configuratio
 -   Base URL: `https://ovcharski.com/shop/`
 -   Test timeout: 30s, expect timeout: 15s
 -   Workers: 1 (sequential); CI retries: 2
--   Video: `retain-on-failure`; Trace: `on-first-retry`
+-   Video: `retain-on-failure`; Trace: `retain-on-failure`
 -   Storage state reused from `LoginAuth.json` (populated by `global-setup.ts`)
 
 # Getting Started
@@ -194,7 +194,7 @@ Checkout currency is **Euro**. The Stripe test card flow requires billing detail
 | Environment Variables      | :white_check_mark:    |
 | Visual Comparisons         | :warning: Disabled    |
 
-> **Visual Comparisons** are implemented but commented out in `tests/ui/logo-compare.spec.ts`. There is no committed baseline: the old one was Windows-only and failed on the Linux runners used by GitHub Actions. Re-enabling the test needs a Linux baseline generated with `npx playwright test --update-snapshots`.
+> **Visual Comparisons** are implemented but commented out in `tests/ui/logo.spec.ts`. There is no committed baseline: the old one was Windows-only and failed on the Linux runners used by GitHub Actions. Re-enabling the test needs a Linux baseline generated with `npx playwright test --update-snapshots`.
 
 # Page Object Model (POM)
 
