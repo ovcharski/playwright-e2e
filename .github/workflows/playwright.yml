@@ -4,6 +4,8 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+permissions:
+  contents: read
 jobs:
   test:
     timeout-minutes: 60
@@ -31,10 +33,10 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
+        run: ./node_modules/.bin/playwright install --with-deps chromium
       - name: Install Playwright system dependencies
         if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps
+        run: ./node_modules/.bin/playwright install-deps chromium
       - name: Run Playwright tests
         run: npx playwright test
         env:

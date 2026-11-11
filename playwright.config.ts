@@ -37,8 +37,8 @@ const config: PlaywrightTestConfig = {
         /* Base URL to use in actions like `await page.goto('/')`. */
         baseURL: 'https://ovcharski.com/shop/',
 
-        /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-        trace: 'on-first-retry',
+        /* Keep the trace of any failed test. See https://playwright.dev/docs/trace-viewer */
+        trace: 'retain-on-failure',
         storageState: './LoginAuth.json',
 
         /* Set headless */

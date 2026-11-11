@@ -61,7 +61,7 @@ test.describe('Invalid Registration Scenarios', () => {
         await register.verifyFormSubmissionBlocked();
     });
 
-    test('should not register with existing username', async () => {
+    test('Should not register with existing username', async () => {
         const invalidData = buildRegistrationUser({ username: 'playwrightuser' }); // Known existing username
 
         await register.registerUser(
@@ -76,7 +76,7 @@ test.describe('Invalid Registration Scenarios', () => {
         await register.verifyFormSubmissionBlocked();
     });
 
-    test('should not register with empty required fields', async () => {
+    test('Should not register with empty required fields', async () => {
         // Only fill in some fields, leaving others empty
         await register.fillRegistrationForm(
             '', // empty username

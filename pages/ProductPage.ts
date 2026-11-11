@@ -69,9 +69,4 @@ export default class ProductPage extends BasePage {
         await this.verifyElementVisible(newPriceLocator);
         await this.verifyText(newPriceLocator, price);
     }
-
-    async verifySaleBadge() {
-        const saleBadgeLocator = this.page.locator('.onsale:has-text("Sale!")');
-        await this.verifyElementVisible(saleBadgeLocator);
-    }
 }
