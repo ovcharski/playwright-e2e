@@ -67,9 +67,9 @@ Page classes in `pages/`:
 
 ### Authentication
 
-Credentials come from `.env` (copy `.env.example`) and are exposed as `testUser` in `helpers/test-user.ts`, along with the account's profile path and display name. Use `testUser` instead of hard-coding the username, profile URL or "Automation User". The display name defaults to the demo user's; set `TEST_DISPLAY_NAME` for a different account. `global-setup.ts` throws if `TEST_USERNAME` or `TEST_PASSWORD` is missing, which aborts the whole run.
+Credentials come from `.env` (copy `.env.example`) and are exposed as `testUser` in `helpers/test-user.ts`, along with the account's profile path and display name. Use `testUser` instead of hard-coding the username, profile URL or "Automation User". The display name defaults to the demo user's; set `TEST_DISPLAY_NAME` for a different account. `tests/auth.setup.ts` fails if `TEST_USERNAME` or `TEST_PASSWORD` is missing, and every other test is then skipped.
 
-Global setup authenticates before all tests and saves state to `LoginAuth.json` (generated, gitignored). `NoAuth.json` is a committed empty state.
+`tests/auth.setup.ts` runs in its own `setup` project, which the `chromium` project depends on. It logs in before all tests and saves state to `LoginAuth.json` (generated, gitignored). Being an ordinary test, a failed login appears in the HTML report with a trace and video. It runs even when a single spec file is selected. `NoAuth.json` is a committed empty state.
 
 ```typescript
 // Default: tests use authenticated state from LoginAuth.json

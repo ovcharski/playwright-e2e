@@ -11,7 +11,7 @@ These used to be on the todo list and are now implemented. They're listed here s
 - **Environment variables.** Credentials are read from `.env` via `dotenv` in `helpers/test-user.ts`, the one place the suite describes the test account. A `.env.example` template ships with the repo.
 - **Video/trace strategy.** `video: 'retain-on-failure'` and `trace: 'retain-on-failure'` in `playwright.config.ts` — passing tests leave nothing behind, and a failure keeps its video and trace even locally, where there are no retries.
 - **Typed Page Object Model.** `BasePage` methods take `Locator` objects, preserving Playwright's auto-waiting and type safety. The exception is `fillForm`, which takes a map of CSS selector strings. Study `pages/BasePage.ts` first; every other page extends it.
-- **Reused auth state.** `global-setup.ts` logs in once and persists state to `LoginAuth.json`; tests that need an anonymous session opt in with `test.use({ storageState: './NoAuth.json' })`.
+- **Reused auth state.** `tests/auth.setup.ts` (the `setup` project, a dependency of `chromium`) logs in once and persists state to `LoginAuth.json`; tests that need an anonymous session opt in with `test.use({ storageState: './NoAuth.json' })`.
 - **Data-driven tests.** See `tests/e2e/search.spec.ts` and `tests/e2e/make-order-stripe.spec.ts` for the pattern — one `forEach` over a scenario array instead of copy-pasted test blocks.
 - **Dynamic Stripe expiry.** `make-order-stripe.spec.ts` computes an expiry date from `getFullYear() + 3` rather than hard-coding a year that will eventually expire.
 - **Refactored mobile viewport tests.** `tests/ui/open-homepage-mobile.spec.ts` replaces the earlier duplicated spec.
@@ -86,6 +86,6 @@ Surfacing these up-front saves an afternoon of debugging.
 - **Checkout currency is Euro.** Price strings include `,00 €` — watch out when asserting against numeric-formatted strings.
 - **Stripe lives in an iframe.** Reach it with `page.locator('iframe[...]').contentFrame()` — see `pages/CheckoutPage.ts`. Test cards: `4242 4242 4242 4242` (success), `4000 0000 0000 0002` (decline), `4000 0027 6000 3184` (3DS challenge).
 - **`workers: 1` is intentional.** The demo site is shared and rate-limited. Don't bump it up without also isolating test data per worker.
-- **Auth state is rebuilt every run.** `global-setup.ts` logs in and rewrites `LoginAuth.json` on every `npx playwright test`, so a stale file is never reused across runs.
+- **Auth state is rebuilt every run.** `tests/auth.setup.ts` logs in and rewrites `LoginAuth.json` on every `npx playwright test`, so a stale file is never reused across runs.
 - **Only Bulgaria has a shipping zone.** WooCommerce admin on the demo site has `BG` as the sole configured shipping zone. Any other country fails with "No shipping method has been selected". `buildBillingInfo()` defaults to `BG` with a 4-digit postcode — override via `buildBillingInfo({ country: 'NL', postcode: '1234 AB' })` only if you first add that zone in admin.
 - **Visual snapshots are OS-specific.** Playwright names baselines like `…-chromium-win32.png` and `…-chromium-linux.png` separately. CI runs on Linux, so commit a `*-linux.png` baseline (generate it on Linux or in Docker) — a Windows-generated one will not match.

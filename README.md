@@ -94,11 +94,11 @@ playwright-e2e/
 ├── helpers/              # Test data factories (faker wrappers)
 │   └── test-data.ts
 ├── tests/
+│   ├── auth.setup.ts     # Logs in once, persists state to LoginAuth.json
 │   ├── api/              # WordPress REST API tests
 │   ├── e2e/              # End-to-end user flows
 │   └── ui/               # Viewport and logo checks
 ├── assets/               # Images and fixtures used by tests
-├── global-setup.ts       # Authenticates once, persists state to LoginAuth.json
 ├── playwright.config.ts
 ├── .env.example          # Template for required env vars
 ├── eslint.config.js
@@ -114,7 +114,7 @@ The framework can be configured through `playwright.config.ts`. Key configuratio
 -   Test timeout: 30s, expect timeout: 15s
 -   Workers: 1 (sequential); CI retries: 2
 -   Video: `retain-on-failure`; Trace: `retain-on-failure`
--   Storage state reused from `LoginAuth.json` (populated by `global-setup.ts`)
+-   Storage state reused from `LoginAuth.json` (populated by `tests/auth.setup.ts`, which runs first as the `setup` project)
 
 # Getting Started
 

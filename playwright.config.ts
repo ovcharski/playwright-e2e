@@ -5,7 +5,6 @@ import { devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-    globalSetup: './global-setup',
     testDir: './tests',
     /* Maximum time one test can run for. */
     timeout: 30000, // 30 seconds
@@ -39,7 +38,6 @@ const config: PlaywrightTestConfig = {
 
         /* Keep the trace of any failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'retain-on-failure',
-        storageState: './LoginAuth.json',
 
         /* Set headless */
         headless: true,
@@ -50,11 +48,20 @@ const config: PlaywrightTestConfig = {
 
     /* Configure projects for major browsers */
     projects: [
+        // Logs in once and saves the session; see tests/auth.setup.ts.
+        {
+            name: 'setup',
+            testMatch: /.*\.setup\.ts/,
+        },
         {
             name: 'chromium',
             use: {
                 ...devices['Desktop Chrome'],
+                // Tests start logged in. Opt out per file with
+                // test.use({ storageState: './NoAuth.json' }).
+                storageState: './LoginAuth.json',
             },
+            dependencies: ['setup'],
         },
 
         // {
