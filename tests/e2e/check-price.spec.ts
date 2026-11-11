@@ -13,22 +13,25 @@ const products = [
     { url: 'jenkins-superhero', price: '30,00 €' },
 ];
 
-// Flaky test
+// Current prices come from the list above, so each one is written down once.
+const priceOf = (url: string) => products.find((product) => product.url === url)!.price;
 
+// The two products on sale show their regular price struck through next to
+// the current one.
 test('Navigate to 2 products and check their prices', async ({ page, productPage }) => {
     // Jenkins Beekeeper Jenkins
     await productPage.navigateToCategory('product-category/jenkins-artwork/');
     await productPage.clickProductLink('Jenkins Beekeeper Jenkins');
     await expect(page).toHaveURL(/jenkins-beekeeper/);
     await productPage.verifyOldPrice('20,00 €');
-    await productPage.verifyNewPrice('15,99 €');
+    await productPage.verifyNewPrice(priceOf('jenkins-beekeeper'));
 
     // Jenkins Magician
     await productPage.navigateToCategory('product-category/jenkins-artwork/');
     await productPage.clickProductLink('Jenkins Magician');
     await expect(page).toHaveURL(/jenkins-magician/);
     await productPage.verifyOldPrice('20,00 €');
-    await productPage.verifyNewPrice('9,99 €');
+    await productPage.verifyNewPrice(priceOf('jenkins-magician'));
 });
 
 test.describe('Product Price Verification', () => {
