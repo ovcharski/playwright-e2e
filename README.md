@@ -69,10 +69,12 @@ The payment provider is Stripe.
 
 The tests in the framework cover:
 
--   User login and registration
--   Search
--   Making an order
--   Using Page Object Model
+-   User login, logout and registration
+-   Search and product prices
+-   Making an order: cash on delivery and Stripe card payments, including declined and invalid cards
+-   Profile image uploads
+-   Accessibility scan of the homepage with axe-core
+-   Using Page Object Model and custom fixtures
 -   GitHub Actions with HTML report
 -   API Testing - Playwright is not the most comprehensive tool for API testing, but it can be used to get access to the REST API of your application. ([Official Documentation - API testing](https://playwright.dev/docs/test-api-testing))
 
@@ -93,8 +95,9 @@ playwright-e2e/
 │   └── test-fixtures.ts
 ├── constants/            # Shared constants (e.g. named timeout budgets)
 │   └── timeouts.ts
-├── helpers/              # Test data factories (faker wrappers)
-│   └── test-data.ts
+├── helpers/              # Test data factories and the test account
+│   ├── test-data.ts      # Faker-backed billing and registration data
+│   └── test-user.ts      # The account tests log in as, read from .env
 ├── tests/
 │   ├── auth.setup.ts     # Logs in once, persists state to LoginAuth.json
 │   ├── api/              # WordPress REST API tests
@@ -138,9 +141,9 @@ cd playwright-e2e
 npm install
 ```
 
-3. Install Playwright browsers:
+3. Install the Playwright browser (the suite runs on Chromium only):
 ```bash
-npx playwright install --with-deps
+npx playwright install --with-deps chromium
 ```
 
 4. Set up environment variables:
@@ -164,7 +167,7 @@ npm test
 # or: npx playwright test
 ```
 
-> **Heads up:** the suite runs against the live demo shop — there is no local fixture site. A full run places real (Stripe test-mode) orders, registers real users, and leaves items in the shared cart. Avoid running it at the same time as CI: concurrent runs trip the site’s WAF and return 403s that look like test failures.
+> **Heads up:** the suite runs against the live demo shop — there is no local fixture site. A full run places real (Stripe test-mode) orders, registers a real user, and re-uploads the test account's profile images. Avoid running it at the same time as CI: concurrent runs trip the site’s WAF and return 403s that look like test failures.
 
 ## npm scripts
 
@@ -190,6 +193,7 @@ Checkout currency is **Euro**. The Stripe test card flow requires billing detail
 | -------------------------- | --------------------- |
 | GitHub Actions             | :white_check_mark:    |
 | Page Object Model          | :white_check_mark:    |
+| Custom fixtures            | :white_check_mark:    |
 | E2E tests                  | :white_check_mark:    |
 | API tests                  | :white_check_mark:    |
 | Mobile ViewPorts tests     | :white_check_mark:    |
@@ -321,7 +325,7 @@ npm i @playwright/test
 Update to specific version
 
 ```bash
-npm install @playwright/test@1.59.1
+npm install @playwright/test@1.65.0
 ```
 
 Usually after Playwright update, browsers need to be updated
