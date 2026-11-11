@@ -1,14 +1,11 @@
-import test, { expect } from '@playwright/test';
-import LoginPage from '../../pages/LoginPage';
+import { test, expect } from '../../fixtures/test-fixtures';
 import { testUser } from '../../helpers/test-user';
 
 test.use({ storageState: './NoAuth.json' });
 
-test('Login successful', async ({ page }) => {
-    const login = new LoginPage(page);
-
+test('Login successful', async ({ page, loginPage }) => {
     await page.goto('login/');
-    await login.login(testUser.username, testUser.password);
+    await loginPage.login(testUser.username, testUser.password);
 
     // Validate the login process
     await expect(page).toHaveTitle('User – Automation Demo Site');

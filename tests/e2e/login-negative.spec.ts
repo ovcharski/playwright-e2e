@@ -1,13 +1,10 @@
-import test, { expect } from '@playwright/test';
-import LoginPage from '../../pages/LoginPage';
+import { test, expect } from '../../fixtures/test-fixtures';
 
 test.use({ storageState: './NoAuth.json' });
 
-test('Login with wrong username and password', async ({ page }) => {
-    const login = new LoginPage(page);
-
+test('Login with wrong username and password', async ({ page, loginPage }) => {
     await page.goto('login/');
-    await login.login('playwrightuser99', 'playwrightuser88'); // Use the login method
+    await loginPage.login('playwrightuser99', 'playwrightuser88');
 
     // Validate the login failure
     await expect(page).toHaveTitle('Login – Automation Demo Site');

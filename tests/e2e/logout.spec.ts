@@ -1,5 +1,4 @@
-import test, { expect } from '@playwright/test';
-import LoginPage from '../../pages/LoginPage';
+import { test, expect } from '../../fixtures/test-fixtures';
 import { testUser } from '../../helpers/test-user';
 
 // Logging out destroys the session token server-side. With the shared
@@ -7,9 +6,7 @@ import { testUser } from '../../helpers/test-user';
 // file, so this test logs in with a session of its own.
 test.use({ storageState: './NoAuth.json' });
 
-test('Logout successful', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-
+test('Logout successful', async ({ page, loginPage }) => {
     // Log in with a fresh session
     await page.goto('login/');
     await loginPage.login(testUser.username, testUser.password);

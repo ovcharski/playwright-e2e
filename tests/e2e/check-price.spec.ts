@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import ProductPage from '../../pages/ProductPage';
+import { test, expect } from '../../fixtures/test-fixtures';
 
 const products = [
     { url: 'jenkins-actor', price: '20,00 €' },
@@ -16,9 +15,7 @@ const products = [
 
 // Flaky test
 
-test('Navigate to 2 products and check their prices', async ({ page }) => {
-    const productPage = new ProductPage(page);
-
+test('Navigate to 2 products and check their prices', async ({ page, productPage }) => {
     // Jenkins Beekeeper Jenkins
     await productPage.navigateToCategory('product-category/jenkins-artwork/');
     await productPage.clickProductLink('Jenkins Beekeeper Jenkins');
@@ -35,14 +32,8 @@ test('Navigate to 2 products and check their prices', async ({ page }) => {
 });
 
 test.describe('Product Price Verification', () => {
-    let productPage: ProductPage;
-
-    test.beforeEach(async ({ page }) => {
-        productPage = new ProductPage(page);
-    });
-
     products.forEach((product) => {
-        test(`Verify price of ${product.url}`, async () => {
+        test(`Verify price of ${product.url}`, async ({ productPage }) => {
             await productPage.navigateToProduct(`product/${product.url}/`);
             await productPage.verifyPrice(product.price);
         });

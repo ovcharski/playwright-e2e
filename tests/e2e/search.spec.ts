@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import ProductPage from '../../pages/ProductPage';
+import { test, expect } from '../../fixtures/test-fixtures';
 
 const testData = [
     { searchQuery: 'Album', sku: 'woo-album', url: 'product/album/' },
@@ -25,8 +24,8 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Search for products with SKUs', () => {
     testData.forEach((data) => {
-        test(`Search for a ${data.searchQuery}`, async ({ page }) => {
-            await new ProductPage(page).searchAndOpenProduct(data.searchQuery, data.url);
+        test(`Search for a ${data.searchQuery}`, async ({ page, productPage }) => {
+            await productPage.searchAndOpenProduct(data.searchQuery, data.url);
 
             await expect(page.getByText(`SKU: ${data.sku}`)).toBeVisible();
             await expect(page).toHaveURL(data.url);
