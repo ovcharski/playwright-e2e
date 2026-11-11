@@ -1,13 +1,10 @@
 import { Browser, chromium, expect, Page } from '@playwright/test';
-import dotenv from 'dotenv';
 import LoginPage from './pages/LoginPage';
 import config from './playwright.config';
-
-dotenv.config({ quiet: true });
+import { testUser } from './helpers/test-user';
 
 async function globalSetup() {
-    const username = process.env.TEST_USERNAME;
-    const password = process.env.TEST_PASSWORD;
+    const { username, password } = testUser;
 
     if (!username || !password) {
         throw new Error('TEST_USERNAME and TEST_PASSWORD must be set in .env file');
@@ -25,7 +22,7 @@ async function globalSetup() {
         await login.login(username, password);
 
         await expect(page).toHaveTitle('User – Automation Demo Site');
-        await expect(page).toHaveURL('user/playwrightuser/');
+        await expect(page).toHaveURL(testUser.profilePath);
 
         // Save the state of the web page
         await page.context().storageState({ path: './LoginAuth.json' });

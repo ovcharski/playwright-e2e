@@ -2,6 +2,7 @@ import test, { expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import RegisterPage from '../../pages/RegisterPage';
 import { buildRegistrationUser } from '../../helpers/test-data';
+import { testUser } from '../../helpers/test-user';
 
 test.use({ storageState: './NoAuth.json' });
 
@@ -62,7 +63,7 @@ test.describe('Invalid Registration Scenarios', () => {
     });
 
     test('Should not register with existing username', async () => {
-        const invalidData = buildRegistrationUser({ username: 'playwrightuser' }); // Known existing username
+        const invalidData = buildRegistrationUser({ username: testUser.username }); // Known existing username
 
         await register.registerUser(
             invalidData.username,
