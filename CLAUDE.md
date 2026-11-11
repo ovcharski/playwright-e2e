@@ -9,7 +9,8 @@ Playwright E2E testing framework for a WooCommerce shop at `https://ovcharski.co
 Tests run against a **live, shared, stateful site** — there is no local fixture or seeded database. This drives most decisions here:
 
 - Site-side changes (theme tweaks, plugin updates) break tests with no code change on our side. A failure is as likely to be UI drift as a test bug.
-- `make-order-stripe.spec.ts` places real test-mode orders, and the cart accumulates across runs because it lives in the saved auth state.
+- `make-order-stripe.spec.ts` and `make-order.spec.ts` place real test-mode orders. Both run as a guest (`NoAuth.json`), so each test gets a fresh cart; do not add to the logged-in user's cart, which is stored server-side and would accumulate across runs.
+- `edit-profile.spec.ts` re-uploads the test account's avatar and cover photo.
 - `register.spec.ts` creates real users.
 - API tests are anonymous `GET` only — no writes, no authenticated calls.
 - Concurrent runs (two CI jobs at once, or CI plus a local run) trip the site's WAF and return 403s that look like real failures. Stagger runs rather than adding a concurrency guard.
