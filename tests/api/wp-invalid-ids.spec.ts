@@ -1,5 +1,9 @@
 import test, { expect } from '@playwright/test';
 
+// The request fixture inherits storageState from the config; without this the
+// "anonymous" API tests would send the logged-in user's cookies.
+test.use({ storageState: './NoAuth.json' });
+
 // WP's REST router treats non-numeric IDs as a route mismatch (not a
 // validation error), so the response is always rest_no_route / 404.
 // Parameterized to prove this holds uniformly across endpoints.

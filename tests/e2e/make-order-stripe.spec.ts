@@ -33,6 +33,11 @@ const invalidCardScenarios = [
     { name: 'invalid CVC number', number: '4242 4242 4242 4242', expiry: validExpiryDate, cvc: '12', error: 'Your security code is incomplete.' },
 ];
 
+// Guest checkout: the logged-in user's cart is stored server-side, so the
+// tests that never complete an order would leave their Hat behind for the
+// next run to buy.
+test.use({ storageState: './NoAuth.json' });
+
 test.describe('Checkout and Payment Tests', () => {
     let checkoutPage: CheckoutPage;
 

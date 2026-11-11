@@ -1,5 +1,9 @@
 import test, { expect } from '@playwright/test';
 
+// The request fixture inherits storageState from the config; without this the
+// "anonymous" API tests would send the logged-in user's cookies.
+test.use({ storageState: './NoAuth.json' });
+
 const API_VERSION = 'wp/v2';
 
 test.describe('WordPress API Tests', () => {

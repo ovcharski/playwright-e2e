@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Playwright E2E testing framework for a WooCommerce demo shop, built to teach QA automation",
   "type": "module",
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
