@@ -37,14 +37,18 @@ export default class ProfilePage extends BasePage {
     // Shared by the avatar and cover flows: once the upload modal is open,
     // both run the same choose-file, Apply, Update Profile steps.
     private async uploadImageAndSave() {
+        // The Apply button is clickable before the upload has finished, and
+        // clicking it then does nothing. Wait for the upload itself, then for
+        // Ultimate Member to load the image into its cropper.
+        const uploadResponse = this.page.waitForResponse(
+            (response) =>
+                response.url().includes('admin-ajax.php') &&
+                (response.request().headers()['content-type'] ?? '').startsWith('multipart/form-data'),
+            { timeout: TIMEOUTS.UPLOAD_PROCESSING },
+        );
         await this.page.locator('input[type="file"]').setInputFiles(this.imagePath);
-        // The following timeout is a workaround for a frontend bug where the "Apply" button
-        // becomes enabled before the image upload is actually complete.
-        // eslint-disable-next-line playwright/no-wait-for-timeout -- the bug is that the DOM lies, so there is no state to await
-        await this.page.waitForTimeout(2000);
-        await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({
-            timeout: TIMEOUTS.UPLOAD_PROCESSING,
-        });
+        expect(await (await uploadResponse).json()).toMatchObject({ success: true });
+        await expect(this.page.locator('.um-modal .cropper-container')).toBeVisible();
 
         // Apply sends the crop to um_resize_image, which writes the final file.
         // Its result is the only proof the picture was replaced: the tests upload
