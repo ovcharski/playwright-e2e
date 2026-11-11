@@ -25,7 +25,9 @@ export default class ProductPage extends BasePage {
     // inside its nested Pages submenu, so a role-based lookup matches two
     // elements. (Menu item ids would work too, but change if the menu is rebuilt.)
     async openShop() {
-        await this.clickElement(this.page.locator('.primary-navigation ul.menu > li > a').filter({ hasText: /^Shop$/ }));
+        await this.clickElement(
+            this.page.locator('.primary-navigation ul.menu > li > a').filter({ hasText: /^Shop$/ }),
+        );
     }
 
     async openCategory(categoryName: string) {

@@ -42,7 +42,9 @@ export default class ProfilePage extends BasePage {
         // becomes enabled before the image upload is actually complete.
         // eslint-disable-next-line playwright/no-wait-for-timeout -- the bug is that the DOM lies, so there is no state to await
         await this.page.waitForTimeout(2000);
-        await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({ timeout: TIMEOUTS.UPLOAD_PROCESSING });
+        await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({
+            timeout: TIMEOUTS.UPLOAD_PROCESSING,
+        });
 
         // Apply sends the crop to um_resize_image, which writes the final file.
         // Its result is the only proof the picture was replaced: the tests upload
