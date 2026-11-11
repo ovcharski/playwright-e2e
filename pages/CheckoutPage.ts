@@ -1,6 +1,7 @@
 import { expect, Page, Request } from '@playwright/test';
 import BasePage from './BasePage';
 import { TIMEOUTS } from '../constants/timeouts';
+import type { BillingInfo } from '../helpers/test-data';
 
 export default class CheckoutPage extends BasePage {
     // In-flight update_order_review requests. WooCommerce sends one whenever an
@@ -21,18 +22,7 @@ export default class CheckoutPage extends BasePage {
         page.on('requestfailed', settle);
     }
 
-    async fillCheckoutForm(billingInfo: {
-        firstname: string;
-        lastname: string;
-        company: string;
-        country: string;
-        streetaddress: string;
-        apaddress: string;
-        towncity: string;
-        postcode: string;
-        phone: string;
-        email: string;
-    }) {
+    async fillCheckoutForm(billingInfo: BillingInfo) {
         // Set country first — WooCommerce refreshes shipping methods via AJAX
         // when the country changes.
         await this.page.locator('#billing_country').selectOption(billingInfo.country);

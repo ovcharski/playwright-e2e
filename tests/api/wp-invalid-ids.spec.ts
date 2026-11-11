@@ -8,6 +8,7 @@ test.use({ storageState: './NoAuth.json' });
 // validation error), so the response is always rest_no_route / 404.
 // Parameterized to prove this holds uniformly across endpoints.
 const endpoints = [
+  { name: 'posts', path: 'posts' },
   { name: 'pages', path: 'pages' },
   { name: 'categories', path: 'categories' },
   { name: 'media', path: 'media' },

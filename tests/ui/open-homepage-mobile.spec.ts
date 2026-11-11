@@ -4,27 +4,19 @@ import HomePage from '../../pages/HomePage';
 // Common test setup to reduce repetition
 const commonTestSetup = (viewportName: string) => {
   return async ({ page }: { page: Page }) => {
-    try {
-      const homePage = new HomePage(page);
+    const homePage = new HomePage(page);
 
-      // The empty object represents options passed to the goto() method.
-      // This object could include several configuration options, such as: timeout, waitUntil, referer, headers
-      await page.goto('', {});
+    await page.goto('');
 
-      // Verify the welcome text using HomePage methods
-      await homePage.verifyWelcomeText("Welcome to the store");
+    // Verify the welcome text using HomePage methods
+    await homePage.verifyWelcomeText("Welcome to the store");
 
-      // Verify the footer text using HomePage methods (the site renders the current year)
-      await homePage.verifyFooterText(`© Automation Demo Site ${new Date().getFullYear()} Built with WooCommerce.`);
+    // Verify the footer text using HomePage methods (the site renders the current year)
+    await homePage.verifyFooterText(`© Automation Demo Site ${new Date().getFullYear()} Built with WooCommerce.`);
 
-      // Capture screenshots with consistent naming
-      await homePage.captureScreenshot(viewportName);
-      await homePage.captureFullPageScreenshot(viewportName);
-
-    } catch (error) {
-      console.error(`Test failed for ${viewportName} viewport:`, error);
-      throw error;
-    }
+    // Capture screenshots with consistent naming
+    await homePage.captureScreenshot(viewportName);
+    await homePage.captureFullPageScreenshot(viewportName);
   };
 };
 

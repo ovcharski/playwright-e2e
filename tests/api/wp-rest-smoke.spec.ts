@@ -105,11 +105,6 @@ test.describe('WordPress API Tests', () => {
       const response = await request.get('wp-json/invalid-endpoint');
       expect(response.status()).toBe(404);
     });
-
-    test('GET invalid post ID should return 404', async ({ request }) => {
-      const response = await request.get(`wp-json/${API_VERSION}/posts/invalid_id`);
-      expect(response.status()).toBe(404);
-    });
   });
 
   test.describe('Search Functionality', () => {

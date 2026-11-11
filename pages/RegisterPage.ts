@@ -15,13 +15,10 @@ export default class RegisterPage extends BasePage {
         email: 'input[id^="user_email-"]',
         password: 'input[id^="user_password-"]',
         confirmPassword: 'input[id^="confirm_user_password-"]',
-        // genderMale: 'label:has-text("Male") i.um-icon-android-radio-button-off',
-        // genderFemale: 'label:has-text("Female") i.um-icon-android-radio-button-off',
         registerButton: '#um-submit-btn',
     };
 
     private readonly errorSelectors = {
-        // formError: '.um-field-error',
         usernameError: '[id^="um-error-for-user_login-"]',
         emailError: '[id^="um-error-for-user_email-"]',
         passwordError: '[id^="um-error-for-user_password-"]',

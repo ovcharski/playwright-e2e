@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, test } from '@playwright/test';
 import { TIMEOUTS } from '../constants/timeouts';
 
 export default abstract class BasePage {
@@ -57,12 +57,12 @@ export default abstract class BasePage {
         await expect(locator).toBeVisible({ timeout });
     }
 
-    // Common method to capture screenshots
+    // Attaches the screenshot to the running test, so it shows up in the HTML
+    // report (which CI uploads) instead of piling up in a local folder.
     public async captureScreenshot(screenshotName: string, fullPage: boolean = false) {
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        await this.page.screenshot({
-            path: `screenshots/${screenshotName}-${timestamp}.png`,
-            fullPage,
+        await test.info().attach(screenshotName, {
+            body: await this.page.screenshot({ fullPage }),
+            contentType: 'image/png',
         });
     }
 

@@ -30,6 +30,6 @@ export default class HomePage extends BasePage {
     }
 
     async captureFullPageScreenshot(screenshotName: string) {
-        await this.captureScreenshot(screenshotName, true);
+        await this.captureScreenshot(`${screenshotName}-full`, true);
     }
 }

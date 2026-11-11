@@ -25,50 +25,40 @@ export default class ProfilePage extends BasePage {
 
     async changeAvatar() {
         await this.page.getByRole('link', { name: 'Change photo' }).click();
-        await this.page.locator('input[type="file"]').setInputFiles(this.imagePath);
-        // The following timeout is a workaround for a frontend bug where the "Apply" button
-        // becomes enabled before the image upload is actually complete.
-        // eslint-disable-next-line playwright/no-wait-for-timeout -- the bug is that the DOM lies, so there is no state to await
-        await this.page.waitForTimeout(2000);
-        // Wait for the Apply button to be enabled after file upload
-        await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled();
-        await this.applyUpload();
-        // Apply fades Ultimate Member's modal out, and its overlay keeps
-        // intercepting clicks on Update Profile until it is gone.
-        await expect(this.page.locator('.um-modal-overlay')).toBeHidden();
-        // Wait for the Update Profile button to be ready
-        await expect(this.page.getByRole('button', { name: 'Update Profile' })).toBeEnabled();
-        await this.page.getByRole('button', { name: 'Update Profile' }).click();
+        await this.uploadImageAndSave();
     }
 
     async changeCoverPhoto() {
         await this.page.locator('ins').filter({ hasText: 'Change your cover photo' }).click();
         await this.page.getByRole('link', { name: 'Change cover photo' }).click();
+        await this.uploadImageAndSave();
+    }
+
+    // Shared by the avatar and cover flows: once the upload modal is open,
+    // both run the same choose-file, Apply, Update Profile steps.
+    private async uploadImageAndSave() {
         await this.page.locator('input[type="file"]').setInputFiles(this.imagePath);
         // The following timeout is a workaround for a frontend bug where the "Apply" button
         // becomes enabled before the image upload is actually complete.
         // eslint-disable-next-line playwright/no-wait-for-timeout -- the bug is that the DOM lies, so there is no state to await
         await this.page.waitForTimeout(2000);
         await expect(this.page.getByRole('link', { name: 'Apply' })).toBeEnabled({ timeout: TIMEOUTS.UPLOAD_PROCESSING });
-        await this.applyUpload();
-        // Apply fades Ultimate Member's modal out, and its overlay keeps
-        // intercepting clicks on Update Profile until it is gone.
-        await expect(this.page.locator('.um-modal-overlay')).toBeHidden();
-        // Wait up to 15s for the Update Profile button to be enabled
-        await expect(this.page.getByRole('button', { name: 'Update Profile' })).toBeEnabled();
-        await this.page.getByRole('button', { name: 'Update Profile' }).click();
-    }
 
-    // Apply sends the crop to um_resize_image, which writes the final file.
-    // Its result is the only proof the picture was replaced: the tests upload
-    // the same image every run, and the <img> src gets a fresh cache-busting
-    // timestamp on every page load whether or not anything changed.
-    private async applyUpload() {
+        // Apply sends the crop to um_resize_image, which writes the final file.
+        // Its result is the only proof the picture was replaced: the tests upload
+        // the same image every run, and the <img> src gets a fresh cache-busting
+        // timestamp on every page load whether or not anything changed.
         const resizeResponse = this.page.waitForResponse(
             (response) => response.request().postData()?.includes('action=um_resize_image') ?? false,
         );
         await this.page.getByRole('link', { name: 'Apply' }).click();
         expect(await (await resizeResponse).json()).toMatchObject({ success: true });
+
+        // Apply fades Ultimate Member's modal out, and its overlay keeps
+        // intercepting clicks on Update Profile until it is gone.
+        await expect(this.page.locator('.um-modal-overlay')).toBeHidden();
+        await expect(this.page.getByRole('button', { name: 'Update Profile' })).toBeEnabled();
+        await this.page.getByRole('button', { name: 'Update Profile' }).click();
     }
 
     async verifyProfileUpdate() {
