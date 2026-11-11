@@ -19,6 +19,7 @@ These used to be on the todo list and are now implemented. They're listed here s
 - **Visual regression.** `tests/ui/logo.spec.ts` has a `toHaveScreenshot` test, currently commented out with no committed baseline. Generate one with `npx playwright test --update-snapshots` before re-enabling it.
 - **CI on every push/PR.** `.github/workflows/playwright.yml` runs the suite on `ubuntu-latest` for pushes and PRs against `main`/`master`. Uploads the HTML report as a 30-day artifact.
 - **Accessibility checks.** `tests/e2e/accessibility-scan.spec.ts` uses `@axe-core/playwright` and fails on `critical` violations only; lower-impact ones are logged, and the full results are attached to the HTML report.
+- **Price checks no longer flaky.** `tests/e2e/check-price.spec.ts` carried a "Flaky test" label from January 2025, when it located prices by database ID. After the selectors were scoped to the product's own summary, 55 consecutive traced runs passed (`--repeat-each 5 --trace on`) and recent CI runs needed no retries, so the label was removed. If a test here fails, read its trace before adding waits.
 - **Logout flow.** `tests/e2e/logout.spec.ts`.
 - **npm scripts.** `npm test`, `test:headed`, `test:ui`, `report`, `lint`, `lint:fix`, `format`, `format:check`, `typecheck`.
 - **Centralized timeouts.** `constants/timeouts.ts` exports named constants (`ERROR_MESSAGE`, `UPLOAD_PROCESSING`, `IFRAME_LOAD`) for the few waits that need more than the default. Page objects import these instead of inlining numbers, so tuning a category is a one-line change.
@@ -47,13 +48,9 @@ Within that scope, still worth adding:
 - **Store API categories and tags.** `wc-store-products.spec.ts` covers `/wc/store/v1/products`; the sibling `/products/categories` and `/products/tags` endpoints accept anonymous reads too.
 - **Empty `_fields=` filter.** `wp-posts.spec.ts` asserts `?_fields=nonexistent_field` degrades gracefully; the empty `?_fields=` case is still unasserted.
 
-### Known flake
-
-- **`tests/e2e/check-price.spec.ts`** is marked "Flaky test" with no investigation; CI's 2 retries mask it rather than fix it. The 10-product loop has since been split into one test per product, which removes the most obvious timeout risk. The cause is unknown. Capture a trace of a failing run (`npx playwright test tests/e2e/check-price.spec.ts --repeat-each 5 --trace on`) and read it before changing anything; the assertions are already web-first, so more waiting is unlikely to be the fix.
-
 ### Cross-browser coverage
 
-- Only Chromium is enabled. Uncomment Firefox (and optionally WebKit) in `playwright.config.ts` once the suite is flake-free — running multi-browser while there's an unresolved flake just multiplies noise.
+- Only Chromium is enabled. Uncomment Firefox (and optionally WebKit) in `playwright.config.ts`. Each extra browser is another full run against a rate-limited live site, so check the suite is stable first: no retries in recent CI runs.
 
 ### Configuration hardening
 
@@ -64,8 +61,7 @@ Within that scope, still worth adding:
 If you're using this repo to learn, these are deliberately chosen to teach one concept each without requiring broad changes.
 
 1. **Write `tests/e2e/shopping-cart.spec.ts`.** Teaches: extending an existing Page Object (`CartPage.ts`), locator strategy, and the add/remove/assert loop. Start with "add one item, assert cart count = 1".
-2. **Fix the flake in `check-price.spec.ts`.** Teaches: diagnosing timing bugs, reading traces, and the difference between `waitFor` and web-first assertions.
-3. **Enable Firefox in `playwright.config.ts`.** Teaches: the project system, reading the config, and interpreting cross-browser failures. Do this *after* #2 — running multi-browser while there's an unresolved flake just multiplies noise.
+2. **Enable Firefox in `playwright.config.ts`.** Teaches: the project system, reading the config, and interpreting cross-browser failures.
 
 When picking one, read the relevant existing file first, then open a PR with a short description of what you learned.
 
