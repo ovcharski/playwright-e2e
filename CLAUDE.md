@@ -24,6 +24,8 @@ npm run test:ui          # UI mode
 npm run report           # View HTML report
 npm run lint             # Lint all files
 npm run lint:fix         # Lint and auto-fix
+npm run format           # Format code with Prettier
+npm run format:check     # Check formatting without writing
 npm run typecheck        # TypeScript check (tsc --noEmit)
 
 # Playwright CLI (for flags not covered by scripts)
@@ -88,7 +90,7 @@ test.use({ storageState: './NoAuth.json' });
 
 ### CI
 
-`.github/workflows/playwright.yml` runs on push and PR to `main`/`master`: `npm ci` → `npm run lint` → `npm run typecheck` → `npx playwright test`. Credentials come from the `TEST_USERNAME` / `TEST_PASSWORD` GitHub secrets, and `playwright-report/` is uploaded as an artifact.
+`.github/workflows/playwright.yml` runs on push and PR to `main`/`master`: `npm ci` → `npm run lint` → `npm run format:check` → `npm run typecheck` → `npx playwright test`. Credentials come from the `TEST_USERNAME` / `TEST_PASSWORD` GitHub secrets, and `playwright-report/` is uploaded as an artifact.
 
 ## Key Patterns
 
@@ -129,6 +131,7 @@ The gateway renders the Stripe **Payment Element** inside an iframe. `CheckoutPa
 - `@faker-js/faker`: Test data generation
 - `dotenv`: Env-var loading (used in `global-setup.ts` only; the `playwright.config.ts` hook is commented out)
 - `eslint` with `@typescript-eslint/*`: Linting (config in `eslint.config.js`)
+- `prettier`: Formatting (config in `.prettierrc.json`: 4 spaces, single quotes, 120 columns)
 - `@types/node`: Node typings for `process.env` access
 
 ## Related Docs

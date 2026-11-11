@@ -172,6 +172,8 @@ npm test
 | `npm run report` | Open last HTML report |
 | `npm run lint` | ESLint check |
 | `npm run lint:fix` | ESLint auto-fix |
+| `npm run format` | Format code with Prettier |
+| `npm run format:check` | Check formatting without writing |
 | `npm run typecheck` | TypeScript check |
 
 ## Stripe and currency
