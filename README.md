@@ -69,10 +69,10 @@ The payment provider is Stripe.
 
 The tests in the framework cover:
 
--   User login, logout and registration
+-   User login, logout, registration and password reset request
 -   Search and product prices
 -   Cart: changing a quantity and removing a product
--   Making an order: cash on delivery and Stripe card payments, including declined and invalid cards
+-   Making an order: cash on delivery and Stripe card payments, including 3D Secure, declined and invalid cards
 -   Profile image uploads
 -   Checkout validation: missing required billing fields
 -   Accessibility scans of the homepage, shop, product, cart and checkout pages with axe-core

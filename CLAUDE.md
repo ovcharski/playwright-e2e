@@ -12,6 +12,7 @@ Tests run against a **live, shared, stateful site** — there is no local fixtur
 - `make-order-stripe.spec.ts` and `make-order.spec.ts` place real test-mode orders. Both run as a guest (`NoAuth.json`), so each test gets a fresh cart; do not add to the logged-in user's cart, which is stored server-side and would accumulate across runs.
 - `edit-profile.spec.ts` re-uploads the test account's avatar and cover photo.
 - `register.spec.ts` creates real users.
+- `password-reset.spec.ts` makes the site send a reset email to the test account.
 - API tests are anonymous `GET` only — no writes, no authenticated calls.
 - Concurrent runs (two CI jobs at once, or CI plus a local run) trip the site's WAF and return 403s that look like real failures. Stagger runs rather than adding a concurrency guard.
 
@@ -70,7 +71,7 @@ Specs that use page objects import `test` and `expect` from `fixtures/test-fixtu
 
 ### Test Organization
 
-- `tests/e2e/`: End-to-end user flows (login, register, cart, checkout, checkout validation, search, price checks, accessibility scans)
+- `tests/e2e/`: End-to-end user flows (login, register, password reset, cart, checkout, checkout validation, search, price checks, accessibility scans)
 - `tests/api/`: WordPress REST API tests
 - `tests/ui/`: Viewport and logo checks. The visual-comparison test in `logo.spec.ts` is commented out — it has no committed baseline; re-enabling it needs a Linux one generated with `--update-snapshots`.
 
@@ -127,6 +128,7 @@ The gateway renders the Stripe **Payment Element** inside an iframe. `CheckoutPa
 - Target the **placeholders** (`1234 1234 1234 1234`, `MM / YY`, `CVC`), which have survived gateway updates. The visible labels ("Card number", "Expiration (MM/YY)", "Security code") have not.
 - The payment method radio is `Payment options` and is already selected — use `.check()`, not `.click()`, so it stays a no-op and cannot fire a stray `update_checkout` AJAX before `#place_order`.
 - Validation strings come from Stripe and change between element versions (e.g. "Your security code is incomplete."). When these tests break, read the current wording out of `error-context.md` instead of guessing.
+- The 3D Secure challenge (card 4000 0025 0000 3155) opens in `iframe[name="stripe-challenge-frame"]`, nested inside a Stripe frame whose `src` contains `three-ds-2-challenge`. `completeThreeDSecureChallenge` clicks Complete until the dialog closes, because an early click is ignored.
 - Billing details (name, address, email, phone) must be filled before payment — Stripe rejects the transaction otherwise. Checkout currency is Euro; test cards are 4242 4242 4242 4242 and friends.
 
 ### Debugging Failures
