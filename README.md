@@ -74,7 +74,8 @@ The tests in the framework cover:
 -   Cart: changing a quantity and removing a product
 -   Making an order: cash on delivery and Stripe card payments, including declined and invalid cards
 -   Profile image uploads
--   Accessibility scan of the homepage with axe-core
+-   Checkout validation: missing required billing fields
+-   Accessibility scans of the homepage, shop, product, cart and checkout pages with axe-core
 -   Using Page Object Model and custom fixtures
 -   GitHub Actions with HTML report
 -   API Testing - Playwright is not the most comprehensive tool for API testing, but it can be used to get access to the REST API of your application. ([Official Documentation - API testing](https://playwright.dev/docs/test-api-testing))

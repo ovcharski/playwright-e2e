@@ -70,7 +70,7 @@ Specs that use page objects import `test` and `expect` from `fixtures/test-fixtu
 
 ### Test Organization
 
-- `tests/e2e/`: End-to-end user flows (login, register, cart, checkout, search, price checks, accessibility scan)
+- `tests/e2e/`: End-to-end user flows (login, register, cart, checkout, checkout validation, search, price checks, accessibility scans)
 - `tests/api/`: WordPress REST API tests
 - `tests/ui/`: Viewport and logo checks. The visual-comparison test in `logo.spec.ts` is commented out — it has no committed baseline; re-enabling it needs a Linux one generated with `--update-snapshots`.
 
