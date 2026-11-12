@@ -54,7 +54,7 @@ Page classes in `pages/`:
 - **BasePage.ts**: Abstract base holding `page` and `captureScreenshot()`
 - **HomePage.ts**: Welcome text, footer, home screenshots
 - **LoginPage.ts**, **RegisterPage.ts**: Authentication flows
-- **CartPage.ts**: Add to cart, view cart, proceed to checkout
+- **CartPage.ts**: Add to cart, view cart, change quantity, remove product, proceed to checkout
 - **CheckoutPage.ts**: Order placement, billing form, Stripe iframe handling
 - **ProductPage.ts**: Category/product navigation, price verification
 - **ProfilePage.ts**: Profile updates, file uploads
@@ -70,7 +70,7 @@ Specs that use page objects import `test` and `expect` from `fixtures/test-fixtu
 
 ### Test Organization
 
-- `tests/e2e/`: End-to-end user flows (login, register, checkout, search, price checks, accessibility scan)
+- `tests/e2e/`: End-to-end user flows (login, register, cart, checkout, search, price checks, accessibility scan)
 - `tests/api/`: WordPress REST API tests
 - `tests/ui/`: Viewport and logo checks. The visual-comparison test in `logo.spec.ts` is commented out — it has no committed baseline; re-enabling it needs a Linux one generated with `--update-snapshots`.
 

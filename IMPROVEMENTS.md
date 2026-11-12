@@ -21,6 +21,8 @@ These used to be on the todo list and are now implemented. They're listed here s
 - **Accessibility checks.** `tests/e2e/accessibility-scan.spec.ts` uses `@axe-core/playwright` and fails on `critical` violations only; lower-impact ones are logged, and the full results are attached to the HTML report.
 - **Price checks no longer flaky.** `tests/e2e/check-price.spec.ts` carried a "Flaky test" label from January 2025, when it located prices by database ID. After the selectors were scoped to the product's own summary, 55 consecutive traced runs passed (`--repeat-each 5 --trace on`) and recent CI runs needed no retries, so the label was removed. If a test here fails, read its trace before adding waits.
 - **Logout flow.** `tests/e2e/logout.spec.ts`.
+- **Cart operations.** `tests/e2e/cart.spec.ts` changes a quantity and checks the line subtotal and cart totals, and removes a product. It runs as a guest and stops before checkout, so it places no orders.
+- **Order contents on the confirmation page.** `tests/e2e/make-order.spec.ts` reads the total at checkout and checks that the confirmation page shows the same total and the product bought.
 - **npm scripts.** `npm test`, `test:headed`, `test:ui`, `report`, `lint`, `lint:fix`, `format`, `format:check`, `typecheck`.
 - **Centralized timeouts.** `constants/timeouts.ts` exports named constants (`ERROR_MESSAGE`, `UPLOAD_PROCESSING`, `IFRAME_LOAD`) for the few waits that need more than the default. Page objects import these instead of inlining numbers, so tuning a category is a one-line change.
 - **Test data factories.** `helpers/test-data.ts` exposes `buildBillingInfo()` and `buildRegistrationUser()` — thin faker wrappers that accept `Partial<>` overrides. Specs no longer repeat the 9-field billing block or the 5-field registration block inline.
@@ -33,7 +35,7 @@ Open work, roughly ordered by value.
 
 ### Test coverage gaps
 
-- **Shopping cart operations.** Add/remove/update quantity/clear cart. No `tests/e2e/shopping-cart.spec.ts` exists today.
+- **More cart operations.** `tests/e2e/cart.spec.ts` covers quantity change and remove. Still missing: several products in one cart, undoing a removal, coupons.
 - **Password reset.** Forgot-password and reset-password flows.
 - **Profile edit validation.** `edit-profile.spec.ts` only covers the happy path. Add invalid input, required-field omissions, and boundary cases.
 - **3D Secure / SCA flow.** Stripe provides test cards that trigger the SCA challenge (e.g. `4000 0027 6000 3184`). Exercise the challenge modal.
@@ -60,7 +62,7 @@ Within that scope, still worth adding:
 
 If you're using this repo to learn, these are deliberately chosen to teach one concept each without requiring broad changes.
 
-1. **Write `tests/e2e/shopping-cart.spec.ts`.** Teaches: extending an existing Page Object (`CartPage.ts`), locator strategy, and the add/remove/assert loop. Start with "add one item, assert cart count = 1".
+1. **Add a test to `tests/e2e/cart.spec.ts`.** Teaches: extending an existing Page Object (`CartPage.ts`), locator strategy, and the add/remove/assert loop. Start with "remove the Hat, click Undo, assert it is back in the cart".
 2. **Enable Firefox in `playwright.config.ts`.** Teaches: the project system, reading the config, and interpreting cross-browser failures.
 
 When picking one, read the relevant existing file first, then open a PR with a short description of what you learned.
