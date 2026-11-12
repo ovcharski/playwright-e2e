@@ -23,6 +23,9 @@ const validCards = [
 // server when the order is placed
 const declinedCard = { number: '4000 0000 0000 0002', cvc: '123' };
 
+// Stripe test card that always asks for 3D Secure authentication
+const threeDSecureCard = { number: '4000 0025 0000 3155', cvc: '123' };
+
 // Test data for invalid card scenarios
 const invalidCardScenarios = [
     {
@@ -66,6 +69,15 @@ test.describe('Checkout and Payment Tests', () => {
             await checkoutPage.placeOrder();
             await checkoutPage.expectOrderReceived();
         });
+    });
+
+    test('Make an order and pay with a card that requires 3D Secure', async ({ checkoutWithProduct: checkoutPage }) => {
+        await checkoutPage.fillCheckoutForm(buildBillingInfo());
+        await checkoutPage.fillCardDetails(threeDSecureCard.number, validExpiryDate, threeDSecureCard.cvc);
+        await checkoutPage.selectCardPayment();
+        await checkoutPage.placeOrder();
+        await checkoutPage.completeThreeDSecureChallenge();
+        await checkoutPage.expectOrderReceived();
     });
 
     test('Make an order and pay with a declined card', async ({ checkoutWithProduct: checkoutPage }) => {
