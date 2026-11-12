@@ -71,6 +71,7 @@ The tests in the framework cover:
 
 -   User login, logout and registration
 -   Search and product prices
+-   Cart: changing a quantity and removing a product
 -   Making an order: cash on delivery and Stripe card payments, including declined and invalid cards
 -   Profile image uploads
 -   Accessibility scan of the homepage with axe-core

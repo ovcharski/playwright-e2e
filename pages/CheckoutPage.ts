@@ -92,6 +92,22 @@ export default class CheckoutPage extends BasePage {
         await expect(this.page.getByText('Thank you. Your order has been received.')).toBeVisible();
     }
 
+    // The total shown in the order review, e.g. "12,00 €". Read it after
+    // fillCheckoutForm, which waits for the review to stop updating.
+    orderReviewTotal() {
+        return this.page
+            .locator('#order_review')
+            .getByRole('row', { name: /^Total/ })
+            .getByRole('cell')
+            .innerText();
+    }
+
+    async expectOrderDetails(productName: string, total: string) {
+        const details = this.page.locator('.woocommerce-order-details');
+        await expect(details.getByRole('row', { name: productName })).toBeVisible();
+        await expect(details.getByRole('row', { name: /^Total/ })).toContainText(total);
+    }
+
     // A server-side decline comes back as a WooCommerce checkout notice, not an
     // in-iframe validation error. The wording differs between Stripe ("Your
     // card was declined.") and the gateway's own copy ("The card was

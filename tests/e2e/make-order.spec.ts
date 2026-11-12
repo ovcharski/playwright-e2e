@@ -23,10 +23,12 @@ test('Make an order', async ({ page, productPage, cartPage, checkoutPage }) => {
     // Fill checkout form and select payment method
     await checkoutPage.fillCheckoutForm(buildBillingInfo());
     await checkoutPage.selectCashOnDelivery();
+    const total = await checkoutPage.orderReviewTotal();
     await checkoutPage.placeOrder();
 
     // Verify order confirmation
     await checkoutPage.expectOrderReceived();
+    await checkoutPage.expectOrderDetails('Jenkins Cosmonaut', total);
 });
 
 test('Make an order via search', async ({ page, productPage, cartPage, checkoutPage }) => {
@@ -43,8 +45,10 @@ test('Make an order via search', async ({ page, productPage, cartPage, checkoutP
     // Fill checkout form and complete order
     await checkoutPage.fillCheckoutForm(buildBillingInfo());
     await checkoutPage.selectCashOnDelivery();
+    const total = await checkoutPage.orderReviewTotal();
     await checkoutPage.placeOrder();
 
     // Verify order confirmation
     await checkoutPage.expectOrderReceived();
+    await checkoutPage.expectOrderDetails('Jenkinstein', total);
 });
