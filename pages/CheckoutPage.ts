@@ -94,7 +94,7 @@ export default class CheckoutPage extends BasePage {
 
     // The total shown in the order review, e.g. "12,00 €". Read it after
     // fillCheckoutForm, which waits for the review to stop updating.
-    async orderReviewTotal() {
+    orderReviewTotal() {
         return this.page
             .locator('#order_review')
             .getByRole('row', { name: /^Total/ })
