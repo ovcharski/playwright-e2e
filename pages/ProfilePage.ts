@@ -15,8 +15,10 @@ export default class ProfilePage extends BasePage {
         await this.page.locator('.um-faicon-cog').click();
         await this.page.getByRole('link', { name: 'Edit Profile' }).click();
         // The photo exists in view mode too, where clicking it just reloads
-        // the profile, so wait for edit mode before touching it.
-        await expect(this.page).toHaveURL(/um_action=edit/);
+        // the profile, so wait for edit mode before touching it. Wait for the
+        // load event, not just the URL: until Ultimate Member's script has
+        // run, the photo is still a plain link back to the profile.
+        await this.page.waitForURL(/um_action=edit/);
         await this.page.locator('.um-profile-photo-img').click();
     }
 
