@@ -99,7 +99,7 @@ test.use({ storageState: './NoAuth.json' });
 
 ### CI
 
-`.github/workflows/playwright.yml` runs on push and PR to `main`/`master`: `npm ci` → `npm run lint` → `npm run format:check` → `npm run typecheck` → `npx playwright test`. Credentials come from the `TEST_USERNAME` / `TEST_PASSWORD` GitHub secrets, and `playwright-report/` is uploaded as an artifact.
+`.github/workflows/playwright.yml` runs on push and PR to `main`/`master`, in two jobs. `static-checks` needs no secrets: `npm ci` → `npm run lint` → `npm run format:check` → `npm run typecheck`. `test` runs after it: `npx playwright test`, with credentials from the `TEST_USERNAME` / `TEST_PASSWORD` GitHub secrets, and `playwright-report/` uploaded as an artifact. Pull requests from forks get no secrets, so `test` is skipped for them and only `static-checks` runs.
 
 ## Key Patterns
 
