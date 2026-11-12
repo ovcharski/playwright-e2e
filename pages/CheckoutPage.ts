@@ -87,6 +87,26 @@ export default class CheckoutPage extends BasePage {
         return this.page.locator('iframe[name*="__privateStripeFrame"]').filter({ visible: true }).first();
     }
 
+    // After Place order, Stripe opens the bank's 3D Secure challenge in a
+    // frame nested inside one of its own. In test mode the challenge is a page
+    // with Complete and Fail buttons.
+    async completeThreeDSecureChallenge() {
+        const challenge = this.page.locator('iframe[src*="three-ds-2-challenge"]');
+        const completeButton = challenge
+            .contentFrame()
+            .locator('iframe[name="stripe-challenge-frame"]')
+            .contentFrame()
+            .getByRole('button', { name: 'Complete' });
+
+        // A click that lands while the challenge is still opening is ignored
+        // and the dialog stays up, so click until the dialog has gone.
+        await expect(completeButton).toBeVisible();
+        await expect(async () => {
+            if (await completeButton.isVisible()) await completeButton.click({ timeout: 2000 });
+            await expect(challenge).toBeHidden({ timeout: 3000 });
+        }).toPass();
+    }
+
     async expectOrderReceived() {
         await expect(this.page.getByRole('heading', { name: 'Order received' })).toBeVisible();
         await expect(this.page.getByText('Thank you. Your order has been received.')).toBeVisible();

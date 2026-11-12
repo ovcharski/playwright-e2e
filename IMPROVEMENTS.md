@@ -23,6 +23,8 @@ These used to be on the todo list and are now implemented. They're listed here s
 - **Logout flow.** `tests/e2e/logout.spec.ts`.
 - **Cart operations.** `tests/e2e/cart.spec.ts` changes a quantity and checks the line subtotal and cart totals, and removes a product. It runs as a guest and stops before checkout, so it places no orders.
 - **Checkout validation.** `tests/e2e/checkout-validation.spec.ts` submits the checkout without a required billing field and checks the inline error. The site rejects the submission, so no order is placed.
+- **3D Secure.** `tests/e2e/make-order-stripe.spec.ts` pays with Stripe's `4000 0025 0000 3155` test card and completes the challenge dialog. Failing the challenge is not covered.
+- **Password reset request.** `tests/e2e/password-reset.spec.ts` requests a reset for the test account and checks the confirmation page. Following the emailed link and setting a new password is not covered: the suite cannot read the mailbox.
 - **Order contents on the confirmation page.** `tests/e2e/make-order.spec.ts` reads the total at checkout and checks that the confirmation page shows the same total and the product bought.
 - **npm scripts.** `npm test`, `test:headed`, `test:ui`, `report`, `lint`, `lint:fix`, `format`, `format:check`, `typecheck`.
 - **Centralized timeouts.** `constants/timeouts.ts` exports named constants (`ERROR_MESSAGE`, `UPLOAD_PROCESSING`, `IFRAME_LOAD`) for the few waits that need more than the default. Page objects import these instead of inlining numbers, so tuning a category is a one-line change.
@@ -37,9 +39,7 @@ Open work, roughly ordered by value.
 ### Test coverage gaps
 
 - **More cart operations.** `tests/e2e/cart.spec.ts` covers quantity change and remove. Still missing: several products in one cart, undoing a removal, coupons.
-- **Password reset.** Forgot-password and reset-password flows.
 - **Profile edit validation.** `edit-profile.spec.ts` only covers the happy path. Add invalid input, required-field omissions, and boundary cases.
-- **3D Secure / SCA flow.** Stripe provides test cards that trigger the SCA challenge (e.g. `4000 0027 6000 3184`). Exercise the challenge modal.
 
 ### API coverage gaps
 
