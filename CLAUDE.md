@@ -193,3 +193,27 @@ Define success criteria. Loop until verified.
 - "Refactor X" → "Ensure tests pass before and after"
 
 For multi-step tasks, state a brief plan with a verify step for each item.
+
+### 5. Evidence Before "Done"
+
+- Before reporting a change as finished, run `npm run lint`, `npm run format:check`, `npm run typecheck`, and the spec files the change touches (`npx playwright test <file>`). Report what ran and whether it passed; if something was not run, say so.
+- Run only the affected specs unless asked for the full suite: every run hits the live site (orders, registrations, emails), and overlapping runs trip the WAF.
+- Read `git status` and `git diff` before summarizing a change. Describe the diff, not the intent.
+
+### 6. Keep Tests Honest
+
+A red test is information. Do not make it green by weakening it:
+
+- No loosened or deleted assertions, no `test.skip` / `test.fixme`, no added retries.
+- No `waitForTimeout` and no raised timeouts as a fix — find the condition the test should wait for.
+- If the site changed (UI drift), update the locator or expectation and say that is what happened. If the site itself looks broken, report it instead of adapting the test.
+- After a fix fails, do not stack another guess on top. Go back to `error-context.md`, form one new hypothesis, and test it.
+
+### 7. Ask First
+
+Propose in chat and wait for approval before:
+
+- adding or upgrading a dependency
+- changing `playwright.config.ts` or `.github/workflows/`
+- adding a test that writes to the site (orders, users, emails, uploads) beyond those listed under Project Overview
+- deleting a test
